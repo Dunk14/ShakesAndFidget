@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    class User
+    public class User : ModelBase
     {
         #region StaticVariables
         #endregion
@@ -22,6 +22,7 @@ namespace ShakesAndFidgetLibrary.Models
         private String mail;
         private String name;
         private String password;
+        private int id;
         #endregion
 
         #region Properties
@@ -57,16 +58,17 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Constructors
-        public User()
-        {
 
-        }
-
-        public User(string mail, string name, string password)
+        public User(string mail, string name, string password, int id) : base(id)
         {
             this.mail = mail;
             this.name = name;
             this.password = password;
+            this.id = id;
+        }
+
+        public User(int id) : base(id)
+        {
         }
         #endregion
 
