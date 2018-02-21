@@ -1,5 +1,5 @@
 ﻿using MySql.Data.Entity;
-using ShakesAndFidgetLibrary.Models ;
+using ShakesAndFidgetLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -20,7 +20,7 @@ namespace Database.MySQL
     {
         public MySQLManager(String connectionString = null) : 
             base(connectionString == null ? 
-                "Server=localhost;Port=3306;Database=imiedl20172018;Uid=root;Pwd=" 
+                "Server=localhost;Port=3306;Database=game;Uid=root;Pwd=" 
                 : connectionString)
         {
         }
@@ -35,7 +35,7 @@ namespace Database.MySQL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Truck>();
+            modelBuilder.Entity<User>();
             //modelBuilder.Entity<Client>();
             //modelBuilder.Entity<Product>();
         }
