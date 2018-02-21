@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShakesAndFidgetLibrary.Models
+namespace ShakesAndFidgetLibrary.Models.ItemCategory
 {
-    public class Item
+    public class Usable : Item
     {
         #region StaticVariables
         #endregion
@@ -18,21 +18,14 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Attributs
-        private String name;
         #endregion
 
         #region Properties
-        public String Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
         #endregion
 
         #region Constructors
-        public Item(String name)
+        public Usable(string name) : base(name)
         {
-            this.name = name;
         }
         #endregion
 
@@ -40,6 +33,10 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Functions
+        public void Use()
+        {
+
+        }
         #endregion
 
         #region Events

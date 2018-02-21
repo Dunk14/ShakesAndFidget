@@ -1,0 +1,20 @@
+﻿<Page x:Class="ShakesAndFidget.Views.FirstConnectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ShakesAndFidget.Views"
+      xmlns:uc="clr-namespace:ShakesAndFidget.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="FirstConnectionPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <uc:FirstConnectionUserControl x:Name="FirstConnectionUC" Grid.Column="0" Grid.Row="0" />
+    </Grid>
+</Page>

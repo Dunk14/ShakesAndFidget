@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ShakesAndFidget.UserControls
 {
     /// <summary>
-    /// Logique d'interaction pour UserControl3.xaml
+    /// Logique d'interaction pour ConnectionUserControl.xaml
     /// </summary>
-    public partial class UserControl3 : UserControl
+    public partial class ConnectionUserControl : UserControl
     {
-        public UserControl3()
+        public ConnectionUserControl()
         {
             InitializeComponent();
         }

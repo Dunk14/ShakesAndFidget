@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShakesAndFidget.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ShakesAndFidget.UserControls
+namespace ShakesAndFidget.Views
 {
     /// <summary>
-    /// Logique d'interaction pour UserControl1.xaml
+    /// Logique d'interaction pour FirstConnectionPage.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class FirstConnectionPage : Page
     {
-        public UserControl1()
+        public FirstConnectionPage()
         {
             InitializeComponent();
+            new FirstConnectionViewModel(this);
         }
     }
 }

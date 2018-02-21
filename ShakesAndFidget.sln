@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidget", "ShakesAn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidgetLibrary", "ShakesAndFidgetLibrary\ShakesAndFidgetLibrary.csproj", "{4EC2BA8A-A160-4360-B66D-3779F5C00075}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{DE1CE39F-A00D-488F-884D-3DFB42167321}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4EC2BA8A-A160-4360-B66D-3779F5C00075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC2BA8A-A160-4360-B66D-3779F5C00075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EC2BA8A-A160-4360-B66D-3779F5C00075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1CE39F-A00D-488F-884D-3DFB42167321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1CE39F-A00D-488F-884D-3DFB42167321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1CE39F-A00D-488F-884D-3DFB42167321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1CE39F-A00D-488F-884D-3DFB42167321}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

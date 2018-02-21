@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ShakesAndFidget.UserControls.UserControl1"
+﻿<UserControl x:Class="ShakesAndFidget.UserControls.ConnectionUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -29,6 +29,7 @@
             FontSize="24"
             FontWeight="Bold"/>
         <TextBox
+            Name="Mail"
             Grid.Column="1"
             Grid.Row="1"
             HorizontalAlignment="Center"
@@ -39,6 +40,7 @@
             Width="300"
             RenderTransformOrigin="-0.707,0.47"/>
         <PasswordBox
+            Name="Password"
             Grid.Column="1"
             Grid.Row="2"
             HorizontalAlignment="Center"
@@ -47,6 +49,7 @@
             Width="300"
             RenderTransformOrigin="-0.707,0.47"/>
         <Button
+            Name="LogIn"
             Grid.Column="1"
             Grid.Row="3"
             HorizontalAlignment="Center"
