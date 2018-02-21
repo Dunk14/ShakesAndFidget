@@ -155,7 +155,7 @@ namespace ShakesAndFidgetLibrary.Models
 
         #region Constructors
 
-        public Stats(int id) : base(id)
+        public Stats() : base()
         {
         }
         #endregion

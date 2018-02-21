@@ -30,9 +30,9 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Constructors
-        public ModelBase(int id)
+        public ModelBase()
         {
-            this.id = id;
+
         }
         #endregion
 

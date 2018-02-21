@@ -22,7 +22,6 @@ namespace ShakesAndFidgetLibrary.Models
         private String mail;
         private String name;
         private String password;
-        private int id;
         #endregion
 
         #region Properties
@@ -59,15 +58,14 @@ namespace ShakesAndFidgetLibrary.Models
 
         #region Constructors
 
-        public User(string mail, string name, string password, int id) : base(id)
+        public User(string mail, string name, string password) : base()
         {
             this.mail = mail;
             this.name = name;
             this.password = password;
-            this.id = id;
         }
 
-        public User(int id) : base(id)
+        public User() : base()
         {
         }
         #endregion
