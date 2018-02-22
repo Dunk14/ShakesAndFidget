@@ -9,9 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidgetLibrary", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{DE1CE39F-A00D-488F-884D-3DFB42167321}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityUtils", "..\..\repoGithub\IMIEDL20172018\EntityUtils\EntityUtils.csproj", "{09D05A1C-417C-4AD8-890E-A0752713D0AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumUtils", "..\..\repoGithub\IMIEDL20172018\EnumUtils\EnumUtils.csproj", "{1958B81C-126C-4B95-9412-ACFDD4BBD018}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityUtils", "..\IMIEDL20172018\EntityUtils\EntityUtils.csproj", "{09D05A1C-417C-4AD8-890E-A0752713D0AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumUtils", "..\IMIEDL20172018\EnumUtils\EnumUtils.csproj", "{1958B81C-126C-4B95-9412-ACFDD4BBD018}"
+>>>>>>> origin/kilyan
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
