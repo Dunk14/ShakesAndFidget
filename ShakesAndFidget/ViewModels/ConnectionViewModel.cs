@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Database.MySQL;
 using ShakesAndFidget.Views;
+using ShakesAndFidgetLibrary.Models;
 
 namespace ShakesAndFidget.ViewModels
 {
@@ -22,15 +24,25 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Attributs
+        private User user1;
         #endregion
 
         #region Properties
+        public User User1
+        {
+            get { return user1; }
+            set { user1 = value; }
+        }
         #endregion
 
         #region Constructors
         public ConnectionViewModel(ConnectionPage page1)
         {
+            MySQLManager<User> UserManager = new MySQLManager<User>();
+
+            this.user1 = UserManager.Get(1).Result;
             this.page1 = page1;
+            this.page1.ConnectionUC.Mail.Text = this.user1.Mail;
             Events();
         }
         #endregion

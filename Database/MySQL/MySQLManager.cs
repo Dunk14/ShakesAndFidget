@@ -20,7 +20,7 @@ namespace Database.MySQL
     {
         public MySQLManager(String connectionString = null) : 
             base(connectionString == null ? 
-                "Server=dedibox.bihanbreizh.fr;Port=3306;Database=game;Uid=game;Pwd=imie" 
+                "Server=localhost;Port=3306;Database=game;Uid=root;Pwd=" 
                 : connectionString)
         {
         }
