@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidget", "ShakesAndFidget\ShakesAndFidget.csproj", "{5B6D92F3-A269-405B-934E-0E3794F19E87}"
 EndProject
@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidgetLibrary", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{DE1CE39F-A00D-488F-884D-3DFB42167321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityUtils", "..\Cours\C#\IMIEDL20172018\EntityUtils\EntityUtils.csproj", "{09D05A1C-417C-4AD8-890E-A0752713D0AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityUtils", "..\IMIEDL20172018\EntityUtils\EntityUtils.csproj", "{09D05A1C-417C-4AD8-890E-A0752713D0AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumUtils", "..\Cours\C#\IMIEDL20172018\EnumUtils\EnumUtils.csproj", "{1958B81C-126C-4B95-9412-ACFDD4BBD018}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumUtils", "..\IMIEDL20172018\EnumUtils\EnumUtils.csproj", "{1958B81C-126C-4B95-9412-ACFDD4BBD018}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
