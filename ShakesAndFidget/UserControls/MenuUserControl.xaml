@@ -50,6 +50,11 @@
             VerticalAlignment="Center" 
             Width="200"
             Height="50"
-            Margin="10, 0" />
+            Margin="10, 0"
+            Name="Disconnect"
+            Content="Disconnect"
+            FontSize="30"
+            Background="Gray"
+            Foreground="White"/>
     </Grid>
 </UserControl>

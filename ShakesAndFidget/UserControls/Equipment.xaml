@@ -8,15 +8,13 @@
              >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="110*"/>
-            <RowDefinition Height="110*"/>
-			<RowDefinition Height="110*"/>
-		</Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="110*"/>
-			<ColumnDefinition Width="100*"/>
-		</Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 		<Image Source="pack://application:,,,/Resources/Knight-1.png"
 			
             Grid.Column="1" 
