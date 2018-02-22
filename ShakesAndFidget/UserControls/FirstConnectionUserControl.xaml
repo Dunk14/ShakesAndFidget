@@ -24,6 +24,7 @@
             <ColumnDefinition Width="300*"/>
         </Grid.ColumnDefinitions>
         <TextBox
+            Name="UserName"
             Grid.Column="0"
             Grid.Row="0"
             Grid.ColumnSpan="2"

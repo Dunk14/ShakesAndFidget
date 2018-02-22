@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    public class Character
+    public class Character : ModelBase
     {
         #region StaticVariables
         #endregion
@@ -16,7 +17,7 @@ namespace ShakesAndFidgetLibrary.Models
 
         #region Variables
         private string name;
-        private char sexe;
+        private String sexe;
         private int level;
         #endregion
 
@@ -30,7 +31,8 @@ namespace ShakesAndFidgetLibrary.Models
             set { name = value; }
         }
 
-        public char Sexe
+        [MaxLength(1)]
+        public String Sexe
         {
             get { return sexe; }
             set { sexe = value; }

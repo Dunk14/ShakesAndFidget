@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Faker.Portable, Version=2.6.0.0, Culture=neutral, PublicKeyToken=968d76e55a3a9814, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.Portable.2.6.0\lib\portable-net40+sl5+win8+wpa81+wp8\Faker.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.10.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.10.6\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
@@ -72,6 +75,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
+      <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
+      <Name>EntityUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
+      <Project>{1958b81c-126c-4b95-9412-acfdd4bbd018}</Project>
+      <Name>EnumUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShakesAndFidgetLibrary\ShakesAndFidgetLibrary.csproj">
       <Project>{4ec2ba8a-a160-4360-b66d-3779f5c00075}</Project>
       <Name>ShakesAndFidgetLibrary</Name>

@@ -1,4 +1,5 @@
 ﻿using ShakesAndFidget.Views;
+using ShakesAndFidgetLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,6 +68,15 @@ namespace ShakesAndFidget
                 OnPropertyChanged("CurrentPage");
             }
         }
+
+        private User currentUser;
+
+        public User CurrentUser
+        {
+            get { return currentUser; }
+            set { currentUser = value; }
+        }
+
 
         #endregion
 

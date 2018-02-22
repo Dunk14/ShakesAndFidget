@@ -42,7 +42,7 @@ namespace ShakesAndFidget.ViewModels
 
             this.user1 = UserManager.Get(1).Result;
             this.page1 = page1;
-            this.page1.ConnectionUC.Mail.Text = this.user1.Mail;
+            this.page1.ConnectionUC.Name.Text = this.user1.Name;
             Events();
         }
         #endregion
@@ -58,7 +58,18 @@ namespace ShakesAndFidget.ViewModels
 
         private void BtnNavigate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            MainWindow.Instance.CurrentPage = new FirstConnectionPage();
+            bool ValidLogin = this.Login(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.Password.Password);
+            if (ValidLogin)
+            {
+                MainWindow.Instance.CurrentUser = this.user1;
+                MainWindow.Instance.CurrentPage = new FirstConnectionPage();
+            }
+        }
+
+        private bool Login(string name, string password)
+        {
+
+            return false;
         }
         #endregion
 

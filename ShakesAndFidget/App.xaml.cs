@@ -16,21 +16,7 @@ namespace ShakesAndFidget
         public App()
         {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
-            //new Database.MySQL.Test();
-            MySQLManager<User> manager = new MySQLManager<User>();
-            Task.Factory.StartNew(() =>
-            {
-                EntityGenerator<User> generatorC = new EntityGenerator<User>();
-                for (int i = 0; i < 300; i++)
-                {
-                    //User user = generatorC.GenerateItem();
-                    User user = new User();
-                    user.Mail = Faker.Internet.Email();
-                    user.Name = Faker.Name.First();
-                    user.Password = Faker.Internet.Password(6,10);
-                    manager.Insert(user);
-                }
-            });
+            // new Database.MySQL.Test();
         }
         
     }

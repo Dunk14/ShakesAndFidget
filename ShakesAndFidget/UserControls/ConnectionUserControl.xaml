@@ -29,7 +29,7 @@
             FontSize="24"
             FontWeight="Bold"/>
         <TextBox
-            Name="Mail"
+            Name="Name"
             Grid.Column="1"
             Grid.Row="1"
             HorizontalAlignment="Center"

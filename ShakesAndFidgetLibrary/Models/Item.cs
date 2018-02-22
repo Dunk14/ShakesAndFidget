@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    public class Item
+    public class Item : ModelBase
     {
         #region StaticVariables
         #endregion
