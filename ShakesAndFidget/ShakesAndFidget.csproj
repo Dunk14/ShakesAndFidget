@@ -86,8 +86,8 @@
     <Compile Include="UserControls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\HomeUserControl.xaml.cs">
-      <DependentUpon>HomeUserControl.xaml</DependentUpon>
+    <Compile Include="UserControls\Equipment.xaml.cs">
+      <DependentUpon>Equipment.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\FirstConnectionViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
@@ -125,7 +125,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\HomeUserControl.xaml">
+    <Page Include="UserControls\Equipment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,11 +172,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
+    <ProjectReference Include="..\..\..\repoGithub\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
       <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
       <Name>EntityUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
+    <ProjectReference Include="..\..\..\repoGithub\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
       <Project>{1958b81c-126c-4b95-9412-acfdd4bbd018}</Project>
       <Name>EnumUtils</Name>
     </ProjectReference>
@@ -221,6 +221,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="docs\MySqlCommand.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Knight-1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
