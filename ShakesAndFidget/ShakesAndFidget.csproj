@@ -80,11 +80,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\CharacterStats.xaml.cs">
+      <DependentUpon>CharacterStats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ConnectionUserControl.xaml.cs">
       <DependentUpon>ConnectionUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FirstConnectionUserControl.xaml.cs">
       <DependentUpon>FirstConnectionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Inventory.xaml.cs">
+      <DependentUpon>Inventory.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
@@ -116,11 +122,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\CharacterStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ConnectionUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\FirstConnectionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Inventory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

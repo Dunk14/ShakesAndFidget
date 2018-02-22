@@ -41,7 +41,7 @@ namespace ShakesAndFidget.ViewModels
         #region Functions
         private void Events()
         {
-            this.page1.FirstConnectionUC.Next.Click += BtnNavigate_Click;
+            this.page1.FirstConnectionUC.Validate.Click += BtnNavigate_Click;
         }
 
         private void BtnNavigate_Click(object sender, System.Windows.RoutedEventArgs e)

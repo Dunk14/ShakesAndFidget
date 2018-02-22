@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ShakesAndFidget.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <!--Life-->
         <Label
@@ -30,7 +30,7 @@
             Grid.Row="0"
             Content="Life"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -46,7 +46,7 @@
             Grid.Row="1"
             Content="Mana"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -62,7 +62,7 @@
             Grid.Row="2"
             Content="Strength"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -78,7 +78,7 @@
             Grid.Row="3"
             Content="Agility"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -94,7 +94,7 @@
             Grid.Row="4"
             Content="Spirit"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -110,7 +110,7 @@
             Grid.Row="5"
             Content="Luck"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -126,7 +126,7 @@
             Grid.Row="6"
             Content="CriticalDamage"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -142,7 +142,7 @@
             Grid.Row="7"
             Content="MagicDamage"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -158,7 +158,7 @@
             Grid.Row="8"
             Content="PhysicalDamage"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -174,7 +174,7 @@
             Grid.Row="9"
             Content="CriticalProbability"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
@@ -190,7 +190,7 @@
             Grid.Row="10"
             Content="PhysicalArmor"
             VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
             />
         <Label
             Grid.Column="1"
