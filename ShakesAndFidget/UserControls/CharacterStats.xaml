@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ShakesAndFidget.UserControls"
              mc:Ignorable="d" 
              >
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

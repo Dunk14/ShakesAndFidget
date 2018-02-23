@@ -18,9 +18,9 @@ namespace ShakesAndFidget.UserControls
     /// <summary>
     /// Logique d'interaction pour HomeUserControl.xaml
     /// </summary>
-    public partial class HomeUserControl : UserControl
+    public partial class EquipmentUserControl : UserControl
     {
-        public HomeUserControl()
+        public EquipmentUserControl()
         {
             InitializeComponent();
         }

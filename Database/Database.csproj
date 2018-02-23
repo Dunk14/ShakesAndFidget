@@ -75,11 +75,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
+    <ProjectReference Include="..\..\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
       <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
       <Name>EntityUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
+    <ProjectReference Include="..\..\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
       <Project>{1958b81c-126c-4b95-9412-acfdd4bbd018}</Project>
       <Name>EnumUtils</Name>
     </ProjectReference>

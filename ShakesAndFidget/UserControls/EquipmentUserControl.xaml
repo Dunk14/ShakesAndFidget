@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ShakesAndFidget.UserControls.HomeUserControl"
+﻿<UserControl x:Class="ShakesAndFidget.UserControls.EquipmentUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,17 +10,20 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 		<Image Source="pack://application:,,,/Resources/Knight-1.png"
-			
             Grid.Column="1" 
             HorizontalAlignment="Stretch"
             Grid.Row="1" 
-            VerticalAlignment="Stretch"/>
+            VerticalAlignment="Stretch"
+            Width="24"
+            Height="24"/>
         <Button
 			Content="prout"
             Name="btn1"

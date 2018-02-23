@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EntityUtils.Reflection;
+using ShakesAndFidgetLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,29 @@ namespace ShakesAndFidget.UserControls
     /// </summary>
     public partial class CharacterStats : UserControl
     {
+        String[] values = {
+            "life            : ",
+            "CriticalDamage  : "
+        };
         public CharacterStats()
         {
             InitializeComponent();
+            
+            //Dictionary<String, Object> itemProperties = new Reflectionner().ReadClass<Stats>();
+            //int i = 0;
+            //foreach (var item in itemProperties)
+            //{
+            //    Console.WriteLine(item.Key);
+            //    Label label = new Label();
+            //    label.Content = item.Key;
+
+            //    Grid.SetRow(label, i);
+
+            //    mainGrid.Children.Add(label);
+            //    i++;
+            //}
         }
+
+        
     }
 }
