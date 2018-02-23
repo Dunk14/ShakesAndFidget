@@ -13,5 +13,10 @@ namespace EntityUtils.Generator
         public const String INT32 = "Int32";
         public const String LIST = "List`1";
         public const String DOUBLE = "Double";
+        public const String BOOLEAN = "Boolean";
+        public const String BOOL = "bool";
+        public const String DECIMAL = "Decimal";
+        public const String DATETIME = "DateTime";
+        public const String COLLECTION = "ICollection`1";
     }
 }

@@ -12,17 +12,22 @@ namespace Database.MySQL
     {
         public Test()
         {
-            Task.Factory.StartNew(() =>
+            this.InsertData().Wait();
+        }
+        public async Task InsertData()
+        {
+            await Task.Factory.StartNew(() =>
             {
                 EntityGenerator<Stats> generatorStats = new EntityGenerator<Stats>();
                 MySQLManager<User> userManager = new MySQLManager<User>();
                 MySQLManager<Stats> statsManager = new MySQLManager<Stats>();
                 for (int i = 0; i < 10; i++)
                 {
+                    String FirstName = Faker.Name.First();
                     User user = new User();
                     user.Mail = Faker.Internet.Email();
-                    user.Name = Faker.Name.First();
-                    user.Password = Faker.Internet.Password(6, 10);
+                    user.Name = FirstName;
+                    user.Password = UserManager.CalculateMD5Hash(FirstName);
                     userManager.Insert(user);
                 }
                 for (int i = 0; i < 10; i++)
@@ -32,5 +37,6 @@ namespace Database.MySQL
                 }
             });
         }
+        
     }
 }

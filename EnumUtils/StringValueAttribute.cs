@@ -37,6 +37,24 @@ namespace EnumUtils
         #endregion
     }
 
+    public static class PropertyString
+    {
+        /// <summary>
+        /// Will get the string value for a given enums value, this will
+        /// only work if you assign the StringValue attribute to
+        /// the items in your enum.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string GetStringValue(this PropertyInfo value)
+        {
+            var attribs = value.GetCustomAttributes<StringValueAttribute>().ToArray();
+            
+            // Return the first if there was a match.
+            return attribs.Length > 0 ? attribs[0].StringValue : null;
+        }
+    }
+
     public static class EnumString
     {
 
@@ -61,6 +79,13 @@ namespace EnumUtils
 
             // Return the first if there was a match.
             return attribs.Length > 0 ? attribs[0].StringValue : null;
+        }
+
+        public static String GetAttributeFrom<T>(this object instance, string propertyName = "StringValueAttribute") where T : Attribute
+        {
+            var attrType = typeof(T);
+            var property = instance.GetType().GetProperty(propertyName);
+            return ((T)property.GetCustomAttributes(attrType, false).First() as StringValueAttribute).StringValue;
         }
     }
 }

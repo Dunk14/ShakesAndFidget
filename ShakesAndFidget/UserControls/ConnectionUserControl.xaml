@@ -71,11 +71,13 @@
             Text="Enter a password..."/>
         <Label
             Name="Message"
-            Grid.Column="1"
+            Grid.Column="0"
             Grid.Row="4"
+            Grid.ColumnSpan="3"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            FontSize="20"/>
+            FontSize="20"
+            Foreground="DarkRed"/>
         <Button
             Name="LogIn"
             Grid.Column="1"

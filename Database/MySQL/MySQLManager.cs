@@ -19,9 +19,7 @@ namespace Database.MySQL
     public class MySQLManager<T> : DbContext where T : ModelBase
     {
         public MySQLManager(String connectionString = null) : 
-            base(connectionString == null ? 
-                "Server=localhost;Port=3306;Database=game;Uid=root;Pwd=" 
-                : connectionString)
+            base(connectionString ?? "Server=localhost;Port=3306;Database=game;Uid=root;Pwd=")
         {
         }
 

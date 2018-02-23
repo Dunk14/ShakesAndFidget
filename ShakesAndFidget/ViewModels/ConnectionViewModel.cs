@@ -41,8 +41,6 @@ namespace ShakesAndFidget.ViewModels
         {
             userManager = new MySQLManager<User>();
             this.page1 = page1;
-            this.page1.ConnectionUC.Name.Text = this.user1.Name;
-            this.page1.ConnectionUC.RealPassword.Password = this.user1.Password;
             Events();
         }
         #endregion
@@ -69,12 +67,15 @@ namespace ShakesAndFidget.ViewModels
         private bool Login(string name, string password)
         {
             UserManager userManager = new UserManager();
-            User isValid = userManager.GetByName(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.RealPassword.Password).Result;
+            User isValid = userManager.GetByName(
+                this.page1.ConnectionUC.Name.Text, 
+                UserManager.CalculateMD5Hash(this.page1.ConnectionUC.RealPassword.Password)
+                ).Result;
             if (isValid != null)
             {
                 return true;
             }
-            //this.page1.ConnectionUC.
+            this.page1.ConnectionUC.Message.Content = "Fail to login, please check your name and password.";
             return false;
         }
         #endregion
