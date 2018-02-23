@@ -10,26 +10,18 @@ using System.Threading.Tasks;
 
 namespace Database.MySQL
 {
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class UserManager<T> : DbContext where T : User
+    public class UserManager : MySQLManager<User>
     {
-        public UserManager(String connectionString = null) :
-            base (connectionString == null
-                ? connectionString
-                : "Server=localhost;Port=3306;Database=game;Uid=root;Pwd=")
+        public async Task<User> GetByName(String name, String password)
         {
+            //return await this.DbSetUser.FirstOrDefaultAsync(a => a.Name == name) as T;
+            //this.DbSetT.SqlQuery();
+            List<User> users = this.DbSetT.Where<User>(x => (x.Name == name && x.Password == password)).ToList();
+            if (users.Count == 1)
+            {
+                return users[0];
+            }
+            return null;
         }
-
-        public UserManager(DbConnection existingConncetion, bool contextOwnsConnection) :
-            base(existingConncetion, contextOwnsConnection)
-        {
-        }
-            
-        public DbSet<T> DbSetUser { get; set; }
-
-        //public async Task<T> GetByName(String name)
-        //{
-        //    return this.DbSetUser.Where(a => a.Name == name);
-        //}
     }
 }

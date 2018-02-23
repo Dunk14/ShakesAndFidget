@@ -66,20 +66,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MySQL\UserManager.cs" />
     <Compile Include="MySQL\MySQLManager.cs" />
     <Compile Include="MySQL\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
+    <ProjectReference Include="..\EntityUtils\EntityUtils.csproj">
       <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
       <Name>EntityUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cours\C#\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
+    <ProjectReference Include="..\EnumUtils\EnumUtils.csproj">
       <Project>{1958b81c-126c-4b95-9412-acfdd4bbd018}</Project>
       <Name>EnumUtils</Name>
     </ProjectReference>

@@ -68,15 +68,20 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\CharacterStats.xaml.cs">
+      <DependentUpon>CharacterStats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ConnectionUserControl.xaml.cs">
       <DependentUpon>ConnectionUserControl.xaml</DependentUpon>
     </Compile>
@@ -113,6 +118,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\CharacterStats.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\ConnectionUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,25 +181,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ProjectReference Include="..\..\..\repoGithub\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
-      <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
-      <Name>EntityUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\repoGithub\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
-=======
-    <ProjectReference Include="..\..\IMIEDL20172018\EntityUtils\EntityUtils.csproj">
-      <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
-      <Name>EntityUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\IMIEDL20172018\EnumUtils\EnumUtils.csproj">
->>>>>>> origin/kilyan
-      <Project>{1958b81c-126c-4b95-9412-acfdd4bbd018}</Project>
-      <Name>EnumUtils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{de1ce39f-a00d-488f-884d-3dfb42167321}</Project>
       <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityUtils\EntityUtils.csproj">
+      <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
+      <Name>EntityUtils</Name>
     </ProjectReference>
     <ProjectReference Include="..\ShakesAndFidgetLibrary\ShakesAndFidgetLibrary.csproj">
       <Project>{4ec2ba8a-a160-4360-b66d-3779f5c00075}</Project>

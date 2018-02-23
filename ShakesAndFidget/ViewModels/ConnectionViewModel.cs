@@ -43,6 +43,7 @@ namespace ShakesAndFidget.ViewModels
             this.user1 = UserManager.Get(1).Result;
             this.page1 = page1;
             this.page1.ConnectionUC.Name.Text = this.user1.Name;
+            this.page1.ConnectionUC.Password.Password = this.user1.Password;
             Events();
         }
         #endregion
@@ -68,7 +69,13 @@ namespace ShakesAndFidget.ViewModels
 
         private bool Login(string name, string password)
         {
-
+            UserManager userManager = new UserManager();
+            User isValid = userManager.GetByName(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.Password.Password).Result;
+            if (isValid != null)
+            {
+                return true;
+            }
+            //this.page1.ConnectionUC.
             return false;
         }
         #endregion
