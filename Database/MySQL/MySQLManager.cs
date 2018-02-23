@@ -28,7 +28,7 @@ namespace Database.MySQL
         // Constructor to use on a DbConnection that is already opened
         public MySQLManager(DbConnection existingConnection, bool contextOwnsConnection)
       : base(existingConnection, contextOwnsConnection)
-    {
+        {
 
         }
 

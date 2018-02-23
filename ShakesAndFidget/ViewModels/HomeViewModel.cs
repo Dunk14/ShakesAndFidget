@@ -41,10 +41,10 @@ namespace ShakesAndFidget.ViewModels
         #region Functions
         private void Events()
         {
-            this.page1.HomeUC.btn1.Click += BtnNavigate_Click;
+            this.page1.MenuUC.Disconnect.Click += BtnDisconnect_Click;
         }
 
-        private void BtnNavigate_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void BtnDisconnect_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             MainWindow.Instance.CurrentPage = new FirstConnectionPage();
         }

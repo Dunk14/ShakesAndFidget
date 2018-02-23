@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Faker.Portable, Version=2.6.0.0, Culture=neutral, PublicKeyToken=968d76e55a3a9814, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.Portable.2.6.0\lib\portable-net40+sl5+win8+wpa81+wp8\Faker.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.10.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.10.6\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
@@ -85,14 +88,17 @@
     <Compile Include="UserControls\ConnectionUserControl.xaml.cs">
       <DependentUpon>ConnectionUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\EquipmentUserControl.cs">
+      <DependentUpon>EquipmentUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\FirstConnectionUserControl.xaml.cs">
       <DependentUpon>FirstConnectionUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Inventory.xaml.cs">
+      <DependentUpon>Inventory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Equipment.xaml.cs">
-      <DependentUpon>Equipment.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\FirstConnectionViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
@@ -119,8 +125,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\CharacterStats.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ConnectionUserControl.xaml">
       <SubType>Designer</SubType>
@@ -130,11 +136,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\MenuUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Equipment.xaml">
+    <Page Include="UserControls\EquipmentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

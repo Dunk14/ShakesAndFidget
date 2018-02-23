@@ -31,7 +31,7 @@ namespace ShakesAndFidget.ViewModels
         public FirstConnectionViewModel(FirstConnectionPage page1)
         {
             this.page1 = page1;
-            this.page1.FirstConnectionUC.UserName.Text = MainWindow.Instance.CurrentUser.Name;
+            this.page1.FirstConnectionUC.Username.Text = MainWindow.Instance.CurrentUser.Name;
             Events();
         }
         #endregion
@@ -42,7 +42,7 @@ namespace ShakesAndFidget.ViewModels
         #region Functions
         private void Events()
         {
-            this.page1.FirstConnectionUC.Next.Click += BtnNavigate_Click;
+            this.page1.FirstConnectionUC.Validate.Click += BtnNavigate_Click;
         }
 
         private void BtnNavigate_Click(object sender, System.Windows.RoutedEventArgs e)

@@ -26,5 +26,10 @@ namespace ShakesAndFidget.Views
             InitializeComponent();
             new HomeViewModel(this);
         }
+
+        private void InventoryUC_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

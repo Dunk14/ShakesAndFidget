@@ -11,13 +11,22 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250*"></ColumnDefinition>
-            <ColumnDefinition Width="1030*"></ColumnDefinition>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="800*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <uc:MenuUserControl x:Name="MenuUC" Grid.Column="0" Grid.Row="0" />
-        <uc:HomeUserControl x:Name="HomeUC" Grid.Column="1" Grid.Row="0" />
+        <uc:MenuUserControl 
+            x:Name="MenuUC" 
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Grid.Row="0"/>
+        <uc:EquipmentUserControl Grid.Column="1"/>
+        <uc:CharacterStats x:Name="CharacterStatsUC" Grid.Column="1" Grid.Row="1"/>
+        <uc:Inventory x:Name="InventoryUC" Grid.Column="2" Grid.Row="0" Loaded="InventoryUC_Loaded" />
+        
     </Grid>
 </Page>

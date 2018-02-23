@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidget", "ShakesAndFidget\ShakesAndFidget.csproj", "{5B6D92F3-A269-405B-934E-0E3794F19E87}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidgetLibrary", "ShakesAndFidgetLibrary\ShakesAndFidgetLibrary.csproj", "{4EC2BA8A-A160-4360-B66D-3779F5C00075}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{DE1CE39F-A00D-488F-884D-3DFB42167321}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidget", "ShakesAndFidget\ShakesAndFidget.csproj", "{5B6D92F3-A269-405B-934E-0E3794F19E87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityUtils", "EntityUtils\EntityUtils.csproj", "{09D05A1C-417C-4AD8-890E-A0752713D0AC}"
 EndProject
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4EC2BA8A-A160-4360-B66D-3779F5C00075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4EC2BA8A-A160-4360-B66D-3779F5C00075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC2BA8A-A160-4360-B66D-3779F5C00075}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,6 +27,10 @@ Global
 		{DE1CE39F-A00D-488F-884D-3DFB42167321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE1CE39F-A00D-488F-884D-3DFB42167321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE1CE39F-A00D-488F-884D-3DFB42167321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B6D92F3-A269-405B-934E-0E3794F19E87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09D05A1C-417C-4AD8-890E-A0752713D0AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09D05A1C-417C-4AD8-890E-A0752713D0AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D05A1C-417C-4AD8-890E-A0752713D0AC}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace ShakesAndFidget.UserControls
 {
     /// <summary>
-    /// Logique d'interaction pour HomeUserControl.xaml
+    /// Logique d'interaction pour Inventory.xaml
     /// </summary>
-    public partial class HomeUserControl : UserControl
+    public partial class Inventory : UserControl
     {
-        public HomeUserControl()
+        public Inventory()
         {
             InitializeComponent();
-        }
-
-        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-
         }
     }
 }

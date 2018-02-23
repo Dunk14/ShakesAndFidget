@@ -17,7 +17,7 @@ namespace Database.MySQL
                 EntityGenerator<Stats> generatorStats = new EntityGenerator<Stats>();
                 MySQLManager<User> userManager = new MySQLManager<User>();
                 MySQLManager<Stats> statsManager = new MySQLManager<Stats>();
-                for (int i = 0; i < 300; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     User user = new User();
                     user.Mail = Faker.Internet.Email();

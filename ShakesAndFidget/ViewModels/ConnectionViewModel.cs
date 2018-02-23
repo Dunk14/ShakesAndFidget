@@ -24,6 +24,7 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Attributs
+        public MySQLManager<User> userManager;
         private User user1;
         #endregion
 
@@ -38,12 +39,10 @@ namespace ShakesAndFidget.ViewModels
         #region Constructors
         public ConnectionViewModel(ConnectionPage page1)
         {
-            MySQLManager<User> UserManager = new MySQLManager<User>();
-
-            this.user1 = UserManager.Get(1).Result;
+            userManager = new MySQLManager<User>();
             this.page1 = page1;
             this.page1.ConnectionUC.Name.Text = this.user1.Name;
-            this.page1.ConnectionUC.Password.Password = this.user1.Password;
+            this.page1.ConnectionUC.RealPassword.Password = this.user1.Password;
             Events();
         }
         #endregion
@@ -59,10 +58,10 @@ namespace ShakesAndFidget.ViewModels
 
         private void BtnNavigate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            bool ValidLogin = this.Login(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.Password.Password);
+            bool ValidLogin = this.Login(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.RealPassword.Password);
             if (ValidLogin)
             {
-                MainWindow.Instance.CurrentUser = this.user1;
+                MainWindow.Instance.CurrentUser = new User();
                 MainWindow.Instance.CurrentPage = new FirstConnectionPage();
             }
         }
@@ -70,7 +69,7 @@ namespace ShakesAndFidget.ViewModels
         private bool Login(string name, string password)
         {
             UserManager userManager = new UserManager();
-            User isValid = userManager.GetByName(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.Password.Password).Result;
+            User isValid = userManager.GetByName(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.RealPassword.Password).Result;
             if (isValid != null)
             {
                 return true;
