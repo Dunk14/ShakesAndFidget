@@ -188,9 +188,14 @@ namespace ShakesAndFidget.UserControls
             }
         }
 
-        public bool isFormValid()
+        public bool isFormValidForSubscription()
         {
             return isNameValid && isMailValid && isPasswordValid ? true : false;
+        }
+
+        public bool isFormValidForLogIn()
+        {
+            return isNameValid && isPasswordValid ? true : false;
         }
     }
 }

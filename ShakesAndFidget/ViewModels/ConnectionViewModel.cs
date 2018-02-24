@@ -61,18 +61,21 @@ namespace ShakesAndFidget.ViewModels
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
-            User userDb = this.Login(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.RealPassword.Password);
-            if (userDb != null)
+            if (page1.ConnectionUC.isFormValidForLogIn())
             {
-                User = userDb;
-                MainWindow.Instance.CurrentUser = User;
-                MainWindow.Instance.CurrentPage = new FirstConnectionPage();
+                User userDb = this.Login(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.RealPassword.Password);
+                if (userDb != null)
+                {
+                    User = userDb;
+                    MainWindow.Instance.CurrentUser = User;
+                    MainWindow.Instance.CurrentPage = new FirstConnectionPage();
+                }
             }
         }
 
         private void Subscribe_Click(object sender, RoutedEventArgs e)
         {
-            if (page1.ConnectionUC.isFormValid())
+            if (page1.ConnectionUC.isFormValidForSubscription())
             {
                 Subscribe(
                     page1.ConnectionUC.Name.Text,
