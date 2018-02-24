@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShakesAndFidgetLibrary.Models
 {
@@ -20,6 +21,7 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Properties
+        [Index(IsUnique = true)]
         public String Mail
         {
             get { return mail; }
@@ -30,6 +32,7 @@ namespace ShakesAndFidgetLibrary.Models
             }
         }
 
+        [Index(IsUnique = true)]
         public String Name
         {
             get { return name; }

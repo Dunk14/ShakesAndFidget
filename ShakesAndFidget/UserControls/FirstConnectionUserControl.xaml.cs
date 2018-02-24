@@ -28,32 +28,33 @@ namespace ShakesAndFidget.UserControls
             Events();
         }
 
-        private void InitializeVariables()
+        private void Events()
         {
-            Username.Text = "Characters name...";
+            Loaded += UserControl_Loaded;
+            Character_name.GotFocus += Character_name_GotFocus;
+            Character_name.LostFocus += Character_name_LostFocus;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Character_name.Text = "Characters name...";
             isPlaceholder = true;
         }
 
-        private void Events()
-        {
-            Username.GotFocus += Username_GotFocus;
-            Username.LostFocus += Username_LostFocus;
-        }
-
-        private void Username_GotFocus(object sender, EventArgs e)
+        private void Character_name_GotFocus(object sender, EventArgs e)
         {
             if (isPlaceholder)
             {
-                Username.Text = "";
+                (sender as TextBox).Text = "";
                 isPlaceholder = false;
             }
         }
 
-        private void Username_LostFocus(object sender, EventArgs e)
+        private void Character_name_LostFocus(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(Username.Text))
+            if (String.IsNullOrWhiteSpace((sender as TextBox).Text))
             {
-                Username.Text = "Characters name...";
+                (sender as TextBox).Text = "Characters name...";
                 isPlaceholder = true;
             }
         }

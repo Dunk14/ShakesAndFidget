@@ -41,6 +41,13 @@
             VerticalAlignment="Center"
             VerticalContentAlignment="Center"
             Text="Enter a name or a pseudonym..."/>
+        <Label
+            Name="NameMessage"
+            Grid.Column="2"
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="10,0,0,0"/>
         <TextBox
             Name="Mail"
             Grid.Column="1"
@@ -51,6 +58,13 @@
             VerticalAlignment="Center"
             VerticalContentAlignment="Center"
             Text="Enter a mail address..."/>
+        <Label
+            Name="MailMessage"
+            Grid.Column="2"
+            Grid.Row="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="10,0,0,0"/>
         <PasswordBox
             Name="RealPassword"
             Grid.Column="1"
@@ -58,7 +72,8 @@
             HorizontalAlignment="Stretch"
             Height="50"
             VerticalAlignment="Center"
-            VerticalContentAlignment="Center"/>
+            VerticalContentAlignment="Center"
+            Visibility="Collapsed"/>
         <TextBox
             Name="FakePassword"
             Grid.Column="1"
@@ -69,6 +84,13 @@
             VerticalAlignment="Center"
             VerticalContentAlignment="Center"
             Text="Enter a password..."/>
+        <Label
+            Name="PasswordMessage"
+            Grid.Column="2"
+            Grid.Row="3"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="10,0,0,0"/>
         <Label
             Name="Message"
             Grid.Column="0"

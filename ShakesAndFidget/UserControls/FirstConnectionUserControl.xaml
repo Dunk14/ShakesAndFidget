@@ -23,9 +23,17 @@
             <ColumnDefinition Width="300*"/>
             <ColumnDefinition Width="300*"/>
         </Grid.ColumnDefinitions>
-        <TextBox
-            Name="Username"
+        <Label
+            Name="User_name"
             Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="18"/>
+        <TextBox
+            Name="Character_name"
+            Grid.Column="2"
             Grid.Row="0"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
@@ -35,8 +43,7 @@
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
             FontSize="18"
-            Width="300"
-            Text="Characters name..."/>
+            Width="300"/>
         <Button 
             Grid.Column="0"
             Grid.Row="2"

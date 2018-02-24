@@ -31,7 +31,7 @@ namespace ShakesAndFidget.ViewModels
         public FirstConnectionViewModel(FirstConnectionPage page1)
         {
             this.page1 = page1;
-            this.page1.FirstConnectionUC.Username.Text = MainWindow.Instance.CurrentUser.Name;
+            this.page1.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
             Events();
         }
         #endregion

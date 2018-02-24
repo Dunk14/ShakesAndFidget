@@ -44,11 +44,10 @@ namespace Database.MySQL
 
         public DbSet<T> DbSetT { get; set; }
 
-        public async Task<T> Insert(T item)
+        public async Task<int> Insert(T item)
         {
             this.DbSetT.Add(item);
-            await this.SaveChangesAsync();
-            return item;
+            return await this.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> Insert(IEnumerable<T> items)
