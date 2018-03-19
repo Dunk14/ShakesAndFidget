@@ -111,7 +111,7 @@ namespace ShakesAndFidget.ViewModels
             }
             else
             {
-                ChangeMessageAsync("Please change your name or your mail", 200, 0, 0, 3000);
+                ChangeMessageAsync("Name or mail is already used", 200, 0, 0, 3000);
             }
         }
 
