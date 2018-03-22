@@ -66,11 +66,15 @@
     <Compile Include="Models\Action.cs" />
     <Compile Include="Models\Adventure.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Characters\Hunter.cs" />
+    <Compile Include="Models\Characters\Magus.cs" />
     <Compile Include="Models\Fight.cs" />
-    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Gear.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\Usable.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Characters\Warrior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

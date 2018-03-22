@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    public class Character : ModelBase
+    [Table("character")]
+    public class Character : Stats
     {
         #region StaticVariables
         #endregion
@@ -16,9 +18,13 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Variables
-        private string name;
+        private String name;
         private String sexe;
         private int level;
+        private User user;
+        private int user_id;
+
+        //public String imageSource;
         #endregion
 
         #region Attributs
@@ -43,10 +49,31 @@ namespace ShakesAndFidgetLibrary.Models
             get { return level; }
             set { level = value; }
         }
+
+        [ForeignKey("User_id")]
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
+        }
+
+        public int User_id
+        {
+            get { return user_id; }
+            set { user_id = value; }
+        }
         #endregion
 
         #region Constructors
-        public Character()
+        public Character(String name, String sexe, int level, User user)
+        {
+            this.name = name;
+            this.sexe = sexe;
+            this.level = level;
+            this.user = user;
+        }
+
+        public Character() : base()
         {
 
         }

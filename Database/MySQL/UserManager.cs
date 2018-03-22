@@ -50,7 +50,7 @@ namespace Database.MySQL
 
         public async Task<bool> InsertUser(String mail, String name, String password)
         {
-            int insertion = await Insert(new User(mail, name, password));
+            int insertion = await Insert(new User(mail, name, password, new List<Character>()));
             if (insertion == 1)
                 return true;
             return false;

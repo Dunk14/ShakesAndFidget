@@ -35,11 +35,10 @@ namespace Database.MySQL
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>();
             modelBuilder.Entity<Stats>();
-            modelBuilder.Entity<ShakesAndFidgetLibrary.Models.Action>();
-            modelBuilder.Entity<Adventure>();
+            //modelBuilder.Entity<ShakesAndFidgetLibrary.Models.Action>();
+            //modelBuilder.Entity<Adventure>();
             modelBuilder.Entity<Character>();
-            modelBuilder.Entity<Fight>();
-            modelBuilder.Entity<Item>();
+            //modelBuilder.Entity<Fight>();
         }
 
         public DbSet<T> DbSetT { get; set; }

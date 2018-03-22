@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidgetLibrary", "ShakesAndFidgetLibrary\ShakesAndFidgetLibrary.csproj", "{4EC2BA8A-A160-4360-B66D-3779F5C00075}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityUtils", "EntityUtils\EntityUtils.csproj", "{09D05A1C-417C-4AD8-890E-A0752713D0AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumUtils", "EnumUtils\EnumUtils.csproj", "{1958B81C-126C-4B95-9412-ACFDD4BBD018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerUtil", "LoggerUtil\LoggerUtil.csproj", "{3E6AA084-8562-40A3-8BEF-A357F380C28B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1958B81C-126C-4B95-9412-ACFDD4BBD018}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1958B81C-126C-4B95-9412-ACFDD4BBD018}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1958B81C-126C-4B95-9412-ACFDD4BBD018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E6AA084-8562-40A3-8BEF-A357F380C28B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E6AA084-8562-40A3-8BEF-A357F380C28B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E6AA084-8562-40A3-8BEF-A357F380C28B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E6AA084-8562-40A3-8BEF-A357F380C28B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

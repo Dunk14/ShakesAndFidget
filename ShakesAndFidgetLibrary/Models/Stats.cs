@@ -21,6 +21,7 @@ namespace ShakesAndFidgetLibrary.Models
         #region Attributs
         private int life;
         private int mana;
+        private int energy;
         private int strength;
         private int agility;
         private int spirit;
@@ -52,6 +53,15 @@ namespace ShakesAndFidgetLibrary.Models
             {
                 mana = value;
                 OnPropertyChanged("Mana");
+            }
+        }
+
+        public int Energy
+        {
+            get { return energy; }
+            set {
+                energy = value;
+                OnPropertyChanged("Energy");
             }
         }
 
@@ -154,6 +164,24 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Constructors
+        public Stats(int life, int mana, int energy, int strength, int agility,
+            int spirit, int luck, int criticalDamage, int magicDamage, int physicalDamage,
+            int criticalProbabilty, int physicalArmor, int magicalArmor) : base()
+        {
+            this.life = life;
+            this.mana = mana;
+            this.energy = energy;
+            this.strength = strength;
+            this.agility = agility;
+            this.spirit = spirit;
+            this.luck = luck;
+            this.criticalDamage = criticalDamage;
+            this.magicDamage = magicDamage;
+            this.physicalDamage = physicalDamage;
+            this.criticalProbability = criticalProbability;
+            this.physicalArmor = physicalArmor;
+            this.magicalArmor = magicalArmor;
+        }
 
         public Stats() : base()
         {

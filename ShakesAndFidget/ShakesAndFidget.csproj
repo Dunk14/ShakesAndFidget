@@ -199,6 +199,10 @@
       <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
       <Name>EntityUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LoggerUtil\LoggerUtil.csproj">
+      <Project>{3E6AA084-8562-40A3-8BEF-A357F380C28B}</Project>
+      <Name>LoggerUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShakesAndFidgetLibrary\ShakesAndFidgetLibrary.csproj">
       <Project>{4ec2ba8a-a160-4360-b66d-3779f5c00075}</Project>
       <Name>ShakesAndFidgetLibrary</Name>
@@ -238,9 +242,108 @@
     <Resource Include="docs\MySqlCommand.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Antidote.png" />
+    <Resource Include="Resources\Big Heal Potion.png" />
+    <Resource Include="Resources\Big Helmet.png" />
+    <Resource Include="Resources\Big Mana Potion.png" />
+    <Resource Include="Resources\Big Shield.png" />
+    <Resource Include="Resources\Big Sword.png" />
+    <Resource Include="Resources\Black Dress.png" />
+    <Resource Include="Resources\Bloody Sword.png" />
+    <Resource Include="Resources\Bow.png" />
+    <Resource Include="Resources\Cap.png" />
+    <Resource Include="Resources\Crooked Sword.png" />
+    <Resource Include="Resources\Dark Katana.png" />
+    <Resource Include="Resources\Demonic Computer.png" />
+    <Resource Include="Resources\Demonic Elevator.png" />
+    <Resource Include="Resources\Dragon Bow.png" />
+    <Resource Include="Resources\Dragon Helmet.png" />
+    <Resource Include="Resources\Dread Broom.png" />
+    <Resource Include="Resources\Dress.png" />
+    <Resource Include="Resources\Electric Armor.png" />
+    <Resource Include="Resources\Electric Arrow.png" />
+    <Resource Include="Resources\Electric Staff.png" />
+    <Resource Include="Resources\Enemy Zodux.gif" />
+    <Resource Include="Resources\Evil Octopus.png" />
+    <Resource Include="Resources\Female Hunter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Female Knight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Female Magus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fire Armor.png" />
+    <Resource Include="Resources\Fire Arrow.png" />
+    <Resource Include="Resources\Fire Dady.gif" />
+    <Resource Include="Resources\Fire Staff.png" />
+    <Resource Include="Resources\Green Monster.png" />
+    <Resource Include="Resources\Halberd.png" />
+    <Resource Include="Resources\Haunted Book.png" />
+    <Resource Include="Resources\Heal Potion.png" />
+    <Resource Include="Resources\Heavy Trousers.png" />
+    <Resource Include="Resources\Helmet.png" />
+    <Resource Include="Resources\Hunter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Ice Armor.png" />
+    <Resource Include="Resources\Ice Arrow.png" />
+    <Resource Include="Resources\Ice Staff.png" />
+    <Resource Include="Resources\Inventory Armor.png" />
+    <Resource Include="Resources\Inventory Arrow.png" />
+    <Resource Include="Resources\Inventory Helmet.png" />
+    <Resource Include="Resources\Inventory Item.png" />
+    <Resource Include="Resources\Inventory Legs.png" />
+    <Resource Include="Resources\Inventory Shield.png" />
+    <Resource Include="Resources\Inventory Staff.png" />
+    <Resource Include="Resources\Inventory Usable.png" />
+    <Resource Include="Resources\Inventory Weapon.png" />
+    <Resource Include="Resources\Katana.png" />
+    <Resource Include="Resources\Knife.png" />
     <Content Include="Resources\Knight-1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Knight.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Little Power Ring.png" />
+    <Resource Include="Resources\Little Shield.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Luck Earrings.png" />
+    <Resource Include="Resources\Magus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Mana Potion.png" />
+    <Resource Include="Resources\Medium Armor.png" />
+    <Resource Include="Resources\Nasty Cookie.png" />
+    <Resource Include="Resources\Nice Power Ring.png" />
+    <Resource Include="Resources\Power Armor.png" />
+    <Resource Include="Resources\Powerful Power Ring.png" />
+    <Resource Include="Resources\Rozraz.gif" />
+    <Resource Include="Resources\Saber.png" />
+    <Resource Include="Resources\Sacred Shield.png" />
+    <Resource Include="Resources\Scythe.png" />
+    <Resource Include="Resources\Simple Arrow.png" />
+    <Resource Include="Resources\Simple Trousers.png" />
+    <Resource Include="Resources\Skeleton.png" />
+    <Resource Include="Resources\Slime.png" />
+    <Resource Include="Resources\Snake.png" />
+    <Resource Include="Resources\Spear.png" />
+    <Resource Include="Resources\Spider %28pas finis%29.png" />
+    <Resource Include="Resources\Staff.png" />
+    <Resource Include="Resources\Studded Jacket.png" />
+    <Resource Include="Resources\Studded trousers.png" />
+    <Resource Include="Resources\Throwing Weapon.png" />
+    <Resource Include="Resources\Twisted Sword.png" />
+    <Resource Include="Resources\Wallace%27s Automatic Trousers.png" />
+    <Resource Include="Resources\Wind Armor.png" />
+    <Resource Include="Resources\Wind Arrow.png" />
+    <Resource Include="Resources\Wind Staff.png" />
+    <Resource Include="Resources\Wizard Hat.png" />
+    <Resource Include="Resources\Wood Helmet.png" />
+    <Resource Include="Resources\Zeus Spear.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

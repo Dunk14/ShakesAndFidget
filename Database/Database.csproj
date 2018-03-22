@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MySQL\CharacterManager.cs" />
     <Compile Include="MySQL\MySQLManager.cs" />
     <Compile Include="MySQL\Test.cs" />
     <Compile Include="MySQL\UserManager.cs" />

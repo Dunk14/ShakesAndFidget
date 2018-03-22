@@ -16,7 +16,7 @@ namespace ShakesAndFidget
         public App()
         {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
-            //new Database.MySQL.Test();
+            new Database.MySQL.Test();
         }
     }
 }

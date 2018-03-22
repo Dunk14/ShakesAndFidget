@@ -1,4 +1,5 @@
-﻿using ShakesAndFidget.Views;
+﻿using LoggerUtil;
+using ShakesAndFidget.Views;
 using ShakesAndFidgetLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,19 @@ namespace ShakesAndFidget
 
         #region Singleton
         private static MainWindow instance;
+        private static Logger logger;
 
         public MainWindow()
         {
             this.DataContext = this;
             this.CurrentPage = new ConnectionPage();
+            this.Loaded += MainWindow_Loaded;
             instance = this;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            logger = new Logger(new List<Alert> { Alert.TOAST }, new List<Mode> { Mode.CONSOLE });
         }
 
         public static MainWindow Instance
@@ -39,10 +47,18 @@ namespace ShakesAndFidget
             get
             {
                 if (instance == null)
-                {
                     instance = new MainWindow();
-                }
                 return instance;
+            }
+        }
+
+        public static Logger Logger
+        {
+            get
+            {
+                if (logger == null)
+                    logger = new Logger(new List<Alert> { Alert.TOAST }, new List<Mode> { Mode.CONSOLE });
+                return logger;
             }
         }
         #endregion

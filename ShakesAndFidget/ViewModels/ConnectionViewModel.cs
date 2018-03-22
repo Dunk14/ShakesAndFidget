@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Threading;
-using System.Windows.Media;
 using Database.MySQL;
 using ShakesAndFidget.Views;
 using ShakesAndFidgetLibrary.Models;
-using System.Threading;
 using System.Windows;
+using System;
 
 namespace ShakesAndFidget.ViewModels
 {
@@ -62,85 +59,79 @@ namespace ShakesAndFidget.ViewModels
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
             if (page1.ConnectionUC.isFormValidForLogIn())
-            {
-                User userDb = this.Login(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.RealPassword.Password);
-                if (userDb != null)
-                {
-                    User = userDb;
-                    MainWindow.Instance.CurrentUser = User;
-                    MainWindow.Instance.CurrentPage = new FirstConnectionPage();
-                }
-            }
+                this.Login(this.page1.ConnectionUC.Name.Text, this.page1.ConnectionUC.RealPassword.Password);
+            else
+                MainWindow.Logger.Warning("Name or password is invalid");
         }
 
         private void Subscribe_Click(object sender, RoutedEventArgs e)
         {
             if (page1.ConnectionUC.isFormValidForSubscription())
-            {
                 Subscribe(
                     page1.ConnectionUC.Name.Text,
                     page1.ConnectionUC.Mail.Text,
                     page1.ConnectionUC.RealPassword.Password
                 );
-            }
         }
 
-        private User Login(string name, string password)
+        private void Login(string name, string password)
         {
-            List<User> usersList = userManager.GetByNameAndPassword(
-                this.page1.ConnectionUC.Name.Text, 
-                UserManager.CalculateMD5Hash(this.page1.ConnectionUC.RealPassword.Password)
-            );
-            if (usersList.Count == 1)
+            Task.Factory.StartNew(() =>
             {
-                return usersList[0];
-            }
-            ChangeMessageAsync("Fail to login, please check your name and password", 200, 0, 0, 3000);
-            return null;
+                Application.Current.Dispatcher.Invoke(() => {
+                    List<User> usersList = userManager.GetByNameAndPassword(
+                        this.page1.ConnectionUC.Name.Text, 
+                        UserManager.CalculateMD5Hash(this.page1.ConnectionUC.RealPassword.Password)
+                    );
+                    if (usersList.Count == 1)
+                    {
+                        MainWindow.Instance.CurrentUser = usersList[0];
+                        GoToNextPage();
+                    }
+                    else
+                        Application.Current.Dispatcher.Invoke(() => MainWindow.Logger.Error("Fail to login, please check your name and password"));
+                });
+            });
+            
+        }
+
+        private void GoToNextPage()
+        {
+            if (MainWindow.Instance.CurrentUser != null && MainWindow.Instance.CurrentUser.Characters == null)
+                MainWindow.Instance.CurrentPage = new FirstConnectionPage();
         }
 
         private void Subscribe(string name, string mail, string password)
         {
-            if (userManager.GetByName(name) == null && userManager.GetByMail(mail) == null)
+            Task.Factory.StartNew(async () =>
             {
-                Task.Factory.StartNew(async () =>
+                Console.WriteLine(userManager.GetByName(name));
+                if (userManager.GetByName(name) == null && userManager.GetByMail(mail) == null)
                 {
                     bool insertion = await userManager.InsertUser(mail, name, UserManager.CalculateMD5Hash(this.page1.ConnectionUC.RealPassword.Password));
-                    Application.Current.Dispatcher.Invoke(new System.Action(() => { Subscribe_Callback(insertion); }));
-                });
-            }
-            else
-            {
-                ChangeMessageAsync("Name or mail is already used", 200, 0, 0, 3000);
-            }
+                    if (insertion)
+                    {
+                        Application.Current.Dispatcher.Invoke(() => Subscribe_Callback(insertion));
+                        return;
+                    }
+                }
+                else
+                {
+                    MainWindow.Logger.Warning("Name or mail is already used");
+                }
+            });
         }
 
         private void Subscribe_Callback(bool success)
         {
             if (success)
             {
-                ChangeMessageAsync("You successfully subscribed !", 0, 200, 0, 3000);
+                MainWindow.Logger.Success("You successfully subscribed !");
             }
             else
             {
-                ChangeMessageAsync("Subscription didn't end properly", 200, 0, 0, 3000);
+                MainWindow.Logger.Error("Subscription didn't end properly");
             }
-        }
-
-        private void ChangeMessageAsync(String message, byte red, byte green, byte blue, int delay)
-        {
-            this.page1.ConnectionUC.Message.Content = message;
-            this.page1.ConnectionUC.Message.Foreground = new SolidColorBrush(Color.FromRgb(red, green, blue));
-            Task.Factory.StartNew(() =>
-            {
-                Thread.Sleep(delay);
-                Application.Current.Dispatcher.Invoke(new System.Action(ResetMessage));
-            });
-        }
-
-        private void ResetMessage()
-        {
-            page1.ConnectionUC.Message.Content = "";
         }
         #endregion
 

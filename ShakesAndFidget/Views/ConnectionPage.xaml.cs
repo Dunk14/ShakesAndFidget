@@ -1,4 +1,5 @@
-﻿using ShakesAndFidget.ViewModels;
+﻿using LoggerUtil;
+using ShakesAndFidget.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

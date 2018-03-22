@@ -23,6 +23,12 @@ namespace ShakesAndFidget.UserControls
         public Inventory()
         {
             InitializeComponent();
+            TestInventory();
+        }
+
+        public void TestInventory()
+        {
+            
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShakesAndFidget.Views;
+using ShakesAndFidgetLibrary.Models;
 
 namespace ShakesAndFidget.ViewModels
 {
@@ -31,7 +32,7 @@ namespace ShakesAndFidget.ViewModels
         public FirstConnectionViewModel(FirstConnectionPage page1)
         {
             this.page1 = page1;
-            this.page1.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
+            InitializeViewModel();
             Events();
         }
         #endregion
@@ -40,6 +41,13 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Functions
+        private void InitializeViewModel()
+        {
+            this.page1.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
+            List<Character> charactersList = new List<Character>();
+            //charactersList.Add(new Warrior();
+        }
+
         private void Events()
         {
             this.page1.FirstConnectionUC.Validate.Click += BtnNavigate_Click;

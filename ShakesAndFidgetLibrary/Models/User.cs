@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShakesAndFidgetLibrary.Models
 {
+    [Table("user")]
     public class User : ModelBase
     {
         #region StaticVariables
@@ -18,6 +20,7 @@ namespace ShakesAndFidgetLibrary.Models
         private String mail;
         private String name;
         private String password;
+        private List<Character> characters;
         #endregion
 
         #region Properties
@@ -52,15 +55,26 @@ namespace ShakesAndFidgetLibrary.Models
                 OnPropertyChanged("Password");
             }
         }
+        
+        [InverseProperty("User")]
+        public List<Character> Characters
+        {
+            get { return characters; }
+            set {
+                characters = value;
+                OnPropertyChanged("Characters");
+            }
+        }
         #endregion
 
         #region Constructors
 
-        public User(string mail, string name, string password) : base()
+        public User(string mail, string name, string password, List<Character> characters) : base()
         {
             this.mail = mail;
             this.name = name;
             this.password = password;
+            this.characters = characters;
         }
 
         public User() : base()
