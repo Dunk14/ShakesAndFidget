@@ -97,7 +97,7 @@ namespace ShakesAndFidget.ViewModels
 
         private void GoToNextPage()
         {
-            if (MainWindow.Instance.CurrentUser != null && MainWindow.Instance.CurrentUser.Characters == null)
+            if (MainWindow.Instance.CurrentUser != null)
                 MainWindow.Instance.CurrentPage = new FirstConnectionPage();
         }
 

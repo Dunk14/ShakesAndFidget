@@ -29,7 +29,7 @@ namespace ShakesAndFidgetLibrary.Models
         private int criticalDamage;
         private int magicDamage;
         private int physicalDamage;
-        private int criticalProbability;
+        private int criticalProba;
         private int physicalArmor;
         private int magicalArmor;
         #endregion
@@ -132,13 +132,13 @@ namespace ShakesAndFidgetLibrary.Models
             }
         }
 
-        public int CriticalProbability
+        public int CriticalProba
         {
-            get { return criticalProbability; }
+            get { return criticalProba; }
             set
             {
-                criticalProbability = value;
-                OnPropertyChanged("CriticalProbability");
+                criticalProba = value;
+                OnPropertyChanged("CriticalProba");
             }
         }
 
@@ -166,7 +166,7 @@ namespace ShakesAndFidgetLibrary.Models
         #region Constructors
         public Stats(int life, int mana, int energy, int strength, int agility,
             int spirit, int luck, int criticalDamage, int magicDamage, int physicalDamage,
-            int criticalProbabilty, int physicalArmor, int magicalArmor) : base()
+            int criticalProba, int physicalArmor, int magicalArmor) : base()
         {
             this.life = life;
             this.mana = mana;
@@ -178,7 +178,7 @@ namespace ShakesAndFidgetLibrary.Models
             this.criticalDamage = criticalDamage;
             this.magicDamage = magicDamage;
             this.physicalDamage = physicalDamage;
-            this.criticalProbability = criticalProbability;
+            this.criticalProba = criticalProba;
             this.physicalArmor = physicalArmor;
             this.magicalArmor = magicalArmor;
         }

@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{DE1CE39F-A00D-488F-884D-3DFB42167321}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakesAndFidget", "ShakesAndFidget\ShakesAndFidget.csproj", "{5B6D92F3-A269-405B-934E-0E3794F19E87}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1958B81C-126C-4B95-9412-ACFDD4BBD018} = {1958B81C-126C-4B95-9412-ACFDD4BBD018}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityUtils", "EntityUtils\EntityUtils.csproj", "{09D05A1C-417C-4AD8-890E-A0752713D0AC}"
 EndProject

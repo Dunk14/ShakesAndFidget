@@ -65,7 +65,7 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Constructors
-        public Character(String name, String sexe, int level, User user)
+        public Character(String name, String sexe, int level, User user): base()
         {
             this.name = name;
             this.sexe = sexe;

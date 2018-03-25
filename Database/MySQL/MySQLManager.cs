@@ -34,10 +34,13 @@ namespace Database.MySQL
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>();
-            modelBuilder.Entity<Stats>();
+            //modelBuilder.Entity<Stats>();
             //modelBuilder.Entity<ShakesAndFidgetLibrary.Models.Action>();
             //modelBuilder.Entity<Adventure>();
-            modelBuilder.Entity<Character>();
+            modelBuilder.Entity<Character>().Map(m =>
+            {
+                m.MapInheritedProperties();
+            }); ;
             //modelBuilder.Entity<Fight>();
         }
 

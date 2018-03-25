@@ -20,7 +20,7 @@ namespace Database.MySQL
             {
                 EntityGenerator<Stats> generatorStats = new EntityGenerator<Stats>();
                 MySQLManager<User> userManager = new MySQLManager<User>();
-                //MySQLManager<Stats> statsManager = new MySQLManager<Stats>();
+                //MySQLManager<Character> characterManager = new MySQLManager<Character>();
                 for (int i = 0; i < 10; i++)
                 {
                     String FirstName = Faker.Name.First();
@@ -28,9 +28,25 @@ namespace Database.MySQL
                     user.Mail = Faker.Internet.Email();
                     user.Name = FirstName;
                     user.Password = UserManager.CalculateMD5Hash(FirstName);
-                    user.Characters = new List<Character>();
                     userManager.Insert(user);
                 }
+                //Character character = new Character()
+                //{
+                //    Life = 1,
+                //    Mana = 1,
+                //    Energy = 1,
+                //    Strength = 1,
+                //    Agility = 1,
+                //    Spirit = 1,
+                //    Luck = 1,
+                //    CriticalDamage = 1,
+                //    MagicDamage = 1,
+                //    PhysicalDamage = 1,
+                //    CriticalProba = 1,
+                //    PhysicalArmor = 1,
+                //    MagicalArmor = 1
+                //};
+                //characterManager.Insert(character);
                 //for (int i = 0; i < 10; i++)
                 //{
                 //    Stats stat = generatorStats.GenerateItem();
