@@ -10,6 +10,7 @@ var statsModel = require('./models/stats');
 var gearModel = require('./models/gear');
 
 var usersRouter = require('./routes/user');
+var charactersRouter = require('./routes/character');
 
 var app = express();
 
@@ -40,6 +41,8 @@ const sequelize = new Sequelize('game', 'ShakesAndFidgetAPI', 'WebServiceCSharp'
   }
 });
 
+app.set('sequelize', sequelize);
+
 sequelize
   .authenticate()
   .then(() => {
@@ -48,12 +51,16 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
 const User = userModel(sequelize);
 const Character = characterModel(sequelize);
 const Stats = statsModel(sequelize);
 const Gear = gearModel(sequelize);
+var models = {User, Character, Stats, Gear};
+app.set('models', models);
 
-User.hasMany(Character, {as: 'characters'});
+User.hasMany(Character, {as: 'characters', hooks: true, onDelete: 'CASCADE', inverse: true});
+Character.belongsTo(User, {as: 'user'});
 Stats.hasOne(Character, {as: 'statCharacter', foreignKey: 'statId'});
 Gear.hasOne(Character, {as: 'headGear', foreignKey: 'headGearId'});
 Gear.hasOne(Character, {as: 'earring1', foreignKey: 'earring1Id'});
@@ -65,7 +72,7 @@ Gear.hasOne(Character, {as: 'ring2', foreignKey: 'ring2Id'});
 Gear.hasOne(Character, {as: 'feet', foreignKey: 'feetId'});
 Stats.hasOne(Gear, {as: 'statGear', foreignKey: 'statId'});
 
-sequelize.sync({force: true})
+/*sequelize.sync({force: true})
   .then(() => {
     User.create({
       name: 'Dunk14',
@@ -100,7 +107,7 @@ sequelize.sync({force: true})
         })
       })
     });
-  });
+  });*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -113,6 +120,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
+app.use('/characters', charactersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

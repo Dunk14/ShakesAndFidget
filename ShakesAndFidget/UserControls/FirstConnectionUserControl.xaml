@@ -25,25 +25,31 @@
         </Grid.ColumnDefinitions>
         <Label
             Name="User_name"
-            Grid.Column="0"
+            Grid.Column="1"
             Grid.ColumnSpan="2"
             Grid.Row="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="18"/>
         <TextBox
-            Name="Character_name"
-            Grid.Column="2"
-            Grid.Row="0"
+            Name="CharacterName"
+            Grid.Column="1"
+            Grid.Row="1"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
-            Height="50"
+            Height="40"
             TextWrapping="Wrap"
             VerticalAlignment="Center"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
             FontSize="18"
-            Width="300"/>
+            Width="250"/>
+        <ToggleButton
+            Name="IsFemaleButton"
+            Grid.Column="3"
+            Grid.Row="1"
+            Content="MALE"
+            FontSize="30"/>
         <Button 
             Grid.Column="0"
             Grid.Row="2"
@@ -54,9 +60,10 @@
             Background="Transparent"
             Name="PreviousCharacter"/>
         <Image 
+            Name="ImageCharacter"
             Grid.Column="1" 
             Grid.ColumnSpan="2"
-            Grid.Row="1" 
+            Grid.Row="2" 
             Grid.RowSpan="2"  
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
@@ -72,7 +79,7 @@
             Name="NextCharacter"/>
         <Button
             Name="Validate"
-            Grid.Column="2"
+            Grid.Column="1"
             Grid.ColumnSpan="2"
             Grid.Row="4"
             HorizontalAlignment="Center"
@@ -80,14 +87,51 @@
             Content="VALIDATE"
             FontSize="20"
             Width="300"
-            Height="50" />
+            Height="50"
+            Visibility="Visible"/>
+        <Label
+            Name="Validate_Label"
+            Content="Are you sure ?"
+            Grid.Column="1"
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalAlignment="Center" 
+            FontSize="30"
+            Width="300"
+            Height="50" 
+            Visibility="Collapsed"/>
+        <Button
+            Name="Validate_Yes"
+            Grid.Column="1"
+            Grid.Row="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            Content="YES"
+            FontSize="20"
+            Width="300"
+            Height="50" 
+            Visibility="Collapsed"/>
+        <Button
+            Name="Validate_No"
+            Grid.Column="2"
+            Grid.Row="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            Content="NO"
+            FontSize="20"
+            Width="300"
+            Height="50" 
+            Visibility="Collapsed"/>
         <local:CharacterStats 
             x:Name="CharacterStatsUC"
             Grid.Column="4"
             Grid.ColumnSpan="2"
-            Grid.Row="1"
-            Grid.RowSpan="3"
-            HorizontalAlignment="Center"/>
+            Grid.Row="0"
+            Grid.RowSpan="6"
+            HorizontalAlignment="Center"
+            MaxHeight="600"/>
     </Grid>
 </UserControl>
 

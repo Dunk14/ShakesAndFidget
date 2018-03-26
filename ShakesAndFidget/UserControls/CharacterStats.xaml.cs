@@ -22,29 +22,26 @@ namespace ShakesAndFidget.UserControls
     /// </summary>
     public partial class CharacterStats : UserControl
     {
-        String[] values = {
-            "life            : ",
-            "CriticalDamage  : "
-        };
         public CharacterStats()
         {
             InitializeComponent();
-            
-            //Dictionary<String, Object> itemProperties = new Reflectionner().ReadClass<Stats>();
-            //int i = 0;
-            //foreach (var item in itemProperties)
-            //{
-            //    Console.WriteLine(item.Key);
-            //    Label label = new Label();
-            //    label.Content = item.Key;
-
-            //    Grid.SetRow(label, i);
-
-            //    mainGrid.Children.Add(label);
-            //    i++;
-            //}
         }
 
-        
+        public void RenderCharacterStats(Stats stats)
+        {
+            this.Life.Content = stats.Life;
+            this.Mana.Content = stats.Mana;
+            this.Energy.Content = stats.Energy;
+            this.Strength.Content = stats.Strength;
+            this.Agility.Content = stats.Agility;
+            this.Spirit.Content = stats.Spirit;
+            this.Luck.Content = stats.Luck;
+            this.CriticalDamage.Content = stats.CriticalDamage;
+            this.MagicDamage.Content = stats.MagicDamage;
+            this.PhysicalDamage.Content = stats.PhysicalDamage;
+            this.CriticalProba.Content = stats.CriticalProba;
+            this.PhysicalArmor.Content = stats.PhysicalArmor;
+            this.MagicalArmor.Content = stats.MagicalArmor;
+        }
     }
 }

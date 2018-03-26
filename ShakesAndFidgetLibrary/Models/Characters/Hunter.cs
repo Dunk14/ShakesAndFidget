@@ -8,11 +8,44 @@ namespace ShakesAndFidgetLibrary.Models.Characters
 {
     public class Hunter : Character
     {
-        public Hunter(String name, String sexe, int level)
+        public const string IMAGE_SOURCE_M = "pack://application:,,,/Resources/Hunter.png";
+        public const string IMAGE_SOURCE_F = "pack://application:,,,/Resources/Female Hunter.png";
+
+        public Hunter(String sexe, Boolean initStats = false)
         {
-            this.Name = name;
-            this.Sexe = sexe;
-            this.Level = level;
+            if (sexe == "M")
+                this.sexe = "M";
+            else
+                this.sexe = "F";
+
+            if (initStats)
+                InitStats();
+        }
+
+        override
+        public string LoadImage()
+        {
+            if (this.sexe == "M")
+                return IMAGE_SOURCE_M;
+            else
+                return IMAGE_SOURCE_F;
+        }
+
+        private void InitStats()
+        {
+            this.Life = 110;
+            this.Mana = 10;
+            this.Energy = 35;
+            this.Strength = 15;
+            this.Agility = 40;
+            this.Spirit = 10;
+            this.Luck = 1;
+            this.CriticalDamage = 20;
+            this.MagicDamage = 5;
+            this.PhysicalDamage = 10;
+            this.CriticalProba = 5;
+            this.PhysicalArmor = 15;
+            this.MagicalArmor = 5;
         }
     }
 }

@@ -7,6 +7,7 @@ using ShakesAndFidget.Views;
 using ShakesAndFidgetLibrary.Models;
 using System.Windows;
 using System;
+using ShakesAndFidgetLibrary.Routes;
 
 namespace ShakesAndFidget.ViewModels
 {
@@ -86,7 +87,7 @@ namespace ShakesAndFidget.ViewModels
                     if (usersList.Count == 1)
                     {
                         MainWindow.Instance.CurrentUser = usersList[0];
-                        GoToNextPage();
+                        GoToNextPage(usersList[0].Id);
                     }
                     else
                         Application.Current.Dispatcher.Invoke(() => MainWindow.Logger.Error("Fail to login, please check your name and password"));
@@ -95,9 +96,9 @@ namespace ShakesAndFidget.ViewModels
             
         }
 
-        private void GoToNextPage()
+        private async void GoToNextPage(int userId)
         {
-            if (MainWindow.Instance.CurrentUser != null)
+            if (MainWindow.Instance.CurrentUser != null && await CharacterRoutes.CountByUserId(userId) == 0)
                 MainWindow.Instance.CurrentPage = new FirstConnectionPage();
         }
 

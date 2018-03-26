@@ -17,7 +17,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-		<Image Source="pack://application:,,,/Resources/Knight-1.png"
+		<Image Name="ImageCharacter"
             Grid.Column="1" 
             HorizontalAlignment="Stretch"
             Grid.Row="1" 

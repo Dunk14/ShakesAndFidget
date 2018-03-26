@@ -242,6 +242,9 @@
     <Resource Include="docs\MySqlCommand.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Knight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Antidote.png" />
     <Resource Include="Resources\Big Heal Potion.png" />
     <Resource Include="Resources\Big Helmet.png" />
@@ -301,6 +304,7 @@
     <Resource Include="Resources\Inventory Weapon.png" />
     <Resource Include="Resources\Katana.png" />
     <Resource Include="Resources\Knife.png" />
+    <Resource Include="Resources\Knight 2.png" />
     <Content Include="Resources\Knight-1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

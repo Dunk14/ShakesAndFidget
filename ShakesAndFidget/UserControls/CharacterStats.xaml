@@ -19,6 +19,8 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -31,6 +33,7 @@
             Content="Life"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
@@ -39,6 +42,7 @@
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--Mana-->
         <Label
@@ -47,158 +51,214 @@
             Content="Mana"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
-            Grid.Row="0"
+            Grid.Row="1"
             Name="Mana"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
+            />
+        <!--Energy-->
+        <Label
+            Grid.Column="0"
+            Grid.Row="2"
+            Content="Energy"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
+            FontSize="18"
+            />
+        <Label
+            Grid.Column="1"
+            Grid.Row="2"
+            Name="Energy"
+            FontWeight="Bold"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--Strength-->
         <Label
             Grid.Column="0"
-            Grid.Row="2"
+            Grid.Row="3"
             Content="Strength"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
-            Grid.Row="2"
+            Grid.Row="3"
             Name="Strength"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--Agility-->
         <Label
             Grid.Column="0"
-            Grid.Row="3"
+            Grid.Row="4"
             Content="Agility"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
-            Grid.Row="3"
+            Grid.Row="4"
             Name="Agility"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--Spirit-->
         <Label
             Grid.Column="0"
-            Grid.Row="4"
+            Grid.Row="5"
             Content="Spirit"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
-            Grid.Row="4"
+            Grid.Row="5"
             Name="Spirit"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--Luck-->
         <Label
             Grid.Column="0"
-            Grid.Row="5"
+            Grid.Row="6"
             Content="Luck"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
-            Grid.Row="5"
+            Grid.Row="6"
             Name="Luck"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--CriticalDamage-->
         <Label
             Grid.Column="0"
-            Grid.Row="6"
+            Grid.Row="7"
             Content="CriticalDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="7"
             Name="CriticalDamage"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            />
-        <!--MagicDamage-->
-        <Label
-            Grid.Column="0"
-            Grid.Row="7"
-            Content="MagicDamage"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Right"
-            />
-        <Label
-            Grid.Column="1"
-            Grid.Row="7"
-            Name="MagicDamage"
-            FontWeight="Bold"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
-            />
-        <!--PhysicalDamage-->
-        <Label
-            Grid.Column="0"
-            Grid.Row="8"
-            Content="PhysicalDamage"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Right"
-            />
-        <Label
-            Grid.Column="1"
-            Grid.Row="8"
-            Name="PhysicalDamage"
-            FontWeight="Bold"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--CriticalProbability-->
         <Label
             Grid.Column="0"
-            Grid.Row="9"
-            Content="CriticalProbability"
+            Grid.Row="8"
+            Content="CriticalProba"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
+            />
+        <Label
+            Grid.Column="1"
+            Grid.Row="8"
+            Name="CriticalProba"
+            FontWeight="Bold"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="18"
+            />
+        <!--PhysicalDamage-->
+        <Label
+            Grid.Column="0"
+            Grid.Row="9"
+            Content="PhysicalDamage"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
             Grid.Row="9"
-            Name="CriticalProbability"
+            Name="PhysicalDamage"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
+            />
+        <!--MagicDamage-->
+        <Label
+            Grid.Column="0"
+            Grid.Row="10"
+            Content="MagicDamage"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
+            FontSize="18"
+            />
+        <Label
+            Grid.Column="1"
+            Grid.Row="10"
+            Name="MagicDamage"
+            FontWeight="Bold"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="18"
             />
         <!--PhysicalArmor-->
         <Label
             Grid.Column="0"
-            Grid.Row="10"
+            Grid.Row="11"
             Content="PhysicalArmor"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
+            FontSize="18"
             />
         <Label
             Grid.Column="1"
-            Grid.Row="10"
+            Grid.Row="11"
             Name="PhysicalArmor"
             FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
+            FontSize="18"
+            />
+        <!--MagicalArmor-->
+        <Label
+            Grid.Column="0"
+            Grid.Row="12"
+            Content="MagicalArmor"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Right"
+            FontSize="18"
+            />
+        <Label
+            Grid.Column="1"
+            Grid.Row="12"
+            Name="MagicalArmor"
+            FontWeight="Bold"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="18"
             />
     </Grid>
 </UserControl>

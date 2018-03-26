@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumUtils", "EnumUtils\Enum
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerUtil", "LoggerUtil\LoggerUtil.csproj", "{3E6AA084-8562-40A3-8BEF-A357F380C28B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebserviceProject", "WebserviceProject\WebserviceProject.csproj", "{4DB0F2A2-FCFC-4C77-8F4C-94A64701DDEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{3E6AA084-8562-40A3-8BEF-A357F380C28B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6AA084-8562-40A3-8BEF-A357F380C28B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E6AA084-8562-40A3-8BEF-A357F380C28B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DB0F2A2-FCFC-4C77-8F4C-94A64701DDEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB0F2A2-FCFC-4C77-8F4C-94A64701DDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB0F2A2-FCFC-4C77-8F4C-94A64701DDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB0F2A2-FCFC-4C77-8F4C-94A64701DDEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -172,7 +172,7 @@ namespace ShakesAndFidgetLibrary.Models
             this.mana = mana;
             this.energy = energy;
             this.strength = strength;
-            this.agility = agility;
+            this.Agility = agility;
             this.spirit = spirit;
             this.luck = luck;
             this.criticalDamage = criticalDamage;
