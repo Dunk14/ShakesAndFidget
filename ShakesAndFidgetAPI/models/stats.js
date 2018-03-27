@@ -2,48 +2,48 @@ var Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
   const Stats = sequelize.define('stats', {
-    id: {
+    Id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    life: {
+    Life: {
       type: Sequelize.INTEGER
     },
-    mana: {
+    Mana: {
       type: Sequelize.INTEGER
     },
-    energy: {
+    Energy: {
       type: Sequelize.INTEGER
     },
-    strength: {
+    Strength: {
       type: Sequelize.INTEGER
     },
-    agility: {
+    Agility: {
       type: Sequelize.INTEGER
     },
-    spirit: {
+    Spirit: {
       type: Sequelize.INTEGER
     },
-    luck: {
+    Luck: {
       type: Sequelize.INTEGER
     },
-    criticalDamage: {
+    CriticalDamage: {
       type: Sequelize.INTEGER
     },
-    magicDamage: {
+    MagicDamage: {
       type: Sequelize.INTEGER
     },
-    physicalDamage: {
+    PhysicalDamage: {
       type: Sequelize.INTEGER
     },
-    criticalProba: {
+    CriticalProba: {
       type: Sequelize.INTEGER
     },
-    physicalArmor: {
+    PhysicalArmor: {
       type: Sequelize.INTEGER
     },
-    magicalArmor: {
+    MagicalArmor: {
       type: Sequelize.INTEGER
     },
   });

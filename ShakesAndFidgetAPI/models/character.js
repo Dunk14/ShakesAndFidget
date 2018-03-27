@@ -2,18 +2,21 @@ var Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
   const Character = sequelize.define('character', {
-    id: {
+    Id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
-      type: Sequelize.STRING
-    },
-    sexe: {
+    Type: {
       type: Sequelize.STRING(1)
     },
-    level: {
+    Name: {
+      type: Sequelize.STRING
+    },
+    Sexe: {
+      type: Sequelize.STRING(1)
+    },
+    Level: {
       type: Sequelize.INTEGER
     }
   });

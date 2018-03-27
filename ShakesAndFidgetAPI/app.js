@@ -59,18 +59,18 @@ const Gear = gearModel(sequelize);
 var models = {User, Character, Stats, Gear};
 app.set('models', models);
 
-User.hasMany(Character, {as: 'characters', hooks: true, onDelete: 'CASCADE', inverse: true});
-Character.belongsTo(User, {as: 'user'});
-Stats.hasOne(Character, {as: 'statCharacter', foreignKey: 'statId'});
-Gear.hasOne(Character, {as: 'headGear', foreignKey: 'headGearId'});
-Gear.hasOne(Character, {as: 'earring1', foreignKey: 'earring1Id'});
-Gear.hasOne(Character, {as: 'earring2', foreignKey: 'earring2Id'});
-Gear.hasOne(Character, {as: 'chest', foreignKey: 'chestId'});
-Gear.hasOne(Character, {as: 'legs', foreignKey: 'legsId'});
-Gear.hasOne(Character, {as: 'ring1', foreignKey: 'ring1Id'});
-Gear.hasOne(Character, {as: 'ring2', foreignKey: 'ring2Id'});
-Gear.hasOne(Character, {as: 'feet', foreignKey: 'feetId'});
-Stats.hasOne(Gear, {as: 'statGear', foreignKey: 'statId'});
+User.hasMany(Character, {as: 'Characters', hooks: true, onDelete: 'CASCADE', foreignKey: 'UserId', inverse: true});
+Character.belongsTo(User, {as: 'User'});
+Stats.hasOne(Character, {as: 'StatCharacter', foreignKey: 'StatId'});
+Gear.hasOne(Character, {as: 'HeadGear', foreignKey: 'HeadGearId'});
+Gear.hasOne(Character, {as: 'Earring1', foreignKey: 'Earring1Id'});
+Gear.hasOne(Character, {as: 'Earring2', foreignKey: 'Earring2Id'});
+Gear.hasOne(Character, {as: 'Chest', foreignKey: 'ChestId'});
+Gear.hasOne(Character, {as: 'Legs', foreignKey: 'LegsId'});
+Gear.hasOne(Character, {as: 'Ring1', foreignKey: 'Ring1Id'});
+Gear.hasOne(Character, {as: 'Ring2', foreignKey: 'Ring2Id'});
+Gear.hasOne(Character, {as: 'Feet', foreignKey: 'FeetId'});
+Stats.hasOne(Gear, {as: 'StatGear', foreignKey: 'StatId'});
 
 /*sequelize.sync({force: true})
   .then(() => {
@@ -79,34 +79,6 @@ Stats.hasOne(Gear, {as: 'statGear', foreignKey: 'statId'});
       mail: 'fosseykilyan@gmail.com',
       password: '5337AFF4D7C42F4124010FC66BCEC881'
     })
-    .then((user) => {
-      Stats.create({
-        life: 1
-      })
-      .then((stat1) => {
-        Stats.create({
-          mana: 1
-        })
-        .then((stat2) => {
-          Gear.create({
-            name: 'Baby magus Hat',
-            type: 'head',
-            levelMin: 1,
-            statId: stat2.get('id')
-          })
-          .then((gear) => {
-            Character.create({
-              name: 'Fistalheure',
-              sexe: 'M',
-              level: 1,
-              userId: user.get('id'),
-              statId: stat1.get('id'),
-              headGearId: gear.get('id')
-            })
-          });
-        })
-      })
-    });
   });*/
 
 // view engine setup

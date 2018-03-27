@@ -100,6 +100,11 @@ namespace ShakesAndFidget.ViewModels
         {
             if (MainWindow.Instance.CurrentUser != null && await CharacterRoutes.CountByUserId(userId) == 0)
                 MainWindow.Instance.CurrentPage = new FirstConnectionPage();
+            else if (MainWindow.Instance.CurrentUser != null && await CharacterRoutes.CountByUserId(userId) == 1)
+            {
+                MainWindow.Instance.CurrentCharacter = await CharacterRoutes.GetCharacter(userId);
+                MainWindow.Instance.CurrentPage = new HomePage();
+            }
         }
 
         private void Subscribe(string name, string mail, string password)

@@ -93,7 +93,13 @@ namespace ShakesAndFidget
             set { currentUser = value; }
         }
 
+        private Character currentCharacter;
 
+        public Character CurrentCharacter
+        {
+            get { return currentCharacter; }
+            set { currentCharacter = value; }
+        }
         #endregion
 
         #region Properties

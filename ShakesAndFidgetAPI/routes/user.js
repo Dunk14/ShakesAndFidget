@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
     include: [
       {
         model: models.Character,
-        as: 'characters'
+        as: 'Characters'
       }
     ]
   })

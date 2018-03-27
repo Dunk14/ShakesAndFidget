@@ -11,12 +11,17 @@ namespace ShakesAndFidgetLibrary.Models.Characters
         public const string IMAGE_SOURCE_M = "pack://application:,,,/Resources/Hunter.png";
         public const string IMAGE_SOURCE_F = "pack://application:,,,/Resources/Female Hunter.png";
 
+        public Hunter()
+        {
+
+        }
+
         public Hunter(String sexe, Boolean initStats = false)
         {
             if (sexe == "M")
-                this.sexe = "M";
+                this.Sexe = "M";
             else
-                this.sexe = "F";
+                this.Sexe = "F";
 
             if (initStats)
                 InitStats();
@@ -25,7 +30,7 @@ namespace ShakesAndFidgetLibrary.Models.Characters
         override
         public string LoadImage()
         {
-            if (this.sexe == "M")
+            if (this.Sexe == "M")
                 return IMAGE_SOURCE_M;
             else
                 return IMAGE_SOURCE_F;
@@ -33,6 +38,8 @@ namespace ShakesAndFidgetLibrary.Models.Characters
 
         private void InitStats()
         {
+            this.Level = 1;
+            this.Type = "H";
             this.Life = 110;
             this.Mana = 10;
             this.Energy = 35;

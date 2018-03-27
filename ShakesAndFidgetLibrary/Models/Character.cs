@@ -23,19 +23,20 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Properties
-        public string name { get; set; }
-        public string sexe { get; set; }
-        public int level { get; set; }
-        public int userId { get; set; }
-        public int statId { get; set; }
-        public int headGearId { get; set; }
-        public int earring1Id { get; set; }
-        public int earring2Id { get; set; }
-        public int chestId { get; set; }
-        public int legsId { get; set; }
-        public int ring1Id { get; set; }
-        public int ring2Id { get; set; }
-        public int feetId { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public string Sexe { get; set; }
+        public int Level { get; set; }
+        public int UserId { get; set; }
+        public int StatId { get; set; }
+        public int? HeadGearId { get; set; }
+        public int? Earring1Id { get; set; }
+        public int? Earring2Id { get; set; }
+        public int? ChestId { get; set; }
+        public int? LegsId { get; set; }
+        public int? Ring1Id { get; set; }
+        public int? Ring2Id { get; set; }
+        public int? FeetId { get; set; }
         #endregion
 
         #region Constructors

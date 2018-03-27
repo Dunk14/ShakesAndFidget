@@ -2,18 +2,18 @@ var Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
   const Gear = sequelize.define('gear', {
-    id: {
+    Id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
+    Name: {
       type: Sequelize.STRING
     },
-    type: {
+    Type: {
       type: Sequelize.STRING
     },
-    levelMin: {
+    LevelMin: {
       type: Sequelize.INTEGER
     }
   });

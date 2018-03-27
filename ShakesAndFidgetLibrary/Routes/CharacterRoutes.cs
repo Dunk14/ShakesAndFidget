@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using WebserviceProject;
 using ShakesAndFidgetLibrary.Models.Characters;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace ShakesAndFidgetLibrary.Routes
 {
@@ -25,31 +27,48 @@ namespace ShakesAndFidgetLibrary.Routes
             return value.ToObject<int>();
         }
 
-        public static async Task<Boolean> CreateWarrior(Warrior warrior)
+        // If success, return generated CharacterId
+        public static async Task<int> CreateCharacter(Character character, int userId)
         {
             Webservice webservice = new Webservice(BASE_URL);
-            String methodRoute = "/warrior/";
-            Boolean result = false;
-            result = await webservice.HttpClientSender<Warrior>(CHARACTER_URL + methodRoute, warrior, result);
-            return result;
+            String methodRoute = "/";
+            JObject jObject = new JObject();
+
+            if (character is Warrior)
+                jObject = await webservice.HttpClientSenderJObject(CHARACTER_URL + methodRoute + userId, character as Warrior);
+            else if (character is Hunter)
+                jObject = await webservice.HttpClientSenderJObject(CHARACTER_URL + methodRoute + userId, character as Hunter);
+            else if (character is Magus)
+                jObject = await webservice.HttpClientSenderJObject(CHARACTER_URL + methodRoute + userId, character as Magus);
+            JToken value = jObject.First;
+            return value.ToObject<int>();
         }
 
-        public static async Task<Boolean> CreateHunter(Hunter hunter)
+        public static async Task<Character> GetCharacter(int userId)
         {
             Webservice webservice = new Webservice(BASE_URL);
-            String methodRoute = "/createHunter/";
-            Boolean result = false;
-            result = await webservice.HttpClientSender<Hunter>(CHARACTER_URL + methodRoute, hunter, result);
-            return result;
-        }
+            String methodRoute = "/byUserId/";
+            JObject jObject = new JObject();
+            jObject = await webservice.HttpClientCaller(CHARACTER_URL + methodRoute + userId);
+            JToken value = jObject["Type"];
+            string stringObject = JsonConvert.SerializeObject(jObject);
 
-        public static async Task<Boolean> CreateMagus(Magus magus)
-        {
-            Webservice webservice = new Webservice(BASE_URL);
-            String methodRoute = "/createMagus/";
-            Boolean result = false;
-            result = await webservice.HttpClientSender<Magus>(CHARACTER_URL + methodRoute, magus, result);
-            return result;
+            if (value.ToObject<String>() == "W")
+            {
+                Warrior warrior = JsonConvert.DeserializeObject<Warrior>(stringObject);
+                Console.WriteLine(warrior);
+                return warrior;
+            }
+            else if (value.ToObject<String>() == "H")
+            {
+                Hunter hunter = JsonConvert.DeserializeObject<Hunter>(stringObject);
+                return hunter;
+            }
+            else
+            {
+                Magus magus = JsonConvert.DeserializeObject<Magus>(stringObject);
+                return magus;
+            }
         }
     }
 }

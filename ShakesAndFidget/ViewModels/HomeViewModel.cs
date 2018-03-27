@@ -31,7 +31,6 @@ namespace ShakesAndFidget.ViewModels
         public HomeViewModel(HomePage page1)
         {
             this.page1 = page1;
-            Events();
         }
         #endregion
 
@@ -39,15 +38,6 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Functions
-        private void Events()
-        {
-            this.page1.MenuUC.Disconnect.Click += BtnDisconnect_Click;
-        }
-
-        private void BtnDisconnect_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            MainWindow.Instance.CurrentPage = new FirstConnectionPage();
-        }
         #endregion
 
         #region Events

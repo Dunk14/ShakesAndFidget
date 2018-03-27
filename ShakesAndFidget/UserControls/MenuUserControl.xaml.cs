@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShakesAndFidget.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace ShakesAndFidget.UserControls
         public MenuUserControl()
         {
             InitializeComponent();
+            Events();
+        }
+
+        private void Events()
+        {
+            this.Disconnect.Click += Disconnect_Click;
+        }
+
+        private void Disconnect_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainWindow.Instance.CurrentPage = new ConnectionPage();
         }
     }
 }

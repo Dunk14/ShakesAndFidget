@@ -103,21 +103,15 @@ namespace ShakesAndFidget.ViewModels
             if (IsFemale)
                 this.page1.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListF[CurrentIndex].LoadImage()));
             else
-            {
                 this.page1.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListM[CurrentIndex].LoadImage()));
-            }
         }
 
         private void RenderCharacterStats()
         {
             if (IsFemale)
-            {
                 this.page1.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
-            }
             else
-            {
                 this.page1.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
-            }
         }
 
         private void IsFemaleButton_Unchecked(object sender, System.Windows.RoutedEventArgs e)
@@ -141,7 +135,7 @@ namespace ShakesAndFidget.ViewModels
 
         private void Validate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (this.page1.FirstConnectionUC.CharacterName.Text != null)
+            if (this.page1.FirstConnectionUC.CharacterName.Text != "")
             {
                 this.page1.FirstConnectionUC.Validate.Visibility = System.Windows.Visibility.Collapsed;
                 this.page1.FirstConnectionUC.Validate_Label.Visibility = System.Windows.Visibility.Visible;
@@ -149,9 +143,7 @@ namespace ShakesAndFidget.ViewModels
                 this.page1.FirstConnectionUC.Validate_No.Visibility = System.Windows.Visibility.Visible;
             }
             else
-            {
                 MainWindow.Logger.Warning("Enter a name for your character please");
-            }
         }
 
         private void Validate_No_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -162,19 +154,29 @@ namespace ShakesAndFidget.ViewModels
             this.page1.FirstConnectionUC.Validate_No.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-        private void Validate_Yes_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void Validate_Yes_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            int result = 0;
             if (IsFemale)
             {
-                if (CharactersListF[CurrentIndex] is Warrior)
-                    CharacterRoutes.CreateWarrior(CharactersListF[CurrentIndex] as Warrior);
+                CharactersListF[CurrentIndex].Name = this.page1.FirstConnectionUC.CharacterName.Text;
+                result = await CharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
             }
             else
             {
-
+                CharactersListM[CurrentIndex].Name = this.page1.FirstConnectionUC.CharacterName.Text;
+                result = await CharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
             }
-            
-            //MainWindow.Instance.CurrentPage = new HomePage();
+
+            if (result >= 0)
+            {
+                MainWindow.Instance.CurrentCharacter = IsFemale ? CharactersListF[CurrentIndex] : CharactersListM[CurrentIndex];
+                MainWindow.Instance.CurrentPage = new HomePage();
+            }
+            else if (result == -1)
+                MainWindow.Logger.Error("Stats and Character tables not created");
+            else if (result == -2)
+                MainWindow.Logger.Error("Stats table created but Character has not");
         }
         #endregion
 

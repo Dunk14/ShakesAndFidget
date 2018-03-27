@@ -11,12 +11,17 @@ namespace ShakesAndFidgetLibrary.Models
         public const string IMAGE_SOURCE_M = "pack://application:,,,/Resources/Knight.png";
         public const string IMAGE_SOURCE_F = "pack://application:,,,/Resources/Female Knight.png";
 
+        public Warrior()
+        {
+
+        }
+
         public Warrior(String sexe, Boolean initStats = false)
         {
             if (sexe == "M")
-                this.sexe = "M";
+                this.Sexe = "M";
             else
-                this.sexe = "F";
+                this.Sexe = "F";
 
             if (initStats)
                 InitStats();
@@ -25,7 +30,7 @@ namespace ShakesAndFidgetLibrary.Models
         override
         public string LoadImage()
         {
-            if (this.sexe == "M")
+            if (this.Sexe == "M")
                 return IMAGE_SOURCE_M;
             else
                 return IMAGE_SOURCE_F;
@@ -33,6 +38,8 @@ namespace ShakesAndFidgetLibrary.Models
 
         private void InitStats()
         {
+            this.Level = 1;
+            this.Type = "W";
             this.Life = 150;
             this.Mana = 5;
             this.Energy = 50;
