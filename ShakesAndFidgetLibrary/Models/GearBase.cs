@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    public abstract class ItemBase : ModelBase
+    public abstract class GearBase : ModelBase
     {
         public String Name { get; set; }
         public String ImageSource { get; set; }

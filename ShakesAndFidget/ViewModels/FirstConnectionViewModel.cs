@@ -55,6 +55,7 @@ namespace ShakesAndFidget.ViewModels
 
             CharactersListM = new Character[3];
             CharactersListM[0] = new Warrior("M", true);
+            Gears[0] = new Gear() { };
             CharactersListM[1] = new Hunter("M", true);
             CharactersListM[2] = new Magus("M", true);
 
