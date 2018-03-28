@@ -10,6 +10,8 @@ namespace ShakesAndFidgetLibrary.Models
     {
         public const string IMAGE_SOURCE_M = "pack://application:,,,/Resources/Knight.png";
         public const string IMAGE_SOURCE_F = "pack://application:,,,/Resources/Female Knight.png";
+        public const string IMAGE_SOURCE_SPECIAL = "pack://application:,,,/Resources/Inventory Shield.png";
+        public const string IMAGE_SOURCE_ATTACK = "pack://application:,,,/Resources/Inventory Weapon.png";
 
         public Warrior()
         {
@@ -34,6 +36,18 @@ namespace ShakesAndFidgetLibrary.Models
                 return IMAGE_SOURCE_M;
             else
                 return IMAGE_SOURCE_F;
+        }
+
+        override
+        public string LoadSpecial()
+        {
+            return IMAGE_SOURCE_SPECIAL;
+        }
+
+        override
+        public string LoadAttack()
+        {
+            return IMAGE_SOURCE_SPECIAL;
         }
 
         private void InitStats()

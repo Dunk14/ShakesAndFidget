@@ -1,19 +1,19 @@
 var Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
-  const Gear = sequelize.define('gear', {
+  const GearBase = sequelize.define('gearBase', {
     Id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    Type: {
+    Name: {
       type: Sequelize.STRING
     },
-    LevelMin: {
-      type: Sequelize.INTEGER
+    ImageSource: {
+      type: Sequelize.STRING
     }
   });
 
-  return Gear;
+  return GearBase;
 };

@@ -8,6 +8,7 @@ var userModel = require('./models/user');
 var characterModel = require('./models/character');
 var statsModel = require('./models/stats');
 var gearModel = require('./models/gear');
+var gearBaseModel = require('./models/gearBase');
 
 var usersRouter = require('./routes/user');
 var charactersRouter = require('./routes/character');
@@ -56,30 +57,50 @@ const User = userModel(sequelize);
 const Character = characterModel(sequelize);
 const Stats = statsModel(sequelize);
 const Gear = gearModel(sequelize);
+const GearBase = gearBaseModel(sequelize);
 var models = {User, Character, Stats, Gear};
 app.set('models', models);
 
 User.hasMany(Character, {as: 'Characters', hooks: true, onDelete: 'CASCADE', foreignKey: 'UserId', inverse: true});
 Character.belongsTo(User, {as: 'User'});
+GearBase.hasMany(Gear, {as: 'Gears', hooks: true, onDelete: 'CASCADE', foreignKey: 'GearBaseId', inverse: true});
+Gear.belongsTo(GearBase, {as: 'GearBase'});
 Stats.hasOne(Character, {as: 'StatCharacter', foreignKey: 'StatId'});
-Gear.hasOne(Character, {as: 'HeadGear', foreignKey: 'HeadGearId'});
-Gear.hasOne(Character, {as: 'Earring1', foreignKey: 'Earring1Id'});
-Gear.hasOne(Character, {as: 'Earring2', foreignKey: 'Earring2Id'});
-Gear.hasOne(Character, {as: 'Chest', foreignKey: 'ChestId'});
-Gear.hasOne(Character, {as: 'Legs', foreignKey: 'LegsId'});
+Gear.hasOne(Character, {as: 'Head', foreignKey: 'HeadId'});
 Gear.hasOne(Character, {as: 'Ring1', foreignKey: 'Ring1Id'});
 Gear.hasOne(Character, {as: 'Ring2', foreignKey: 'Ring2Id'});
-Gear.hasOne(Character, {as: 'Feet', foreignKey: 'FeetId'});
+Gear.hasOne(Character, {as: 'Usable1', foreignKey: 'Usable1Id'});
+Gear.hasOne(Character, {as: 'Usable2', foreignKey: 'Usable2Id'});
+Gear.hasOne(Character, {as: 'Armor', foreignKey: 'ArmorId'});
+Gear.hasOne(Character, {as: 'Legs', foreignKey: 'LegsId'});
+Gear.hasOne(Character, {as: 'Attack', foreignKey: 'AttackId'});
+Gear.hasOne(Character, {as: 'Special', foreignKey: 'SpecialId'});
 Stats.hasOne(Gear, {as: 'StatGear', foreignKey: 'StatId'});
 
-/*sequelize.sync({force: true})
+sequelize.sync({force: true})
   .then(() => {
+    // One test user ; MDP: poulet
     User.create({
       name: 'Dunk14',
       mail: 'fosseykilyan@gmail.com',
       password: '5337AFF4D7C42F4124010FC66BCEC881'
-    })
-  });*/
+    });
+
+    // Some gears
+    GearBase.create({
+      Name: 'Big Sword',
+      ImageSource: 'pack://application:,,,/Resources/Big Sword.png'
+    });
+    GearBase.create({
+      Name: 'Staff',
+      ImageSource: 'pack://application:,,,/Resources/Staff.png'
+    });
+    GearBase.create({
+      Name: 'Bow',
+      ImageSource: 'pack://application:,,,/Resources/Bow.png'
+    });
+
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

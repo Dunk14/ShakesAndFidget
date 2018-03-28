@@ -34,6 +34,7 @@ namespace ShakesAndFidget.ViewModels
         public Boolean IsFemale { get; set; }
         Character[] CharactersListM { get; set; }
         Character[] CharactersListF { get; set; }
+        Gear[] Gears { get; set; }
         #endregion
 
         #region Constructors
@@ -51,10 +52,12 @@ namespace ShakesAndFidget.ViewModels
         private void InitializeViewModel()
         {
             this.page1.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
+
             CharactersListM = new Character[3];
             CharactersListM[0] = new Warrior("M", true);
             CharactersListM[1] = new Hunter("M", true);
             CharactersListM[2] = new Magus("M", true);
+
             CharactersListF = new Character[3];
             CharactersListF[0] = new Warrior("F", true);
             CharactersListF[1] = new Hunter("F", true);

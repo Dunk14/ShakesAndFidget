@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace ShakesAndFidget.ViewModels
 {
@@ -16,9 +17,9 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Variables
-        private HomePage page1;
+        private HomePage homePage;
 
-        public HomePage Page1 { get => page1; set => page1 = value; }
+        public HomePage HomePage { get => homePage; set => homePage = value; }
         #endregion
 
         #region Attributs
@@ -28,9 +29,10 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Constructors
-        public HomeViewModel(HomePage page1)
+        public HomeViewModel(HomePage homePage)
         {
-            this.page1 = page1;
+            this.homePage = homePage;
+            Events(); 
         }
         #endregion
 
@@ -38,6 +40,17 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Functions
+        private void Events()
+        {
+            HomePage.EquipmentUC.Loaded += EquipmentUC_Loaded;
+        }
+
+        private void EquipmentUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
+            HomePage.EquipmentUC.RenderItems();
+        }
+
         #endregion
 
         #region Events

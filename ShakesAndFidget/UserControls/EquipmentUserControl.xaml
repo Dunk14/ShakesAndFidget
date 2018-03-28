@@ -17,84 +17,74 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-		<Image Name="ImageCharacter"
+		<Image 
+            Name="ImageCharacter"
             Grid.Column="1" 
-            HorizontalAlignment="Stretch"
             Grid.Row="1" 
-            VerticalAlignment="Stretch"
-            Width="24"
-            Height="24"/>
-        <Button
-			Content="prout"
-            Name="btn1"
+            Width="Auto"
+            Height="Auto"
+            />
+        <Image
+            Source="pack://application:,,,/Resources/Inventory Item.png"
+            Name="Ring1"
             Grid.Column="0"
             Grid.Row="0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
-        <Button
-			Content="prout"
-            Name="btn2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            />
+        <Image
+            Source="pack://application:,,,/Resources/Inventory Helmet.png"
+            Name="Head"
             Grid.Column="1"
             Grid.Row="0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
-        <Button
-			Content="prout"
-            Name="btn3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            />
+        <Image
+            Source="pack://application:,,,/Resources/Inventory Item.png"
+            Name="Ring2"
             Grid.Column="2"
             Grid.Row="0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
-        <Button
-			Content="prout"
-            Name="btn4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            />
+        <Image
+            Name="Special"
             Grid.Column="0"
             Grid.Row="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
-        <Button
-			Content="prout"
-            Name="btn5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            />
+        <Image
+            Name="Attack"
             Grid.Column="2"
             Grid.Row="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
-        <Button
-			Content="prout"
-            Name="btn6"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            />
+        <Image
+            Source="pack://application:,,,/Resources/Inventory Usable.png"
+            Name="Usable1"
             Grid.Column="0"
             Grid.Row="2"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
-        <Button
-			Content="prout"
-            Name="btn7"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            />
+        <Image
+			Source="pack://application:,,,/Resources/Inventory Legs.png"
+            Name="Legs"
             Grid.Column="1"
             Grid.Row="2"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
-        <Button
-			Content="prout"
-            Name="btn8"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            />
+        <Image
+			Source="pack://application:,,,/Resources/Inventory Usable.png"
+            Name="Usable2"
             Grid.Column="2"
             Grid.Row="2"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Width="auto"
-            Height="auto" />
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            />
     </Grid>
 </UserControl>

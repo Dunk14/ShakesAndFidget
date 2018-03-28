@@ -10,6 +10,8 @@ namespace ShakesAndFidgetLibrary.Models.Characters
     {
         public const string IMAGE_SOURCE_M = "pack://application:,,,/Resources/Magus.png";
         public const string IMAGE_SOURCE_F = "pack://application:,,,/Resources/Female Magus.png";
+        public const string IMAGE_SOURCE_SPECIAL = "pack://application:,,,/Resources/Inventory Usable.png";
+        public const string IMAGE_SOURCE_ATTACK = "pack://application:,,,/Resources/Inventory Staff.png";
 
         public Magus()
         {
@@ -34,6 +36,18 @@ namespace ShakesAndFidgetLibrary.Models.Characters
                 return IMAGE_SOURCE_M;
             else
                 return IMAGE_SOURCE_F;
+        }
+
+        override
+        public string LoadSpecial()
+        {
+            return IMAGE_SOURCE_SPECIAL;
+        }
+
+        override
+        public string LoadAttack()
+        {
+            return IMAGE_SOURCE_ATTACK;
         }
 
         private void InitStats()

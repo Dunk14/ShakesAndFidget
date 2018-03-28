@@ -56,7 +56,6 @@ namespace ShakesAndFidgetLibrary.Routes
             if (value.ToObject<String>() == "W")
             {
                 Warrior warrior = JsonConvert.DeserializeObject<Warrior>(stringObject);
-                Console.WriteLine(warrior);
                 return warrior;
             }
             else if (value.ToObject<String>() == "H")

@@ -29,14 +29,15 @@ namespace ShakesAndFidgetLibrary.Models
         public int Level { get; set; }
         public int UserId { get; set; }
         public int StatId { get; set; }
-        public int? HeadGearId { get; set; }
-        public int? Earring1Id { get; set; }
-        public int? Earring2Id { get; set; }
-        public int? ChestId { get; set; }
+        public int? HeadId { get; set; }
+        public int? ArmorId { get; set; }
         public int? LegsId { get; set; }
         public int? Ring1Id { get; set; }
         public int? Ring2Id { get; set; }
-        public int? FeetId { get; set; }
+        public int? Usable1Id { get; set; }
+        public int? Usable2Id { get; set; }
+        public int? SpecialId { get; set; }
+        public int? AttackId { get; set; }
         #endregion
 
         #region Constructors
@@ -51,6 +52,8 @@ namespace ShakesAndFidgetLibrary.Models
 
         #region Functions
         public abstract string LoadImage();
+        public abstract string LoadSpecial();
+        public abstract string LoadAttack();
         #endregion
 
         #region Events

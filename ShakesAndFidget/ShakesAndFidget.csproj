@@ -293,15 +293,33 @@
     <Resource Include="Resources\Ice Armor.png" />
     <Resource Include="Resources\Ice Arrow.png" />
     <Resource Include="Resources\Ice Staff.png" />
-    <Resource Include="Resources\Inventory Armor.png" />
-    <Resource Include="Resources\Inventory Arrow.png" />
-    <Resource Include="Resources\Inventory Helmet.png" />
-    <Resource Include="Resources\Inventory Item.png" />
-    <Resource Include="Resources\Inventory Legs.png" />
-    <Resource Include="Resources\Inventory Shield.png" />
-    <Resource Include="Resources\Inventory Staff.png" />
-    <Resource Include="Resources\Inventory Usable.png" />
-    <Resource Include="Resources\Inventory Weapon.png" />
+    <Resource Include="Resources\Inventory Armor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Helmet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Item.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Legs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Shield.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Staff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Usable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Inventory Weapon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Katana.png" />
     <Resource Include="Resources\Knife.png" />
     <Resource Include="Resources\Knight 2.png" />

@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    public class Gear : ItemBase
+    public abstract class ItemBase : ModelBase
     {
-        public Gear()
-        {
-        }
-
-        public String Type { get; set; }
-        public int LevelMin{ get; set; }
+        public String Name { get; set; }
+        public String ImageSource { get; set; }
     }
 }
