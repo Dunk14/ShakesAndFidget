@@ -12,11 +12,8 @@ using System.Net.Http;
 
 namespace ShakesAndFidgetLibrary.Routes
 {
-    public abstract class CharacterRoutes
+    public abstract class ACharacterRoutes : AConfigRoutes
     {
-        public const string BASE_URL = "http://localhost:3000";
-        public const string CHARACTER_URL = "/characters";
-
         public static async Task<int> CountByUserId(int userId)
         {
             Webservice webservice = new Webservice(BASE_URL);

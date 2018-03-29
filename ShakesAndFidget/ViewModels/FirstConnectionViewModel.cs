@@ -49,14 +49,17 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Functions
-        private void InitializeViewModel()
+        private async void InitializeViewModel()
         {
             this.page1.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
-
+            List<GearBase> gearBases = await AGearBaseRoutes.GetAllGearBases();
             CharactersListM = new ICharacter[3];
             Gears = new Gear[3];
+            Gears[0] = gearBases.Find(x => x.Name == "Big Sword").ToGear();
+            Gears[1] = gearBases.Find(x => x.Name == "Bow").ToGear();
+            Gears[2] = gearBases.Find(x => x.Name == "Staff").ToGear();
+
             CharactersListM[0] = new Warrior("M", true);
-            Gears[0] = new Gear() { };
             CharactersListM[1] = new Hunter("M", true);
             CharactersListM[2] = new Magus("M", true);
 
@@ -64,6 +67,7 @@ namespace ShakesAndFidget.ViewModels
             CharactersListF[0] = new Warrior("F", true);
             CharactersListF[1] = new Hunter("F", true);
             CharactersListF[2] = new Magus("F", true);
+
             CurrentIndex = 0;
             IsFemale = false;
             Render();
@@ -165,12 +169,12 @@ namespace ShakesAndFidget.ViewModels
             if (IsFemale)
             {
                 CharactersListF[CurrentIndex].Name = this.page1.FirstConnectionUC.CharacterName.Text;
-                result = await CharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                result = await ACharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
             }
             else
             {
                 CharactersListM[CurrentIndex].Name = this.page1.FirstConnectionUC.CharacterName.Text;
-                result = await CharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                result = await ACharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
             }
 
             if (result >= 0)

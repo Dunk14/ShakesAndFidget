@@ -10,5 +10,13 @@ namespace ShakesAndFidgetLibrary.Models
     {
         public String Name { get; set; }
         public String ImageSource { get; set; }
+
+        public Gear ToGear()
+        {
+            Gear gear = new Gear();
+            gear.Name = Name;
+            gear.ImageSource = ImageSource;
+            return gear;
+        }
     }
 }

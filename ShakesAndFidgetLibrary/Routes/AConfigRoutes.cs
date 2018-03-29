@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Routes
 {
-    class GearBaseRoutes
+    public abstract class AConfigRoutes
     {
+        public const string BASE_URL = "http://localhost:3000";
+        public const string CHARACTER_URL = "/characters";
     }
 }
