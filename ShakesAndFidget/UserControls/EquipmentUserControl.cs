@@ -26,7 +26,7 @@ namespace ShakesAndFidget.UserControls
         public const string USABLE_IMAGE = "pack://application:,,,/Resources/Inventory Usable.png";
         public const string LEGS_IMAGE = "pack://application:,,,/Resources/Inventory Legs.png";
 
-        public Character Character { get; set; }
+        public ICharacter Character { get; set; }
 
         public EquipmentUserControl()
         {

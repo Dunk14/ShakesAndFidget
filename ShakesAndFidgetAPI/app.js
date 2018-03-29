@@ -12,6 +12,7 @@ var gearBaseModel = require('./models/gearBase');
 
 var usersRouter = require('./routes/user');
 var charactersRouter = require('./routes/character');
+var gearBaseRouter = require('./routes/gearBase');
 
 var app = express();
 
@@ -58,7 +59,7 @@ const Character = characterModel(sequelize);
 const Stats = statsModel(sequelize);
 const Gear = gearModel(sequelize);
 const GearBase = gearBaseModel(sequelize);
-var models = {User, Character, Stats, Gear};
+var models = {User, Character, Stats, Gear, GearBase};
 app.set('models', models);
 
 User.hasMany(Character, {as: 'Characters', hooks: true, onDelete: 'CASCADE', foreignKey: 'UserId', inverse: true});
@@ -88,14 +89,17 @@ sequelize.sync({force: true})
 
     // Some gears
     GearBase.create({
+      Id: 1,
       Name: 'Big Sword',
       ImageSource: 'pack://application:,,,/Resources/Big Sword.png'
     });
     GearBase.create({
+      Id: 2,
       Name: 'Staff',
       ImageSource: 'pack://application:,,,/Resources/Staff.png'
     });
     GearBase.create({
+      Id: 3,
       Name: 'Bow',
       ImageSource: 'pack://application:,,,/Resources/Bow.png'
     });
@@ -114,6 +118,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/characters', charactersRouter);
+app.use('/gearBase', gearBaseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

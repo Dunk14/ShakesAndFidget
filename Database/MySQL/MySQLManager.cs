@@ -37,7 +37,7 @@ namespace Database.MySQL
             //modelBuilder.Entity<Stats>();
             //modelBuilder.Entity<ShakesAndFidgetLibrary.Models.Action>();
             //modelBuilder.Entity<Adventure>();
-            modelBuilder.Entity<Character>().Map(m =>
+            modelBuilder.Entity<ICharacter>().Map(m =>
             {
                 m.MapInheritedProperties();
             }); ;

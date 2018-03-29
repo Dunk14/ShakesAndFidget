@@ -32,8 +32,8 @@ namespace ShakesAndFidget.ViewModels
         #region Properties
         public int CurrentIndex { get; set; }
         public Boolean IsFemale { get; set; }
-        Character[] CharactersListM { get; set; }
-        Character[] CharactersListF { get; set; }
+        ICharacter[] CharactersListM { get; set; }
+        ICharacter[] CharactersListF { get; set; }
         Gear[] Gears { get; set; }
         #endregion
 
@@ -53,13 +53,14 @@ namespace ShakesAndFidget.ViewModels
         {
             this.page1.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
 
-            CharactersListM = new Character[3];
+            CharactersListM = new ICharacter[3];
+            Gears = new Gear[3];
             CharactersListM[0] = new Warrior("M", true);
             Gears[0] = new Gear() { };
             CharactersListM[1] = new Hunter("M", true);
             CharactersListM[2] = new Magus("M", true);
 
-            CharactersListF = new Character[3];
+            CharactersListF = new ICharacter[3];
             CharactersListF[0] = new Warrior("F", true);
             CharactersListF[1] = new Hunter("F", true);
             CharactersListF[2] = new Magus("F", true);

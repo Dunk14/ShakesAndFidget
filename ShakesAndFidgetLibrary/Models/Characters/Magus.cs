@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models.Characters
 {
-    public class Magus : Character
+    public class Magus : ICharacter
     {
         public const string IMAGE_SOURCE_M = "pack://application:,,,/Resources/Magus.png";
         public const string IMAGE_SOURCE_F = "pack://application:,,,/Resources/Female Magus.png";

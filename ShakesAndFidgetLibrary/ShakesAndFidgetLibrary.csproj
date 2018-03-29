@@ -68,12 +68,13 @@
   <ItemGroup>
     <Compile Include="Models\Action.cs" />
     <Compile Include="Models\Adventure.cs" />
-    <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\GearBase.cs" />
+    <Compile Include="Models\ICharacter.cs" />
     <Compile Include="Models\Characters\Hunter.cs" />
     <Compile Include="Models\Characters\Magus.cs" />
     <Compile Include="Models\Fight.cs" />
     <Compile Include="Models\Gear.cs" />
-    <Compile Include="Models\GearBase.cs" />
+    <Compile Include="Models\AGearBase.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\Usable.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Models\Characters\Warrior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes\CharacterRoutes.cs" />
+    <Compile Include="Routes\GearBaseRoutes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

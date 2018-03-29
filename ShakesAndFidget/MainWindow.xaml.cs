@@ -93,9 +93,9 @@ namespace ShakesAndFidget
             set { currentUser = value; }
         }
 
-        private Character currentCharacter;
+        private ICharacter currentCharacter;
 
-        public Character CurrentCharacter
+        public ICharacter CurrentCharacter
         {
             get { return currentCharacter; }
             set { currentCharacter = value; }

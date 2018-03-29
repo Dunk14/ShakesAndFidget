@@ -28,7 +28,7 @@ namespace ShakesAndFidgetLibrary.Routes
         }
 
         // If success, return generated CharacterId
-        public static async Task<int> CreateCharacter(Character character, int userId)
+        public static async Task<int> CreateCharacter(ICharacter character, int userId)
         {
             Webservice webservice = new Webservice(BASE_URL);
             String methodRoute = "/";
@@ -44,7 +44,7 @@ namespace ShakesAndFidgetLibrary.Routes
             return value.ToObject<int>();
         }
 
-        public static async Task<Character> GetCharacter(int userId)
+        public static async Task<ICharacter> GetCharacter(int userId)
         {
             Webservice webservice = new Webservice(BASE_URL);
             String methodRoute = "/byUserId/";
