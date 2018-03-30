@@ -72,7 +72,7 @@ router.post('/:userId', function(req, res) {
     PhysicalDamage: req.body.PhysicalDamage,
     CriticalProba: req.body.CriticalProba,
     PhysicalArmor: req.body.PhysicalArmor,
-    MagicalArmor: req.body.MagicalArmor,
+    MagicalArmor: req.body.MagicalArmor
   })
   .then((stat) => {
     models.Character.create({

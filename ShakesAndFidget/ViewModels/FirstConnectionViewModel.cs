@@ -21,26 +21,25 @@ namespace ShakesAndFidget.ViewModels
         #endregion
 
         #region Variables
-        private FirstConnectionPage page1;
-
-        public FirstConnectionPage Page1 { get => page1; set => page1 = value; }
         #endregion
 
         #region Attributs
         #endregion
 
         #region Properties
+        public FirstConnectionPage FirstConnectionPage { get; set; }
         public int CurrentIndex { get; set; }
         public Boolean IsFemale { get; set; }
         ICharacter[] CharactersListM { get; set; }
         ICharacter[] CharactersListF { get; set; }
         Gear[] Gears { get; set; }
+        Stats[] Stats { get; set; }
         #endregion
 
         #region Constructors
-        public FirstConnectionViewModel(FirstConnectionPage page1)
+        public FirstConnectionViewModel(FirstConnectionPage firstConnectionPage)
         {
-            this.page1 = page1;
+            FirstConnectionPage = firstConnectionPage;
             Events();
         }
         #endregion
@@ -51,14 +50,18 @@ namespace ShakesAndFidget.ViewModels
         #region Functions
         private async void InitializeViewModel()
         {
-            this.page1.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
-            List<GearBase> gearBases = await AGearBaseRoutes.GetAllGearBases();
-            CharactersListM = new ICharacter[3];
-            Gears = new Gear[3];
-            Gears[0] = gearBases.Find(x => x.Name == "Big Sword").ToGear();
-            Gears[1] = gearBases.Find(x => x.Name == "Bow").ToGear();
-            Gears[2] = gearBases.Find(x => x.Name == "Staff").ToGear();
+            FirstConnectionPage.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
 
+            List<GearBase> gearBases = await AGearBaseRoutes.GetAllGearBases();
+            Gears = new Gear[3];
+            Gears[0] = gearBases.Find(x => x.Name == "Big Sword").ToGear("W", 1);
+            Gears[1] = gearBases.Find(x => x.Name == "Bow").ToGear("H", 1);
+            Gears[2] = gearBases.Find(x => x.Name == "Staff").ToGear("M", 1);
+
+            Stats = new Stats[3];
+            Stats[0] = new Stats();
+
+            CharactersListM = new ICharacter[3];
             CharactersListM[0] = new Warrior("M", true);
             CharactersListM[1] = new Hunter("M", true);
             CharactersListM[2] = new Magus("M", true);
@@ -75,14 +78,14 @@ namespace ShakesAndFidget.ViewModels
 
         private void Events()
         {
-            this.page1.FirstConnectionUC.Validate.Click += Validate_Click;
-            this.page1.FirstConnectionUC.Validate_Yes.Click += Validate_Yes_Click;
-            this.page1.FirstConnectionUC.Validate_No.Click += Validate_No_Click;
-            this.page1.FirstConnectionUC.Loaded += FirstConnectionUC_Loaded;
-            this.page1.FirstConnectionUC.IsFemaleButton.Checked += IsFemaleButton_Checked;
-            this.page1.FirstConnectionUC.IsFemaleButton.Unchecked += IsFemaleButton_Unchecked;
-            this.page1.FirstConnectionUC.PreviousCharacter.Click += PreviousCharacter_Click;
-            this.page1.FirstConnectionUC.NextCharacter.Click += NextCharacter_Click;
+            FirstConnectionPage.FirstConnectionUC.Validate.Click += Validate_Click;
+            FirstConnectionPage.FirstConnectionUC.Validate_Yes.Click += Validate_Yes_Click;
+            FirstConnectionPage.FirstConnectionUC.Validate_No.Click += Validate_No_Click;
+            FirstConnectionPage.FirstConnectionUC.Loaded += FirstConnectionUC_Loaded;
+            FirstConnectionPage.FirstConnectionUC.IsFemaleButton.Checked += IsFemaleButton_Checked;
+            FirstConnectionPage.FirstConnectionUC.IsFemaleButton.Unchecked += IsFemaleButton_Unchecked;
+            FirstConnectionPage.FirstConnectionUC.PreviousCharacter.Click += PreviousCharacter_Click;
+            FirstConnectionPage.FirstConnectionUC.NextCharacter.Click += NextCharacter_Click;
         }
 
         private void NextCharacter_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -110,17 +113,17 @@ namespace ShakesAndFidget.ViewModels
         private void RenderCharacterImage()
         {
             if (IsFemale)
-                this.page1.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListF[CurrentIndex].LoadImage()));
+                FirstConnectionPage.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListF[CurrentIndex].LoadImage()));
             else
-                this.page1.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListM[CurrentIndex].LoadImage()));
+                FirstConnectionPage.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListM[CurrentIndex].LoadImage()));
         }
 
         private void RenderCharacterStats()
         {
             if (IsFemale)
-                this.page1.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
             else
-                this.page1.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
         }
 
         private void IsFemaleButton_Unchecked(object sender, System.Windows.RoutedEventArgs e)
@@ -144,12 +147,12 @@ namespace ShakesAndFidget.ViewModels
 
         private void Validate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (this.page1.FirstConnectionUC.CharacterName.Text != "")
+            if (!String.IsNullOrEmpty(FirstConnectionPage.FirstConnectionUC.CharacterName.Text) || !String.IsNullOrWhiteSpace(FirstConnectionPage.FirstConnectionUC.CharacterName.Text))
             {
-                this.page1.FirstConnectionUC.Validate.Visibility = System.Windows.Visibility.Collapsed;
-                this.page1.FirstConnectionUC.Validate_Label.Visibility = System.Windows.Visibility.Visible;
-                this.page1.FirstConnectionUC.Validate_Yes.Visibility = System.Windows.Visibility.Visible;
-                this.page1.FirstConnectionUC.Validate_No.Visibility = System.Windows.Visibility.Visible;
+                FirstConnectionPage.FirstConnectionUC.Validate.Visibility = System.Windows.Visibility.Collapsed;
+                FirstConnectionPage.FirstConnectionUC.Validate_Label.Visibility = System.Windows.Visibility.Visible;
+                FirstConnectionPage.FirstConnectionUC.Validate_Yes.Visibility = System.Windows.Visibility.Visible;
+                FirstConnectionPage.FirstConnectionUC.Validate_No.Visibility = System.Windows.Visibility.Visible;
             }
             else
                 MainWindow.Logger.Warning("Enter a name for your character please");
@@ -157,34 +160,34 @@ namespace ShakesAndFidget.ViewModels
 
         private void Validate_No_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.page1.FirstConnectionUC.Validate.Visibility = System.Windows.Visibility.Visible;
-            this.page1.FirstConnectionUC.Validate_Label.Visibility = System.Windows.Visibility.Collapsed;
-            this.page1.FirstConnectionUC.Validate_Yes.Visibility = System.Windows.Visibility.Collapsed;
-            this.page1.FirstConnectionUC.Validate_No.Visibility = System.Windows.Visibility.Collapsed;
+            FirstConnectionPage.FirstConnectionUC.Validate.Visibility = System.Windows.Visibility.Visible;
+            FirstConnectionPage.FirstConnectionUC.Validate_Label.Visibility = System.Windows.Visibility.Collapsed;
+            FirstConnectionPage.FirstConnectionUC.Validate_Yes.Visibility = System.Windows.Visibility.Collapsed;
+            FirstConnectionPage.FirstConnectionUC.Validate_No.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private async void Validate_Yes_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            int result = 0;
+            int resultCharacter = 0;
             if (IsFemale)
             {
-                CharactersListF[CurrentIndex].Name = this.page1.FirstConnectionUC.CharacterName.Text;
-                result = await ACharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                CharactersListF[CurrentIndex].Name = FirstConnectionPage.FirstConnectionUC.CharacterName.Text;
+                resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
             }
             else
             {
-                CharactersListM[CurrentIndex].Name = this.page1.FirstConnectionUC.CharacterName.Text;
-                result = await ACharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                CharactersListM[CurrentIndex].Name = FirstConnectionPage.FirstConnectionUC.CharacterName.Text;
+                resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
             }
 
-            if (result >= 0)
+            if (resultCharacter >= 0)
             {
                 MainWindow.Instance.CurrentCharacter = IsFemale ? CharactersListF[CurrentIndex] : CharactersListM[CurrentIndex];
                 MainWindow.Instance.CurrentPage = new HomePage();
             }
-            else if (result == -1)
+            else if (resultCharacter == -1)
                 MainWindow.Logger.Error("Stats and Character tables not created");
-            else if (result == -2)
+            else if (resultCharacter == -2)
                 MainWindow.Logger.Error("Stats table created but Character has not");
         }
         #endregion

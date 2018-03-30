@@ -12,12 +12,14 @@ namespace ShakesAndFidgetLibrary.Routes
     public abstract class AGearRoutes : AConfigRoutes
     {
         // If success, return generated GearId
-        public static async Task<int> CreateGear(Gear gear)
+        public static async Task<int> CreateGear(Gear gear, Stats stats)
         {
             Webservice webservice = new Webservice(BASE_URL);
             String methodRoute = "/";
-            gear  = await webservice.HttpClientSender<Gear>(CHARACTER_URL + methodRoute, gear);
-            return gear.Id;
+            JObject jObject = new JObject();
+            jObject  = await webservice.HttpClientSenderJObject(CHARACTER_URL + methodRoute, new List<Object>() { gear, stats });
+            JToken value = jObject.First;
+            return value.ToObject<int>();
         }
     }
 }

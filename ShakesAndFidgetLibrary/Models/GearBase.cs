@@ -11,11 +11,15 @@ namespace ShakesAndFidgetLibrary.Models
         public String Name { get; set; }
         public String ImageSource { get; set; }
 
-        public Gear ToGear()
+        public Gear ToGear(String type, int levelMin)
         {
-            Gear gear = new Gear();
-            gear.Name = Name;
-            gear.ImageSource = ImageSource;
+            Gear gear = new Gear
+            {
+                Name = Name,
+                ImageSource = ImageSource,
+                Type = type,
+                LevelMin = levelMin
+            };
             return gear;
         }
     }

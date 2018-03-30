@@ -81,8 +81,10 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Characters\Warrior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Routes\CharacterRoutes.cs" />
-    <Compile Include="Routes\GearBaseRoutes.cs" />
+    <Compile Include="Routes\AConfigRoutes.cs" />
+    <Compile Include="Routes\ACharacterRoutes.cs" />
+    <Compile Include="Routes\AGearBaseRoutes.cs" />
+    <Compile Include="Routes\AGearRoutes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
