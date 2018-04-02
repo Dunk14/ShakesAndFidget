@@ -6,12 +6,6 @@ module.exports = function (sequelize) {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
-    },
-    Type: {
-      type: Sequelize.STRING
-    },
-    LevelMin: {
-      type: Sequelize.INTEGER
     }
   });
 

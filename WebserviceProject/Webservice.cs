@@ -21,6 +21,14 @@ namespace WebserviceProject
             this.baseSite = baseSite;
         }
 
+        public JsonSerializerSettings IgnoreNullValue()
+        {
+            return new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+        }
+
         public async Task<TItem> HttpClientCaller<TItem>(String url, TItem item)
         {
             using (HttpClient client = new HttpClient())
@@ -90,7 +98,7 @@ namespace WebserviceProject
                 .Add(new MediaTypeWithQualityHeaderValue(
                 "application/json"));
                 HttpResponseMessage response = await client.PostAsync(url,
-                new StringContent(JsonConvert.SerializeObject(item),
+                new StringContent(JsonConvert.SerializeObject(item, Formatting.None, IgnoreNullValue()),
                 Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {

@@ -63,8 +63,8 @@
             VerticalAlignment="Center" 
             />
         <Image
-            Source="pack://application:,,,/Resources/Inventory Usable.png"
-            Name="Usable1"
+            Source="pack://application:,,,/Resources/Inventory Armor.png"
+            Name="Armor"
             Grid.Column="0"
             Grid.Row="2"
             HorizontalAlignment="Center"
@@ -80,7 +80,7 @@
             />
         <Image
 			Source="pack://application:,,,/Resources/Inventory Usable.png"
-            Name="Usable2"
+            Name="Usable"
             Grid.Column="2"
             Grid.Row="2"
             HorizontalAlignment="Center"

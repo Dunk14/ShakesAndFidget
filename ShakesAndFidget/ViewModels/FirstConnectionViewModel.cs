@@ -32,6 +32,7 @@ namespace ShakesAndFidget.ViewModels
         public Boolean IsFemale { get; set; }
         ICharacter[] CharactersListM { get; set; }
         ICharacter[] CharactersListF { get; set; }
+        List<GearBase> GearBases { get; set; }
         Gear[] Gears { get; set; }
         Stats[] Stats { get; set; }
         #endregion
@@ -52,14 +53,16 @@ namespace ShakesAndFidget.ViewModels
         {
             FirstConnectionPage.FirstConnectionUC.User_name.Content = MainWindow.Instance.CurrentUser.Name;
 
-            List<GearBase> gearBases = await AGearBaseRoutes.GetAllGearBases();
+            GearBases = await AGearBaseRoutes.GetAllGearBases();
             Gears = new Gear[3];
-            Gears[0] = gearBases.Find(x => x.Name == "Big Sword").ToGear("W", 1);
-            Gears[1] = gearBases.Find(x => x.Name == "Bow").ToGear("H", 1);
-            Gears[2] = gearBases.Find(x => x.Name == "Staff").ToGear("M", 1);
+            Gears[0] = GearBases.Find(x => x.Name == "Big Sword").ToGear();
+            Gears[1] = GearBases.Find(x => x.Name == "Bow").ToGear();
+            Gears[2] = GearBases.Find(x => x.Name == "Staff").ToGear();
 
             Stats = new Stats[3];
-            Stats[0] = new Stats();
+            Stats[0] = GearBases.Find(x => x.Name == "Big Sword").ToStats();
+            Stats[1] = GearBases.Find(x => x.Name == "Bow").ToStats();
+            Stats[2] = GearBases.Find(x => x.Name == "Staff").ToStats();
 
             CharactersListM = new ICharacter[3];
             CharactersListM[0] = new Warrior("M", true);
@@ -113,9 +116,9 @@ namespace ShakesAndFidget.ViewModels
         private void RenderCharacterImage()
         {
             if (IsFemale)
-                FirstConnectionPage.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListF[CurrentIndex].LoadImage()));
+                FirstConnectionPage.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListF[CurrentIndex].LoadCharacterImage()));
             else
-                FirstConnectionPage.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListM[CurrentIndex].LoadImage()));
+                FirstConnectionPage.FirstConnectionUC.ImageCharacter.Source = new BitmapImage(new Uri(CharactersListM[CurrentIndex].LoadCharacterImage()));
         }
 
         private void RenderCharacterStats()
@@ -147,7 +150,7 @@ namespace ShakesAndFidget.ViewModels
 
         private void Validate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(FirstConnectionPage.FirstConnectionUC.CharacterName.Text) || !String.IsNullOrWhiteSpace(FirstConnectionPage.FirstConnectionUC.CharacterName.Text))
+            if (!FirstConnectionPage.FirstConnectionUC.isPlaceholder)
             {
                 FirstConnectionPage.FirstConnectionUC.Validate.Visibility = System.Windows.Visibility.Collapsed;
                 FirstConnectionPage.FirstConnectionUC.Validate_Label.Visibility = System.Windows.Visibility.Visible;
@@ -168,27 +171,45 @@ namespace ShakesAndFidget.ViewModels
 
         private async void Validate_Yes_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            int resultCharacter = 0;
-            if (IsFemale)
+            // First step is to create Gear with Stats relation
+            int resultGear = await AGearRoutes.CreateGear(Stats[CurrentIndex], GearBases[CurrentIndex].Id);
+            if (resultGear >= 0)
             {
-                CharactersListF[CurrentIndex].Name = FirstConnectionPage.FirstConnectionUC.CharacterName.Text;
-                resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
-            }
-            else
-            {
-                CharactersListM[CurrentIndex].Name = FirstConnectionPage.FirstConnectionUC.CharacterName.Text;
-                resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
-            }
+                // Link generated Id on Gear
+                Gears[CurrentIndex].Id = resultGear;
 
-            if (resultCharacter >= 0)
-            {
-                MainWindow.Instance.CurrentCharacter = IsFemale ? CharactersListF[CurrentIndex] : CharactersListM[CurrentIndex];
-                MainWindow.Instance.CurrentPage = new HomePage();
+                int resultCharacter = 0;
+                // Attribute name to the character and send Character creation with Stats relation too
+                if (IsFemale)
+                {
+                    CharactersListF[CurrentIndex].Name = FirstConnectionPage.FirstConnectionUC.CharacterName.Text;
+                    CharactersListF[CurrentIndex].Attack = Gears[CurrentIndex];
+                    CharactersListF[CurrentIndex].AttackId = resultGear;
+                    resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                }
+                else
+                {
+                    CharactersListM[CurrentIndex].Name = FirstConnectionPage.FirstConnectionUC.CharacterName.Text;
+                    CharactersListM[CurrentIndex].Attack = Gears[CurrentIndex];
+                    CharactersListM[CurrentIndex].AttackId = resultGear;
+                    resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                }
+
+                if (resultCharacter >= 0)
+                {
+                    MainWindow.Instance.CurrentCharacter = IsFemale ? CharactersListF[CurrentIndex] : CharactersListM[CurrentIndex];
+                    MainWindow.Instance.CurrentPage = new HomePage();
+                }
+                else if (resultCharacter == -1)
+                    MainWindow.Logger.Error("Stats and Character tables not created");
+                else if (resultCharacter == -2)
+                    MainWindow.Logger.Error("Stats table created but Character has not");
             }
-            else if (resultCharacter == -1)
-                MainWindow.Logger.Error("Stats and Character tables not created");
-            else if (resultCharacter == -2)
-                MainWindow.Logger.Error("Stats table created but Character has not");
+            else if (resultGear == 1)
+                MainWindow.Logger.Error("Stat and Gear not created");
+            else if (resultGear == -2)
+                MainWindow.Logger.Error("Stat created but Gear has not");
+            
         }
         #endregion
 

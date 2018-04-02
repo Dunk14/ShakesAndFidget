@@ -9,17 +9,27 @@ using WebserviceProject;
 
 namespace ShakesAndFidgetLibrary.Routes
 {
-    public abstract class AGearRoutes : AConfigRoutes
+    public abstract class AGearRoutes : AConfig
     {
         // If success, return generated GearId
-        public static async Task<int> CreateGear(Gear gear, Stats stats)
+        public static async Task<int> CreateGear(Stats stats, int gearBaseId)
         {
             Webservice webservice = new Webservice(BASE_URL);
             String methodRoute = "/";
             JObject jObject = new JObject();
-            jObject  = await webservice.HttpClientSenderJObject(CHARACTER_URL + methodRoute, new List<Object>() { gear, stats });
+            jObject  = await webservice.HttpClientSenderJObject(GEAR_URL + methodRoute + gearBaseId, stats);
             JToken value = jObject.First;
-            return value.ToObject<int>();
+            int result = value.ToObject<int>();
+            return result;
+        }
+
+        public static async Task<Gear> GetOne(int gearId)
+        {
+            Webservice webservice = new Webservice(BASE_URL);
+            String methodRoute = "/";
+            Gear gear = new Gear();
+            gear = await webservice.HttpClientCaller<Gear>(GEAR_URL + methodRoute + gearId, gear);
+            return gear;
         }
     }
 }

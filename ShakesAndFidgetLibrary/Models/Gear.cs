@@ -8,11 +8,11 @@ namespace ShakesAndFidgetLibrary.Models
 {
     public class Gear : AGearBase
     {
+        public String Type { get; set; }
+        public int LevelMin { get; set; }
+
         public Gear()
         {
         }
-
-        public String Type { get; set; }
-        public int LevelMin{ get; set; }
     }
 }

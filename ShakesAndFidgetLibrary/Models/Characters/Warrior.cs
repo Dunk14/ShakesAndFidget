@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShakesAndFidgetLibrary.Routes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace ShakesAndFidgetLibrary.Models
 {
     public class Warrior : ICharacter
     {
-        public const string IMAGE_SOURCE_M = "pack://application:,,,/Resources/Knight.png";
-        public const string IMAGE_SOURCE_F = "pack://application:,,,/Resources/Female Knight.png";
-        public const string IMAGE_SOURCE_SPECIAL = "pack://application:,,,/Resources/Inventory Shield.png";
-        public const string IMAGE_SOURCE_ATTACK = "pack://application:,,,/Resources/Inventory Weapon.png";
+        public override string ImageSourceM => "pack://application:,,,/Resources/Knight.png";
+        public override string ImageSourceF => "pack://application:,,,/Resources/Female Knight.png";
+        public override string ImageSourceSpecial => "pack://application:,,,/Resources/Inventory Shield.png";
+        public override string ImageSourceAttack => "pack://application:,,,/Resources/Inventory Weapon.png";
 
         public Warrior()
         {
@@ -21,33 +22,12 @@ namespace ShakesAndFidgetLibrary.Models
         public Warrior(String sexe, Boolean initStats = false)
         {
             if (sexe == "M")
-                this.Sexe = "M";
+                Sexe = "M";
             else
-                this.Sexe = "F";
+                Sexe = "F";
 
             if (initStats)
                 InitStats();
-        }
-
-        override
-        public string LoadImage()
-        {
-            if (this.Sexe == "M")
-                return IMAGE_SOURCE_M;
-            else
-                return IMAGE_SOURCE_F;
-        }
-
-        override
-        public string LoadSpecial()
-        {
-            return IMAGE_SOURCE_SPECIAL;
-        }
-
-        override
-        public string LoadAttack()
-        {
-            return IMAGE_SOURCE_SPECIAL;
         }
 
         private void InitStats()

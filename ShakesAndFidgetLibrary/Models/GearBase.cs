@@ -10,17 +10,53 @@ namespace ShakesAndFidgetLibrary.Models
     {
         public String Name { get; set; }
         public String ImageSource { get; set; }
+        public String Type { get; set; }
+        public int LevelMin { get; set; }
+        public int Life { get; set; }
+        public int Mana { get; set; }
+        public int Energy { get; set; }
+        public int Strength { get; set; }
+        public int Agility { get; set; }
+        public int Spirit { get; set; }
+        public int Luck { get; set; }
+        public int CriticalDamage { get; set; }
+        public int MagicDamage { get; set; }
+        public int PhysicalDamage { get; set; }
+        public int CriticalProba { get; set; }
+        public int PhysicalArmor { get; set; }
+        public int MagicalArmor { get; set; }
 
-        public Gear ToGear(String type, int levelMin)
+        public Gear ToGear()
         {
             Gear gear = new Gear
             {
                 Name = Name,
                 ImageSource = ImageSource,
-                Type = type,
-                LevelMin = levelMin
+                Type = Type,
+                LevelMin = LevelMin
             };
             return gear;
+        }
+
+        public Stats ToStats()
+        {
+            Stats stats = new Stats
+            {
+                Life = Life,
+                Mana = Mana,
+                Energy = Energy,
+                Strength = Strength,
+                Agility = Agility,
+                Spirit = Spirit,
+                Luck = Luck,
+                CriticalDamage = CriticalDamage,
+                MagicDamage = MagicDamage,
+                PhysicalDamage = PhysicalDamage,
+                CriticalProba = CriticalProba,
+                PhysicalArmor = PhysicalArmor,
+                MagicalArmor = MagicalArmor
+            };
+            return stats;
         }
     }
 }

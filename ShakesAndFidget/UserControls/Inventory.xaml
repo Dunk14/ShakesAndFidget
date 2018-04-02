@@ -14,9 +14,19 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
+        <!--<Image 
+            Source="pack://application:,,,/Resources/Inventory Item.png"
+            Width="64"
+            Height="64"
+            Grid.Row="1"
+            />-->
         <!--List<List <Gears>>-->
-        <ListView x:Name="gearsList" Margin="0" Grid.Column="0"
+        <ListView 
+            ItemsSource="{Binding GearsItemsSource}"
+            x:Name="GearsListViewParent"
+            Margin="0" 
+            Grid.Column="0"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemsPanel>
@@ -27,7 +37,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!--List<Gears>-->
-                    <ListView x:Name="gearsList2" Margin="2"
+                    <ListView Margin="2"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListView.ItemsPanel>
@@ -71,7 +81,7 @@
         </ListView>
 
         <!--List<List <Usable>>-->
-        <ListView x:Name="usableList" Margin="0" Grid.Column="1"
+        <ListView x:Name="UsableList" Margin="0" Grid.Column="1"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemsPanel>
@@ -82,7 +92,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!--List<Usable>-->
-                    <ListView x:Name="usableList2" Margin="2"
+                    <ListView x:Name="UsableList2" Margin="2"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListView.ItemsPanel>

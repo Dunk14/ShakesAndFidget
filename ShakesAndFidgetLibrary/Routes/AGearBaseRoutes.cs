@@ -9,14 +9,14 @@ using WebserviceProject;
 
 namespace ShakesAndFidgetLibrary.Routes
 {
-    public abstract class AGearBaseRoutes : AConfigRoutes
+    public abstract class AGearBaseRoutes : AConfig
     {
         public static async Task<List<GearBase>> GetAllGearBases()
         {
             Webservice webservice = new Webservice(BASE_URL);
-            String methodRoute = "/gearBase/";
+            String methodRoute = "/";
             List<GearBase> gearBases = new List<GearBase>();
-            gearBases = await webservice.HttpClientCaller<List<GearBase>>(CHARACTER_URL + methodRoute, gearBases);
+            gearBases = await webservice.HttpClientCaller<List<GearBase>>(GEAR_BASE_URL + methodRoute, gearBases);
             return gearBases;
         }
     }

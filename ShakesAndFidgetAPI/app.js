@@ -13,6 +13,7 @@ var gearBaseModel = require('./models/gearBase');
 var usersRouter = require('./routes/user');
 var charactersRouter = require('./routes/character');
 var gearBaseRouter = require('./routes/gearBase');
+var gearRouter = require('./routes/gear');
 
 var app = express();
 
@@ -91,19 +92,73 @@ sequelize.sync({force: true})
     GearBase.create({
       Id: 1,
       Name: 'Big Sword',
-      ImageSource: 'pack://application:,,,/Resources/Big Sword.png'
+      ImageSource: 'pack://application:,,,/Resources/Big Sword.png',
+      Type: 'W',
+      LevelMin: 1,
+      Life: 0,
+      Mana: 0,
+      Energy: 0,
+      Strength: 0,
+      Agility: 0,
+      Spirit: 0,
+      Luck: 0,
+      CriticalDamage: 5,
+      MagicDamage: 0,
+      PhysicalDamage: 2,
+      CriticalProba: 0,
+      PhysicalArmor: 0,
+      MagicalArmor: 0
     });
     GearBase.create({
       Id: 2,
       Name: 'Staff',
-      ImageSource: 'pack://application:,,,/Resources/Staff.png'
+      ImageSource: 'pack://application:,,,/Resources/Staff.png',
+      Type: 'M',
+      LevelMin: 1,
+      Life: 0,
+      Mana: 0,
+      Energy: 0,
+      Strength: 0,
+      Agility: 0,
+      Spirit: 0,
+      Luck: 0,
+      CriticalDamage: 3,
+      MagicDamage: 4,
+      PhysicalDamage: 0,
+      CriticalProba: 0,
+      PhysicalArmor: 0,
+      MagicalArmor: 0
     });
     GearBase.create({
       Id: 3,
       Name: 'Bow',
-      ImageSource: 'pack://application:,,,/Resources/Bow.png'
+      ImageSource: 'pack://application:,,,/Resources/Bow.png',
+      Type: 'H',
+      LevelMin: 1,
+      Life: 0,
+      Mana: 0,
+      Energy: 0,
+      Strength: 0,
+      Agility: 0,
+      Spirit: 0,
+      Luck: 0,
+      CriticalDamage: 4,
+      MagicDamage: 0,
+      PhysicalDamage: 4,
+      CriticalProba: 0,
+      PhysicalArmor: 0,
+      MagicalArmor: 0
     });
-
+    Stats.create({
+      PhysicalDamage: 5,
+      CriticalDamage: 3
+    })
+    .then((stat) => {
+      Gear.create({
+        GearBaseId: 1,
+        StatId: stat.get('Id')
+      })
+    })
   });
 
 // view engine setup
@@ -118,7 +173,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/characters', charactersRouter);
-app.use('/gearBase', gearBaseRouter);
+app.use('/gearBases', gearBaseRouter);
+app.use('/gears', gearRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -59,6 +59,7 @@ router.get('/countByUserId/:userId', function(req, res) {
 /* POST character */
 router.post('/:userId', function(req, res) {
   var models = req.app.get('models');
+  console.log(req.body);
   models.Stats.create({
     Life: req.body.Life,
     Mana: req.body.Mana,
@@ -81,7 +82,9 @@ router.post('/:userId', function(req, res) {
       Sexe: req.body.Sexe,
       Level: req.body.Level,
       UserId: req.params.userId,
-      StatId: stat.get('Id')
+      StatId: stat.get('Id'),
+      HeadId: req.body.HeadId || null,
+      AttackId: req.body.AttackId || null
     })
     .then((character) => {
       res.send({characterId: character.get('Id')})

@@ -12,7 +12,7 @@ using System.Net.Http;
 
 namespace ShakesAndFidgetLibrary.Routes
 {
-    public abstract class ACharacterRoutes : AConfigRoutes
+    public abstract class ACharacterRoutes : AConfig
     {
         public static async Task<int> CountByUserId(int userId)
         {
