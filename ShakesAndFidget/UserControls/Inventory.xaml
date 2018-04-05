@@ -23,8 +23,8 @@
             />-->
         <!--List<List <Gears>>-->
         <ListView 
-            ItemsSource="{Binding GearsItemsSource}"
-            x:Name="GearsListViewParent"
+            ItemsSource="{Binding GearsRows}"
+            Name="GearsListViewParent"
             Margin="0" 
             Grid.Column="0"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -38,6 +38,7 @@
                 <DataTemplate>
                     <!--List<Gears>-->
                     <ListView Margin="2"
+                        ItemsSource="{Binding Gears}"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListView.ItemsPanel>

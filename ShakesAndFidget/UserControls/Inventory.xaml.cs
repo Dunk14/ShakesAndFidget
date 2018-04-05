@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace ShakesAndFidget.UserControls
     public partial class Inventory : UserControl
     {
         public List<Gear> GearsList { get; set; }
-        public ObservableCollection<ObservableCollection<Gear>> GearsItemsSource { get; set; }
+        public ObservableCollection<GearsRow> GearsRows { get; set; }
 
         public Inventory()
         {
@@ -124,24 +125,32 @@ namespace ShakesAndFidget.UserControls
                 listsNumber = 1;
 
             // First big list
-            GearsItemsSource = new ObservableCollection<ObservableCollection<Gear>>();
+            GearsRows = new ObservableCollection<GearsRow>();
 
             // Inject items by cutting them in parent lists that contain some children lists
             int maxIterations = GearsList.Count;
             for (int i = 0; i < listsNumber; i++)
             {
                 // Creates every rows
-                ObservableCollection<Gear> gearsListChildren = new ObservableCollection<Gear>();
-                GearsItemsSource.Add(gearsListChildren);
+                GearsRow gearsRow = new GearsRow() { Gears = new ObservableCollection<Gear>() };
+                GearsRows.Add(gearsRow);
                 for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
                 {
+                    Console.WriteLine(maxIterations);
                     // And every sub items
-                    gearsListChildren.Add(GearsList[maxIterations-1]);
+                    gearsRow.Gears.Add(GearsList[maxIterations-1]);
                     maxIterations--;
                 }
             }
         }
 
         
+    }
+
+    public class GearsRow : INotifyPropertyChanged
+    {
+        public ObservableCollection<Gear> Gears { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
