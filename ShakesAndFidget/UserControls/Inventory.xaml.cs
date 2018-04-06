@@ -21,14 +21,28 @@ namespace ShakesAndFidget.UserControls
     /// <summary>
     /// Logique d'interaction pour Inventory.xaml
     /// </summary>
-    public partial class Inventory : UserControl
+    public partial class Inventory : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public List<Gear> GearsList { get; set; }
-        public ObservableCollection<GearsRow> GearsRows { get; set; }
+        private ObservableCollection<GearsRow> gearsRows;
+        public ObservableCollection<GearsRow> GearsRows
+        {
+            get
+            {
+                return gearsRows;
+            }
+            set
+            {
+                gearsRows = value;
+                OnPropertyChanged("GearsRows");
+            }
+        }
 
         public Inventory()
         {
             InitializeComponent();
+            GearsRows = new ObservableCollection<GearsRow>();
             this.DataContext = this;
             Events();
         }
@@ -144,13 +158,28 @@ namespace ShakesAndFidget.UserControls
             }
         }
 
-        
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
     }
 
     public class GearsRow : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Gear> Gears { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
     }
 }
