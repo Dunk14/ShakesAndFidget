@@ -245,26 +245,44 @@
     <Resource Include="Resources\Knight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Antidote.png" />
-    <Resource Include="Resources\Big Heal Potion.png" />
-    <Resource Include="Resources\Big Helmet.png" />
+    <Resource Include="Resources\Antidote.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Big Heal Potion.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Big Helmet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Big Mana Potion.png" />
-    <Resource Include="Resources\Big Shield.png" />
+    <Resource Include="Resources\Big Shield.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Big Sword.png" />
     <Resource Include="Resources\Black Dress.png" />
     <Resource Include="Resources\Bloody Sword.png" />
     <Resource Include="Resources\Bow.png" />
     <Resource Include="Resources\Cap.png" />
-    <Resource Include="Resources\Crooked Sword.png" />
-    <Resource Include="Resources\Dark Katana.png" />
+    <Resource Include="Resources\Crooked Sword.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Dark Katana.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Demonic Computer.png" />
     <Resource Include="Resources\Demonic Elevator.png" />
-    <Resource Include="Resources\Dragon Bow.png" />
+    <Resource Include="Resources\Dragon Bow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Dragon Helmet.png" />
     <Resource Include="Resources\Dread Broom.png" />
     <Resource Include="Resources\Dress.png" />
-    <Resource Include="Resources\Electric Armor.png" />
-    <Resource Include="Resources\Electric Arrow.png" />
+    <Resource Include="Resources\Electric Armor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Electric Arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Electric Staff.png" />
     <Resource Include="Resources\Enemy Zodux.gif" />
     <Resource Include="Resources\Evil Octopus.png" />
@@ -337,16 +355,22 @@
     <Resource Include="Resources\Magus.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Mana Potion.png" />
+    <Resource Include="Resources\Mana Potion.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Medium Armor.png" />
     <Resource Include="Resources\Nasty Cookie.png" />
     <Resource Include="Resources\Nice Power Ring.png" />
     <Resource Include="Resources\Power Armor.png" />
     <Resource Include="Resources\Powerful Power Ring.png" />
     <Resource Include="Resources\Rozraz.gif" />
-    <Resource Include="Resources\Saber.png" />
+    <Resource Include="Resources\Saber.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Sacred Shield.png" />
-    <Resource Include="Resources\Scythe.png" />
+    <Resource Include="Resources\Scythe.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Simple Arrow.png" />
     <Resource Include="Resources\Simple Trousers.png" />
     <Resource Include="Resources\Skeleton.png" />
@@ -363,7 +387,9 @@
     <Resource Include="Resources\Wind Armor.png" />
     <Resource Include="Resources\Wind Arrow.png" />
     <Resource Include="Resources\Wind Staff.png" />
-    <Resource Include="Resources\Wizard Hat.png" />
+    <Resource Include="Resources\Wizard Hat.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Wood Helmet.png" />
     <Resource Include="Resources\Zeus Spear.png" />
   </ItemGroup>

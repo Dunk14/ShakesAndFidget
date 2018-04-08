@@ -24,7 +24,12 @@ namespace ShakesAndFidget.UserControls
     public partial class Inventory : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public List<Gear> GearsList { get; set; }
+        public List<Usable> UsablesList { get; set; }
+
+        public int HorizontalMaxItems { get; set; }
+
         private ObservableCollection<GearsRow> gearsRows;
         public ObservableCollection<GearsRow> GearsRows
         {
@@ -39,11 +44,27 @@ namespace ShakesAndFidget.UserControls
             }
         }
 
+        private ObservableCollection<UsableRow> usablesRows;
+        public ObservableCollection<UsableRow> UsablesRows
+        {
+            get
+            {
+                return usablesRows;
+            }
+            set
+            {
+                usablesRows = value;
+                OnPropertyChanged("UsablesRows");
+            }
+        }
+
         public Inventory()
         {
             InitializeComponent();
             GearsRows = new ObservableCollection<GearsRow>();
+            UsablesRows = new ObservableCollection<UsableRow>();
             this.DataContext = this;
+            HorizontalMaxItems = 0;
             Events();
         }
 
@@ -52,25 +73,22 @@ namespace ShakesAndFidget.UserControls
             Loaded += Inventory_Loaded;
         }
 
+        private void Inventory_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            RenderGears();
+            RenderUsables();
+        }
+
         private void Inventory_Loaded(object sender, RoutedEventArgs e)
         {
             TestInventory();
+            SizeChanged += Inventory_SizeChanged;
         }
 
         public void TestInventory()
         {
             GearsList = new List<Gear>()
             {
-                new Gear()
-                {
-                    Name = "Antidote",
-                    ImageSource = "pack://application:,,,/Resources/Antidote.png"
-                },
-                new Gear()
-                {
-                    Name = "Big Heal Potion",
-                    ImageSource = "pack://application:,,,/Resources/Big Heal Potion.png"
-                },
                 new Gear()
                 {
                     Name = "Big Helmet",
@@ -103,18 +121,18 @@ namespace ShakesAndFidget.UserControls
                 },
                 new Gear()
                 {
-                    Name = "Big Shield",
-                    ImageSource = "pack://application:,,,/Resources/Big Shield.png"
+                    Name = "Dark Katana",
+                    ImageSource = "pack://application:,,,/Resources/Dark Katana.png"
                 },
                 new Gear()
                 {
-                    Name = "Electric Armor",
-                    ImageSource = "pack://application:,,,/Resources/Electric Armor.png"
+                    Name = "Crooked Sword",
+                    ImageSource = "pack://application:,,,/Resources/Crooked Sword.png"
                 },
                 new Gear()
                 {
-                    Name = "Scythe",
-                    ImageSource = "pack://application:,,,/Resources/Scythe.png"
+                    Name = "Saber",
+                    ImageSource = "pack://application:,,,/Resources/Saber.png"
                 },
                 new Gear()
                 {
@@ -122,64 +140,139 @@ namespace ShakesAndFidget.UserControls
                     ImageSource = "pack://application:,,,/Resources/Wizard Hat.png"
                 }
             };
+            UsablesList = new List<Usable>()
+            {
+                new Usable()
+                {
+                    Name = "Antidote",
+                    ImageSource = "pack://application:,,,/Resources/Antidote.png"
+                },
+                new Usable()
+                {
+                    Name = "Electric Arrow",
+                    ImageSource = "pack://application:,,,/Resources/Electric Arrow.png"
+                },
+                new Usable()
+                {
+                    Name = "Mana Potion",
+                    ImageSource = "pack://application:,,,/Resources/Mana Potion.png"
+                },
+                new Usable()
+                {
+                    Name = "Throwing Weapon",
+                    ImageSource = "pack://application:,,,/Resources/Throwing Weapon.png"
+                },
+                new Usable()
+                {
+                    Name = "Wind Arrow",
+                    ImageSource = "pack://application:,,,/Resources/Wind Arrow.png"
+                }
+            };
             RenderGears();
+            RenderUsables();
         }
 
         public void RenderGears()
         {
-            // Maximum of items for horizontal ViewList
-            double widthMinusItemSize = GearsListViewParent.ActualWidth / 64;
-            int horizontalMaxItems = Convert.ToInt32(Math.Floor(widthMinusItemSize));
-            if (horizontalMaxItems < 1)
-                horizontalMaxItems = 1;
-
-            // Number of lists needed to create enough space for all items
-            int listsNumber = GearsList.Count / horizontalMaxItems;
-            if (listsNumber < 1)
-                listsNumber = 1;
-
-            // First big list
-            GearsRows = new ObservableCollection<GearsRow>();
-
-            // Inject items by cutting them in parent lists that contain some children lists
-            int maxIterations = GearsList.Count;
-            for (int i = 0; i < listsNumber; i++)
+            Task.Factory.StartNew(() =>
             {
-                // Creates every rows
-                GearsRow gearsRow = new GearsRow() { Gears = new ObservableCollection<Gear>() };
-                GearsRows.Add(gearsRow);
-                for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
+                // Maximum of items for horizontal ViewList
+                double widthMinusItemSize = (GearsListViewParent.ActualWidth - 64) / 64.0;
+                int horizontalMaxItems = Convert.ToInt32(Math.Floor(widthMinusItemSize));
+                if (horizontalMaxItems < 1)
+                    horizontalMaxItems = 1;
+
+                // Load new UI only if needed
+                if (HorizontalMaxItems != horizontalMaxItems)
                 {
-                    Console.WriteLine(maxIterations);
-                    // And every sub items
-                    gearsRow.Gears.Add(GearsList[maxIterations-1]);
-                    maxIterations--;
+                    HorizontalMaxItems = horizontalMaxItems;
+
+                    // Number of lists needed to create enough space for all items
+                    double notCeiledListsNumber = (GearsList.Count + .0) / (horizontalMaxItems + .0);
+                    int listsNumber = Convert.ToInt32(Math.Ceiling(notCeiledListsNumber));
+                    if (listsNumber < 1)
+                        listsNumber = 1;
+
+                    // First big list
+                    ObservableCollection<GearsRow> ThreadGearsRows = new ObservableCollection<GearsRow>();
+
+                    // Inject items by cutting them in parent lists that contain some children lists
+                    int maxIterations = GearsList.Count;
+                    for (int i = 0; i < listsNumber; i++)
+                    {
+                        // Creates every rows
+                        GearsRow gearsRow = new GearsRow() { Gears = new ObservableCollection<Gear>() };
+                        ThreadGearsRows.Add(gearsRow);
+                        for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
+                        {
+                            // And every sub items
+                            gearsRow.Gears.Add(GearsList[maxIterations - 1]);
+                            maxIterations--;
+                        }
+                    }
+
+                    Application.Current.Dispatcher.Invoke(() => GearsRows = ThreadGearsRows);
                 }
-            }
+            });
+        }
+
+        public void RenderUsables()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                // Maximum of items for horizontal ViewList
+                double widthMinusItemSize = (UsableListViewParent.ActualWidth - 64) / 64.0;
+                int horizontalMaxItems = Convert.ToInt32(Math.Floor(widthMinusItemSize));
+                if (horizontalMaxItems < 1)
+                    horizontalMaxItems = 1;
+
+                // Load new UI only if needed
+                if (HorizontalMaxItems != horizontalMaxItems)
+                {
+                    HorizontalMaxItems = horizontalMaxItems;
+
+                    // Number of lists needed to create enough space for all items
+                    double notCeiledListsNumber = (UsablesList.Count + .0) / (horizontalMaxItems + .0);
+                    int listsNumber = Convert.ToInt32(Math.Ceiling(notCeiledListsNumber));
+                    if (listsNumber < 1)
+                        listsNumber = 1;
+
+                    // First big list
+                    ObservableCollection<UsableRow> ThreadUsablesRows = new ObservableCollection<UsableRow>();
+
+                    // Inject items by cutting them in parent lists that contain some children lists
+                    int maxIterations = UsablesList.Count;
+                    for (int i = 0; i < listsNumber; i++)
+                    {
+                        // Creates every rows
+                        UsableRow usableRow = new UsableRow() { Usables = new ObservableCollection<Usable>() };
+                        ThreadUsablesRows.Add(usableRow);
+                        for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
+                        {
+                            // And every sub items
+                            usableRow.Usables.Add(UsablesList[maxIterations - 1]);
+                            maxIterations--;
+                        }
+                    }
+
+                    Application.Current.Dispatcher.Invoke(() => UsablesRows = ThreadUsablesRows);
+                }
+            });
         }
 
         public void OnPropertyChanged(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 
-    public class GearsRow : INotifyPropertyChanged
+    public class GearsRow
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Gear> Gears { get; set; }
+    }
 
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
+    public class UsableRow
+    {
+        public ObservableCollection<Usable> Usables { get; set; }
     }
 }

@@ -15,13 +15,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <!--<Image 
-            Source="pack://application:,,,/Resources/Inventory Item.png"
-            Width="64"
-            Height="64"
-            Grid.Row="1"
-            />-->
-        <!--List<List <Gears>>-->
         <ListView 
             ItemsSource="{Binding GearsRows}"
             Name="GearsListViewParent"
@@ -31,39 +24,34 @@
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Background="Transparent" Orientation="Vertical">
                         <!--List<Gears>-->
-                        <ListView Margin="2"
-                        ItemsSource="{Binding Gears}"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView 
+                            ItemsSource="{Binding Gears}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <!--Place one element per element-->
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-
-                                            <Image
-                                                Height="24"
-                                                Width="24"
-                                                VerticalAlignment="Stretch"
-                                                HorizontalAlignment="Stretch"
-                                                Grid.Row="0"
-                                                Source="{Binding Source}"/>
-
-                                            <Label
-                                                VerticalContentAlignment="Center"
-                                                HorizontalContentAlignment="Center"
-                                                Padding="2,0,0,0"
-                                                Content="{Binding Name}"/>
-                                        </Grid>
+                                        <Image
+                                            Height="64"
+                                            Width="64"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            Source="{Binding ImageSource}">
+                                            <Image.ToolTip>
+                                                <ToolTip 
+                                                    Content="{Binding Name}" 
+                                                    FontSize="14"
+                                                    />
+                                            </Image.ToolTip>
+                                        </Image>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -74,7 +62,10 @@
         </ListView>
 
         <!--List<List <Usable>>-->
-        <ListView x:Name="UsableList" Margin="0" Grid.Column="1"
+        <ListView 
+            ItemsSource="{Binding UsablesRows}"
+            Name="UsableListViewParent" 
+            Grid.Column="1"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemsPanel>
@@ -85,7 +76,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!--List<Usable>-->
-                    <ListView x:Name="UsableList2" Margin="2"
+                    <ListView 
+                        ItemsSource="{Binding Usables}"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListView.ItemsPanel>
@@ -97,29 +89,19 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <!--Place one element per element-->
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-
-                                        <Image
-                                            Height="24"
-                                            Width="24"
-                                            VerticalAlignment="Stretch"
-                                            HorizontalAlignment="Stretch"
-                                            Grid.Row="0"
-                                            Source="{Binding Source}"/>
-
-                                        <Label
-                                            VerticalContentAlignment="Center"
-                                            HorizontalContentAlignment="Center"
-                                            Padding="2,0,0,0"
-                                            Content="{Binding Name}"/>
-                                    </Grid>
+                                    <Image
+                                        Height="64"
+                                        Width="64"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Source="{Binding ImageSource}">
+                                        <Image.ToolTip>
+                                            <ToolTip 
+                                                Content="{Binding Name}" 
+                                                FontSize="14"
+                                                />
+                                        </Image.ToolTip>
+                                    </Image>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

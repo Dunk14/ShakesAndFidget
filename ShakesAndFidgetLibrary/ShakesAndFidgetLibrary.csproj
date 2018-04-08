@@ -74,7 +74,7 @@
     <Compile Include="Models\Characters\Magus.cs" />
     <Compile Include="Models\Fight.cs" />
     <Compile Include="Models\Gear.cs" />
-    <Compile Include="Models\AGearBase.cs" />
+    <Compile Include="Models\AItem.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\Usable.cs" />

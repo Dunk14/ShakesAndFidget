@@ -6,18 +6,10 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    public class Usable : ModelBase
+    public class Usable : AItem
     {
         public Usable()
         {
-        }
-
-        private String name;
-
-        public String Name
-        {
-            get { return name; }
-            set { name = value; }
         }
     }
 }

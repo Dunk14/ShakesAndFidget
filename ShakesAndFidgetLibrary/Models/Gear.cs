@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShakesAndFidgetLibrary.Models
 {
-    public class Gear : AGearBase
+    public class Gear : AItem
     {
         public String Type { get; set; }
         public int LevelMin { get; set; }
