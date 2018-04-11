@@ -51,6 +51,11 @@
                                                     FontSize="14"
                                                     />
                                             </Image.ToolTip>
+                                            <Image.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="Equip" MouseRightButtonDown="SelectGear" Command="{Binding Equip}"/>
+                                                </ContextMenu>
+                                            </Image.ContextMenu>
                                         </Image>
                                     </StackPanel>
                                 </DataTemplate>

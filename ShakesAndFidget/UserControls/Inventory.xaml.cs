@@ -264,15 +264,80 @@ namespace ShakesAndFidget.UserControls
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public void SelectGear(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(sender);
+        }
     }
 
     public class GearsRow
     {
         public ObservableCollection<Gear> Gears { get; set; }
+        public Gear SelectedGear { get; set; }
+
+        public GearsRow()
+        {
+        }
+
+        public void SelectGear(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(sender);
+        }
+
+        public void EquipGear()
+        {
+            Console.WriteLine("EquipGear");
+        }
+
+        public ICommand Equip
+        {
+            get { return new DelegateCommand(EquipGear); }
+        }
     }
 
     public class UsableRow
     {
         public ObservableCollection<Usable> Usables { get; set; }
+    }
+
+    public class DelegateCommand : ICommand
+    {
+        public delegate void SimpleEventHandler();
+        private SimpleEventHandler handler;
+        private bool isEnabled = true;
+
+        public event EventHandler CanExecuteChanged;
+
+        public DelegateCommand(SimpleEventHandler handler)
+        {
+            this.handler = handler;
+        }
+
+        private void OnCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        bool ICommand.CanExecute(object arg)
+        {
+            return IsEnabled;
+        }
+
+        void ICommand.Execute(object arg)
+        {
+            this.handler();
+        }
+
+        public bool IsEnabled
+        {
+            get { return this.isEnabled; }
+
+            set
+            {
+                this.isEnabled = value;
+                OnCanExecuteChanged();
+            }
+        }
     }
 }
