@@ -37,10 +37,10 @@ namespace Database.MySQL
             //modelBuilder.Entity<Stats>();
             //modelBuilder.Entity<ShakesAndFidgetLibrary.Models.Action>();
             //modelBuilder.Entity<Adventure>();
-            modelBuilder.Entity<ICharacter>().Map(m =>
-            {
-                m.MapInheritedProperties();
-            }); ;
+            //modelBuilder.Entity<ICharacter>().Map(m =>
+            //{
+            //    m.MapInheritedProperties();
+            //}); ;
             //modelBuilder.Entity<Fight>();
         }
 

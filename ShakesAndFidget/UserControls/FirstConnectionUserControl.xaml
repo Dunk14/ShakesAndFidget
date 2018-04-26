@@ -124,7 +124,7 @@
             Width="300"
             Height="50" 
             Visibility="Collapsed"/>
-        <local:CharacterStats 
+        <local:CharacterStatsUserControl
             x:Name="CharacterStatsUC"
             Grid.Column="4"
             Grid.ColumnSpan="2"

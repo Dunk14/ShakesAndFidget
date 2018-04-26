@@ -55,21 +55,7 @@ router.get('/:gearId', function(req, res) {
 /* POST gear */
 router.post('/:gearBaseId', function(req, res) {
   let models = req.app.get('models');
-  models.Stats.create({
-    Life: req.body.Life,
-    Mana: req.body.Mana,
-    Energy: req.body.Energy,
-    Strength: req.body.Strength,
-    Agility: req.body.Agility,
-    Spirit: req.body.Spirit,
-    Luck: req.body.Luck,
-    CriticalDamage: req.body.CriticalDamage,
-    MagicDamage: req.body.MagicDamage,
-    PhysicalDamage: req.body.PhysicalDamage,
-    CriticalProba: req.body.CriticalProba,
-    PhysicalArmor: req.body.PhysicalArmor,
-    MagicalArmor: req.body.MagicalArmor
-  })
+  models.Stats.create(req.body)
     .then((stat) => {
       models.Gear.create({
         GearBaseId: req.params.gearBaseId,

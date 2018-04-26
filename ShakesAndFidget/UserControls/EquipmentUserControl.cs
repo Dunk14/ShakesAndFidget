@@ -31,7 +31,17 @@ namespace ShakesAndFidget.UserControls
 
         private void Events()
         {
-            
+            Loaded += EquipmentUserControl_Loaded;
+        }
+
+        private void EquipmentUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.CurrentCharacter.PropertyChanged += CurrentCharacter_PropertyChanged;
+        }
+
+        private void CurrentCharacter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            RenderItems();
         }
 
         public async void RenderItems()
@@ -41,7 +51,6 @@ namespace ShakesAndFidget.UserControls
             Ring1.Source = new BitmapImage(new Uri(await Character.LoadRing1Image()));
             Ring2.Source = new BitmapImage(new Uri(await Character.LoadRing2Image()));
             Attack.Source = new BitmapImage(new Uri(await Character.LoadAttackImage()));
-            Usable.Source = new BitmapImage(new Uri(await Character.LoadUsableImage()));
             Armor.Source = new BitmapImage(new Uri(await Character.LoadArmorImage()));
             Legs.Source = new BitmapImage(new Uri(await Character.LoadLegsImage()));
             Special.Source = new BitmapImage(new Uri(await Character.LoadSpecialImage()));

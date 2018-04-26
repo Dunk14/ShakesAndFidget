@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ShakesAndFidget.UserControls.CharacterStats"
+﻿<UserControl x:Class="ShakesAndFidget.UserControls.CharacterStatsUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -33,16 +33,17 @@
             Content="Life"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="0"
             Name="Life"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--Mana-->
         <Label
@@ -51,16 +52,17 @@
             Content="Mana"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="1"
             Name="Mana"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--Energy-->
         <Label
@@ -69,16 +71,17 @@
             Content="Energy"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="2"
             Name="Energy"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--Strength-->
         <Label
@@ -87,16 +90,17 @@
             Content="Strength"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="3"
             Name="Strength"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--Agility-->
         <Label
@@ -105,16 +109,17 @@
             Content="Agility"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="4"
             Name="Agility"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--Spirit-->
         <Label
@@ -123,16 +128,17 @@
             Content="Spirit"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="5"
             Name="Spirit"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--Luck-->
         <Label
@@ -141,16 +147,17 @@
             Content="Luck"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="6"
             Name="Luck"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--CriticalDamage-->
         <Label
@@ -159,16 +166,17 @@
             Content="CriticalDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="7"
             Name="CriticalDamage"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--CriticalProbability-->
         <Label
@@ -177,16 +185,17 @@
             Content="CriticalProba"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="8"
             Name="CriticalProba"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--PhysicalDamage-->
         <Label
@@ -195,16 +204,17 @@
             Content="PhysicalDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="9"
             Name="PhysicalDamage"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--MagicDamage-->
         <Label
@@ -213,16 +223,17 @@
             Content="MagicDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="10"
             Name="MagicDamage"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--PhysicalArmor-->
         <Label
@@ -231,16 +242,17 @@
             Content="PhysicalArmor"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="11"
             Name="PhysicalArmor"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <!--MagicalArmor-->
         <Label
@@ -249,16 +261,17 @@
             Content="MagicalArmor"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
         <Label
             Grid.Column="1"
             Grid.Row="12"
             Name="MagicalArmor"
-            FontWeight="Bold"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="18"
+            FontSize="14"
+            FontWeight="Bold"
             />
     </Grid>
 </UserControl>

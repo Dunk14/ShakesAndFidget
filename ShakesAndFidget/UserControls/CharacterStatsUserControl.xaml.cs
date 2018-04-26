@@ -20,9 +20,9 @@ namespace ShakesAndFidget.UserControls
     /// <summary>
     /// Logique d'interaction pour CharacterStats.xaml
     /// </summary>
-    public partial class CharacterStats : UserControl
+    public partial class CharacterStatsUserControl : UserControl
     {
-        public CharacterStats()
+        public CharacterStatsUserControl()
         {
             InitializeComponent();
         }

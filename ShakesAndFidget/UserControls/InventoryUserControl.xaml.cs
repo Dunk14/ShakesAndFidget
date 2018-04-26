@@ -21,7 +21,7 @@ namespace ShakesAndFidget.UserControls
     /// <summary>
     /// Logique d'interaction pour Inventory.xaml
     /// </summary>
-    public partial class Inventory : UserControl, INotifyPropertyChanged
+    public partial class InventoryUserControl : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -58,89 +58,83 @@ namespace ShakesAndFidget.UserControls
             }
         }
 
-        public Inventory()
+        public InventoryUserControl()
         {
             InitializeComponent();
-            GearsRows = new ObservableCollection<GearsRow>();
-            UsablesRows = new ObservableCollection<UsableRow>();
-            this.DataContext = this;
-            HorizontalMaxItems = 0;
-            Events();
-        }
-
-        public void Events()
-        {
-            Loaded += Inventory_Loaded;
-        }
-
-        private void Inventory_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            RenderGears();
-            RenderUsables();
-        }
-
-        private void Inventory_Loaded(object sender, RoutedEventArgs e)
-        {
-            TestInventory();
-            SizeChanged += Inventory_SizeChanged;
-        }
-
-        public void TestInventory()
-        {
-            GearsList = new List<Gear>()
+            MainWindow.Instance.CurrentCharacter.InventoryGears = new List<Gear>()
             {
                 new Gear()
                 {
                     Name = "Big Helmet",
-                    ImageSource = "pack://application:,,,/Resources/Big Helmet.png"
+                    ImageSource = "pack://application:,,,/Resources/Big Helmet.png",
+                    GearType = "Head",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Dragon Bow",
-                    ImageSource = "pack://application:,,,/Resources/Dragon Bow.png"
+                    ImageSource = "pack://application:,,,/Resources/Dragon Bow.png",
+                    GearType = "Attack",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Big Shield",
-                    ImageSource = "pack://application:,,,/Resources/Big Shield.png"
+                    ImageSource = "pack://application:,,,/Resources/Big Shield.png",
+                    GearType = "Armor",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Electric Armor",
-                    ImageSource = "pack://application:,,,/Resources/Electric Armor.png"
+                    ImageSource = "pack://application:,,,/Resources/Electric Armor.png",
+                    GearType = "Armor",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Scythe",
-                    ImageSource = "pack://application:,,,/Resources/Scythe.png"
+                    ImageSource = "pack://application:,,,/Resources/Scythe.png",
+                    GearType = "Attack",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Wizard Hat",
-                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png"
+                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
+                    GearType = "Head",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Dark Katana",
-                    ImageSource = "pack://application:,,,/Resources/Dark Katana.png"
+                    ImageSource = "pack://application:,,,/Resources/Dark Katana.png",
+                    GearType = "Attack",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Crooked Sword",
-                    ImageSource = "pack://application:,,,/Resources/Crooked Sword.png"
+                    ImageSource = "pack://application:,,,/Resources/Crooked Sword.png",
+                    GearType = "Attack",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Saber",
-                    ImageSource = "pack://application:,,,/Resources/Saber.png"
+                    ImageSource = "pack://application:,,,/Resources/Saber.png",
+                    GearType = "Attack",
+                    LevelMin = 1
                 },
                 new Gear()
                 {
                     Name = "Wizard Hat",
-                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png"
+                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
+                    GearType = "Head",
+                    LevelMin = 1
                 }
             };
-            UsablesList = new List<Usable>()
+            MainWindow.Instance.CurrentCharacter.InventoryUsables = new List<Usable>()
             {
                 new Usable()
                 {
@@ -168,11 +162,61 @@ namespace ShakesAndFidget.UserControls
                     ImageSource = "pack://application:,,,/Resources/Wind Arrow.png"
                 }
             };
+            GearsList = MainWindow.Instance.CurrentCharacter.InventoryGears;
+            UsablesList = MainWindow.Instance.CurrentCharacter.InventoryUsables;
+            GearsRows = new ObservableCollection<GearsRow>();
+            UsablesRows = new ObservableCollection<UsableRow>();
+            this.DataContext = this;
+            HorizontalMaxItems = 0;
+            Events();
+        }
+
+        public void Events()
+        {
+            Loaded += InventoryUserControl_Loaded;
+
+            BinderGear();
+        }
+
+
+
+        private void InventoryUserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
             RenderGears();
             RenderUsables();
         }
 
-        public void RenderGears()
+        private void InventoryUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            RenderGears(true);
+            RenderUsables(true);
+            SizeChanged += InventoryUserControl_SizeChanged;
+        }
+
+        // Bind every gears to the equip event
+        private void BinderGear()
+        {
+            foreach (var gear in GearsList)
+            {
+                gear.Equiping += Gear_Equiping;
+            }
+        }
+
+        private void Gear_Equiping(object sender, EventArgs e)
+        {
+            Gear gear = (sender as Gear);
+            // Compatibility of character with this gear
+            if (gear.IsCompatible(MainWindow.Instance.CurrentCharacter))
+            {
+                MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
+                MainWindow.Instance.CurrentCharacter.Equip(gear);
+                RenderGears(true);
+            }
+            else
+                MainWindow.Logger.Error("You can't equip that gear (class or level)");
+        }
+
+        public void RenderGears(Boolean force = false)
         {
             Task.Factory.StartNew(() =>
             {
@@ -183,7 +227,7 @@ namespace ShakesAndFidget.UserControls
                     horizontalMaxItems = 1;
 
                 // Load new UI only if needed
-                if (HorizontalMaxItems != horizontalMaxItems)
+                if (force || HorizontalMaxItems != horizontalMaxItems)
                 {
                     HorizontalMaxItems = horizontalMaxItems;
 
@@ -216,7 +260,7 @@ namespace ShakesAndFidget.UserControls
             });
         }
 
-        public void RenderUsables()
+        public void RenderUsables(Boolean force = false)
         {
             Task.Factory.StartNew(() =>
             {
@@ -227,7 +271,7 @@ namespace ShakesAndFidget.UserControls
                     horizontalMaxItems = 1;
 
                 // Load new UI only if needed
-                if (HorizontalMaxItems != horizontalMaxItems)
+                if (force || HorizontalMaxItems != horizontalMaxItems)
                 {
                     HorizontalMaxItems = horizontalMaxItems;
 
@@ -265,10 +309,7 @@ namespace ShakesAndFidget.UserControls
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public void SelectGear(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine(sender);
-        }
+
     }
 
     public class GearsRow
@@ -279,65 +320,10 @@ namespace ShakesAndFidget.UserControls
         public GearsRow()
         {
         }
-
-        public void SelectGear(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine(sender);
-        }
-
-        public void EquipGear()
-        {
-            Console.WriteLine("EquipGear");
-        }
-
-        public ICommand Equip
-        {
-            get { return new DelegateCommand(EquipGear); }
-        }
     }
 
     public class UsableRow
     {
         public ObservableCollection<Usable> Usables { get; set; }
-    }
-
-    public class DelegateCommand : ICommand
-    {
-        public delegate void SimpleEventHandler();
-        private SimpleEventHandler handler;
-        private bool isEnabled = true;
-
-        public event EventHandler CanExecuteChanged;
-
-        public DelegateCommand(SimpleEventHandler handler)
-        {
-            this.handler = handler;
-        }
-
-        private void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        bool ICommand.CanExecute(object arg)
-        {
-            return IsEnabled;
-        }
-
-        void ICommand.Execute(object arg)
-        {
-            this.handler();
-        }
-
-        public bool IsEnabled
-        {
-            get { return this.isEnabled; }
-
-            set
-            {
-                this.isEnabled = value;
-                OnCanExecuteChanged();
-            }
-        }
     }
 }

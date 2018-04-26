@@ -27,6 +27,17 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Attributs
+        private string name;
+        private string type;
+        private string sexe;
+        private int level;
+        private Gear head;
+        private Gear armor;
+        private Gear legs;
+        private Gear ring1;
+        private Gear ring2;
+        private Gear attack;
+        private Gear special;
         #endregion
 
         #region Properties
@@ -35,36 +46,143 @@ namespace ShakesAndFidgetLibrary.Models
         public virtual string ImageSourceSpecial => "";
         public virtual string ImageSourceAttack => "";
 
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string Sexe { get; set; }
-        public int Level { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set {
+                name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+        
+        public string Type
+        {
+            get { return type; }
+            set {
+                type = value;
+                OnPropertyChanged("Type");
+            }
+        }
+
+        public string Sexe
+        {
+            get { return sexe; }
+            set {
+                sexe = value;
+                OnPropertyChanged("Sexe");
+            }
+        }
+
+        public int Level
+        {
+            get { return level; }
+            set {
+                level = value;
+                OnPropertyChanged("Level");
+            }
+        }
+
         public int UserId { get; set; }
         public int StatId { get; set; }
+
         [JsonIgnore]
-        public Gear Head { get; set; }
+        public Gear Head
+        {
+            get { return head; }
+            set {
+                head = value;
+                OnPropertyChanged("Head");
+            }
+        }
         public int? HeadId { get; set; }
+
         [JsonIgnore]
-        public Gear Armor { get; set; }
+        public Gear Armor
+        {
+            get { return armor; }
+            set {
+                armor = value;
+                OnPropertyChanged("Armor");
+            }
+        }
         public int? ArmorId { get; set; }
+
         [JsonIgnore]
-        public Gear Legs { get; set; }
+        public Gear Legs
+        {
+            get { return legs; }
+            set {
+                legs = value;
+                OnPropertyChanged("Legs");
+            }
+        }
         public int? LegsId { get; set; }
+
         [JsonIgnore]
-        public Gear Ring1 { get; set; }
+        public Gear Ring1
+        {
+            get { return ring1; }
+            set {
+                ring1 = value;
+                OnPropertyChanged("Ring1");
+            }
+        }
         public int? Ring1Id { get; set; }
+
         [JsonIgnore]
-        public Gear Ring2 { get; set; }
+        public Gear Ring2
+        {
+            get { return ring2; }
+            set {
+                ring2 = value;
+                OnPropertyChanged("Ring2");
+            }
+        }
         public int? Ring2Id { get; set; }
+
         [JsonIgnore]
-        public Gear Usable { get; set; }
-        public int? UsableId { get; set; }
-        [JsonIgnore]
-        public Gear Special { get; set; }
+        public Gear Special
+        {
+            get { return special; }
+            set {
+                special = value;
+                OnPropertyChanged("Special");
+            }
+        }
         public int? SpecialId { get; set; }
+
         [JsonIgnore]
-        public Gear Attack { get; set; }
+        public Gear Attack
+        {
+            get { return attack; }
+            set {
+                attack = value;
+                OnPropertyChanged("Attack");
+            }
+        }
         public int? AttackId { get; set; }
+
+        private List<Gear> inventoryGears;
+
+        public List<Gear> InventoryGears
+        {
+            get { return inventoryGears; }
+            set {
+                inventoryGears = value;
+                OnPropertyChanged("InventoryGears");
+            }
+        }
+
+        private List<Usable> inventoryUsables;
+
+        public List<Usable> InventoryUsables
+        {
+            get { return inventoryUsables; }
+            set {
+                inventoryUsables = value;
+                OnPropertyChanged("InventoryUsables");
+            }
+        }
         #endregion
 
         #region Constructors
@@ -78,6 +196,60 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Functions
+        public void Equip(Gear gear)
+        {
+            if (gear.GearType == "Head")
+            {
+                if (Head != null)
+                    InventoryGears.Add(Head);
+                Head = gear;
+                HeadId = Head.Id;
+            }
+            else if (gear.GearType == "Armor")
+            {
+                if (Armor != null)
+                    InventoryGears.Add(Armor);
+                Armor = gear;
+                ArmorId = Armor.Id;
+            }
+            else if (gear.GearType == "Legs")
+            {
+                if (Legs != null)
+                    InventoryGears.Add(Legs);
+                Legs = gear;
+                LegsId = Legs.Id;
+            }
+            else if (gear.GearType == "Ring")
+            {
+                if (Ring1Id == null)
+                {
+                    Ring1 = gear;
+                    Ring1Id = Ring1.Id;
+                }
+                else
+                {
+                    if (Ring2 != null)
+                        InventoryGears.Add(Ring2);
+                    Ring2 = gear;
+                    Ring1Id = Ring2.Id;
+                }
+            }
+            else if (gear.GearType == "Special")
+            {
+                if (Special != null)
+                    InventoryGears.Add(Special);
+                Special = gear;
+                SpecialId = Special.Id;
+            }
+            else
+            {
+                if (Attack != null)
+                    InventoryGears.Add(Attack);
+                Attack = gear;
+                AttackId = Attack.Id;
+            }
+        }
+
         public string LoadCharacterImage()
         {
             if (Sexe == "M")
@@ -144,18 +316,6 @@ namespace ShakesAndFidgetLibrary.Models
                 return Ring2.ImageSource;
             }
             return IMAGE_SOURCE_ITEM;
-        }
-        
-        public async Task<string> LoadUsableImage()
-        {
-            if (Usable != null)
-                return Usable.ImageSource;
-            else if (UsableId.HasValue)
-            {
-                Usable = await AGearRoutes.GetOne(UsableId.Value);
-                return Usable.ImageSource;
-            }
-            return IMAGE_SOURCE_USABLE;
         }
         
         public async Task<string> LoadSpecialImage()

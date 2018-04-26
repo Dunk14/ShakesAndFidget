@@ -13,8 +13,11 @@ module.exports = function (sequelize) {
     ImageSource: {
       type: Sequelize.STRING
     },
-    Type: {
+    CharacterType: {
       type: Sequelize.STRING(1)
+    },
+    GearType: {
+      type: Sequelize.STRING(7)
     },
     LevelMin: {
       type: Sequelize.INTEGER
