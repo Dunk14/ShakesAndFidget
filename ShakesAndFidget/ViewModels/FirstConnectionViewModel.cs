@@ -124,9 +124,15 @@ namespace ShakesAndFidget.ViewModels
         private void RenderCharacterStats()
         {
             if (IsFemale)
-                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
+            {
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.Stats = CharactersListF[CurrentIndex];
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats();
+            }
             else
-                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
+            {
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.Stats = CharactersListM[CurrentIndex];
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats();
+            }
         }
 
         private void IsFemaleButton_Unchecked(object sender, System.Windows.RoutedEventArgs e)
