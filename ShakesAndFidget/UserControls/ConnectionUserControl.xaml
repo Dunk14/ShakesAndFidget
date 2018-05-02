@@ -58,7 +58,7 @@
 		<PasswordBox
             Name="RealPassword"
             Grid.Column="1"
-            Grid.Row="3"
+            Grid.Row="2"
             HorizontalAlignment="Stretch"
             Height="50"
             VerticalAlignment="Center"

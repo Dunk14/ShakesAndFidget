@@ -58,6 +58,109 @@ namespace ShakesAndFidget.UserControls
         public InventoryUserControl()
         {
             InitializeComponent();
+            MainWindow.Instance.CurrentCharacter.InventoryGears = new List<Gear>()
+            {
+                new Gear()
+                {
+                    Name = "Big Helmet",
+                    ImageSource = "pack://application:,,,/Resources/Big Helmet.png",
+                    GearType = "Head",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Dragon Bow",
+                    ImageSource = "pack://application:,,,/Resources/Dragon Bow.png",
+                    GearType = "Attack",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Big Shield",
+                    ImageSource = "pack://application:,,,/Resources/Big Shield.png",
+                    GearType = "Special",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Electric Armor",
+                    ImageSource = "pack://application:,,,/Resources/Electric Armor.png",
+                    GearType = "Armor",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Scythe",
+                    ImageSource = "pack://application:,,,/Resources/Scythe.png",
+                    GearType = "Attack",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Wizard Hat",
+                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
+                    GearType = "Head",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Dark Katana",
+                    ImageSource = "pack://application:,,,/Resources/Dark Katana.png",
+                    GearType = "Attack",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Crooked Sword",
+                    ImageSource = "pack://application:,,,/Resources/Crooked Sword.png",
+                    GearType = "Attack",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Saber",
+                    ImageSource = "pack://application:,,,/Resources/Saber.png",
+                    GearType = "Attack",
+                    LevelMin = 1
+                },
+                new Gear()
+                {
+                    Name = "Wizard Hat",
+                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
+                    GearType = "Head",
+                    LevelMin = 1
+                }
+            };
+            MainWindow.Instance.CurrentCharacter.InventoryUsables = new List<Usable>()
+            {
+                new Usable()
+                {
+                    Name = "Antidote",
+                    ImageSource = "pack://application:,,,/Resources/Antidote.png"
+                },
+                new Usable()
+                {
+                    Name = "Electric Arrow",
+                    ImageSource = "pack://application:,,,/Resources/Electric Arrow.png"
+                },
+                new Usable()
+                {
+                    Name = "Mana Potion",
+                    ImageSource = "pack://application:,,,/Resources/Mana Potion.png"
+                },
+                new Usable()
+                {
+                    Name = "Throwing Weapon",
+                    ImageSource = "pack://application:,,,/Resources/Throwing Weapon.png"
+                },
+                new Usable()
+                {
+                    Name = "Wind Arrow",
+                    ImageSource = "pack://application:,,,/Resources/Wind Arrow.png"
+                }
+            };
+            GearsList = MainWindow.Instance.CurrentCharacter.InventoryGears;
+            UsablesList = MainWindow.Instance.CurrentCharacter.InventoryUsables;
             GearsRows = new ObservableCollection<GearsRow>();
             UsablesRows = new ObservableCollection<UsableRow>();
             this.DataContext = this;

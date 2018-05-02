@@ -88,6 +88,9 @@
     <Compile Include="UserControls\ConnectionUserControl.xaml.cs">
       <DependentUpon>ConnectionUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DealerUserControl.xaml.cs">
+      <DependentUpon>DealerUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\EquipmentUserControl.cs">
       <DependentUpon>EquipmentUserControl.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ConnectionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DealerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
