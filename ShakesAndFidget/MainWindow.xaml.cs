@@ -29,7 +29,7 @@ namespace ShakesAndFidget
         private static MainWindow instance;
         private static Logger logger;
 
-        public MainWindow()
+        public MainWindow() 
         {
             this.DataContext = this;
             this.CurrentPage = new ConnectionPage();

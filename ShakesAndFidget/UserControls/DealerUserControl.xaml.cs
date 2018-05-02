@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+/*
 namespace ShakesAndFidget.UserControls
 {
     /// <summary>
@@ -327,3 +327,4 @@ namespace ShakesAndFidget.UserControls
         public ObservableCollection<Usable> Usables { get; set; }
     }
 }
+*/
