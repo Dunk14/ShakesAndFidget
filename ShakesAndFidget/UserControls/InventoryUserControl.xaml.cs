@@ -25,9 +25,6 @@ namespace ShakesAndFidget.UserControls
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<Gear> GearsList { get; set; }
-        public List<Usable> UsablesList { get; set; }
-
         public int HorizontalMaxItems { get; set; }
 
         private ObservableCollection<GearsRow> gearsRows;
@@ -61,109 +58,6 @@ namespace ShakesAndFidget.UserControls
         public InventoryUserControl()
         {
             InitializeComponent();
-            MainWindow.Instance.CurrentCharacter.InventoryGears = new List<Gear>()
-            {
-                new Gear()
-                {
-                    Name = "Big Helmet",
-                    ImageSource = "pack://application:,,,/Resources/Big Helmet.png",
-                    GearType = "Head",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Dragon Bow",
-                    ImageSource = "pack://application:,,,/Resources/Dragon Bow.png",
-                    GearType = "Attack",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Big Shield",
-                    ImageSource = "pack://application:,,,/Resources/Big Shield.png",
-                    GearType = "Armor",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Electric Armor",
-                    ImageSource = "pack://application:,,,/Resources/Electric Armor.png",
-                    GearType = "Armor",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Scythe",
-                    ImageSource = "pack://application:,,,/Resources/Scythe.png",
-                    GearType = "Attack",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Wizard Hat",
-                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
-                    GearType = "Head",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Dark Katana",
-                    ImageSource = "pack://application:,,,/Resources/Dark Katana.png",
-                    GearType = "Attack",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Crooked Sword",
-                    ImageSource = "pack://application:,,,/Resources/Crooked Sword.png",
-                    GearType = "Attack",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Saber",
-                    ImageSource = "pack://application:,,,/Resources/Saber.png",
-                    GearType = "Attack",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Wizard Hat",
-                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
-                    GearType = "Head",
-                    LevelMin = 1
-                }
-            };
-            MainWindow.Instance.CurrentCharacter.InventoryUsables = new List<Usable>()
-            {
-                new Usable()
-                {
-                    Name = "Antidote",
-                    ImageSource = "pack://application:,,,/Resources/Antidote.png"
-                },
-                new Usable()
-                {
-                    Name = "Electric Arrow",
-                    ImageSource = "pack://application:,,,/Resources/Electric Arrow.png"
-                },
-                new Usable()
-                {
-                    Name = "Mana Potion",
-                    ImageSource = "pack://application:,,,/Resources/Mana Potion.png"
-                },
-                new Usable()
-                {
-                    Name = "Throwing Weapon",
-                    ImageSource = "pack://application:,,,/Resources/Throwing Weapon.png"
-                },
-                new Usable()
-                {
-                    Name = "Wind Arrow",
-                    ImageSource = "pack://application:,,,/Resources/Wind Arrow.png"
-                }
-            };
-            GearsList = MainWindow.Instance.CurrentCharacter.InventoryGears;
-            UsablesList = MainWindow.Instance.CurrentCharacter.InventoryUsables;
             GearsRows = new ObservableCollection<GearsRow>();
             UsablesRows = new ObservableCollection<UsableRow>();
             this.DataContext = this;
@@ -173,135 +67,84 @@ namespace ShakesAndFidget.UserControls
 
         public void Events()
         {
-            Loaded += InventoryUserControl_Loaded;
-
-            BinderGear();
         }
 
-
-
-        private void InventoryUserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        public void RenderGears(ICollection<Gear> gearsList, Boolean force = false)
         {
-            RenderGears();
-            RenderUsables();
-        }
+            // Maximum of items for horizontal ViewList
+            double widthMinusItemSize = (GearsListViewParent.ActualWidth - 64) / 64.0;
+            int horizontalMaxItems = Convert.ToInt32(Math.Floor(widthMinusItemSize));
+            if (horizontalMaxItems < 1)
+                horizontalMaxItems = 1;
 
-        private void InventoryUserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            RenderGears(true);
-            RenderUsables(true);
-            SizeChanged += InventoryUserControl_SizeChanged;
-        }
-
-        // Bind every gears to the equip event
-        private void BinderGear()
-        {
-            foreach (var gear in GearsList)
+            // Load new UI only if needed
+            if (force || HorizontalMaxItems != horizontalMaxItems)
             {
-                gear.Equiping += Gear_Equiping;
+                HorizontalMaxItems = horizontalMaxItems;
+
+                // Number of lists needed to create enough space for all items
+                double notCeiledListsNumber = (gearsList.Count + .0) / (horizontalMaxItems + .0);
+                int listsNumber = Convert.ToInt32(Math.Ceiling(notCeiledListsNumber));
+                if (listsNumber < 1)
+                    listsNumber = 1;
+
+                // First big list
+                GearsRows = new ObservableCollection<GearsRow>();
+
+                // Inject items by cutting them in parent lists that contain some children lists
+                int maxIterations = gearsList.Count;
+                for (int i = 0; i < listsNumber; i++)
+                {
+                    // Creates every rows
+                    GearsRow gearsRow = new GearsRow() { Gears = new ObservableCollection<Gear>() };
+                    GearsRows.Add(gearsRow);
+                    for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
+                    {
+                        // And every sub items
+                        gearsRow.Gears.Add(gearsList.ToArray<Gear>()[maxIterations - 1]);
+                        maxIterations--;
+                    }
+                }
             }
         }
 
-        private void Gear_Equiping(object sender, EventArgs e)
+        public void RenderUsables(ICollection<Usable> usablesList, Boolean force = false)
         {
-            Gear gear = (sender as Gear);
-            // Compatibility of character with this gear
-            if (gear.IsCompatible(MainWindow.Instance.CurrentCharacter))
+            // Maximum of items for horizontal ViewList
+            double widthMinusItemSize = (UsableListViewParent.ActualWidth - 64) / 64.0;
+            int horizontalMaxItems = Convert.ToInt32(Math.Floor(widthMinusItemSize));
+            if (horizontalMaxItems < 1)
+                horizontalMaxItems = 1;
+
+            // Load new UI only if needed
+            if (force || HorizontalMaxItems != horizontalMaxItems)
             {
-                MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
-                MainWindow.Instance.CurrentCharacter.Equip(gear);
-                RenderGears(true);
+                HorizontalMaxItems = horizontalMaxItems;
+
+                // Number of lists needed to create enough space for all items
+                double notCeiledListsNumber = (usablesList.Count + .0) / (horizontalMaxItems + .0);
+                int listsNumber = Convert.ToInt32(Math.Ceiling(notCeiledListsNumber));
+                if (listsNumber < 1)
+                    listsNumber = 1;
+
+                // First big list
+                UsablesRows = new ObservableCollection<UsableRow>();
+
+                // Inject items by cutting them in parent lists that contain some children lists
+                int maxIterations = usablesList.Count;
+                for (int i = 0; i < listsNumber; i++)
+                {
+                    // Creates every rows
+                    UsableRow usableRow = new UsableRow() { Usables = new ObservableCollection<Usable>() };
+                    UsablesRows.Add(usableRow);
+                    for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
+                    {
+                        // And every sub items
+                        usableRow.Usables.Add(usablesList.ToArray<Usable>()[maxIterations - 1]);
+                        maxIterations--;
+                    }
+                }
             }
-            else
-                MainWindow.Logger.Error("You can't equip that gear (class or level)");
-        }
-
-        public void RenderGears(Boolean force = false)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                // Maximum of items for horizontal ViewList
-                double widthMinusItemSize = (GearsListViewParent.ActualWidth - 64) / 64.0;
-                int horizontalMaxItems = Convert.ToInt32(Math.Floor(widthMinusItemSize));
-                if (horizontalMaxItems < 1)
-                    horizontalMaxItems = 1;
-
-                // Load new UI only if needed
-                if (force || HorizontalMaxItems != horizontalMaxItems)
-                {
-                    HorizontalMaxItems = horizontalMaxItems;
-
-                    // Number of lists needed to create enough space for all items
-                    double notCeiledListsNumber = (GearsList.Count + .0) / (horizontalMaxItems + .0);
-                    int listsNumber = Convert.ToInt32(Math.Ceiling(notCeiledListsNumber));
-                    if (listsNumber < 1)
-                        listsNumber = 1;
-
-                    // First big list
-                    ObservableCollection<GearsRow> ThreadGearsRows = new ObservableCollection<GearsRow>();
-
-                    // Inject items by cutting them in parent lists that contain some children lists
-                    int maxIterations = GearsList.Count;
-                    for (int i = 0; i < listsNumber; i++)
-                    {
-                        // Creates every rows
-                        GearsRow gearsRow = new GearsRow() { Gears = new ObservableCollection<Gear>() };
-                        ThreadGearsRows.Add(gearsRow);
-                        for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
-                        {
-                            // And every sub items
-                            gearsRow.Gears.Add(GearsList[maxIterations - 1]);
-                            maxIterations--;
-                        }
-                    }
-
-                    Application.Current.Dispatcher.Invoke(() => GearsRows = ThreadGearsRows);
-                }
-            });
-        }
-
-        public void RenderUsables(Boolean force = false)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                // Maximum of items for horizontal ViewList
-                double widthMinusItemSize = (UsableListViewParent.ActualWidth - 64) / 64.0;
-                int horizontalMaxItems = Convert.ToInt32(Math.Floor(widthMinusItemSize));
-                if (horizontalMaxItems < 1)
-                    horizontalMaxItems = 1;
-
-                // Load new UI only if needed
-                if (force || HorizontalMaxItems != horizontalMaxItems)
-                {
-                    HorizontalMaxItems = horizontalMaxItems;
-
-                    // Number of lists needed to create enough space for all items
-                    double notCeiledListsNumber = (UsablesList.Count + .0) / (horizontalMaxItems + .0);
-                    int listsNumber = Convert.ToInt32(Math.Ceiling(notCeiledListsNumber));
-                    if (listsNumber < 1)
-                        listsNumber = 1;
-
-                    // First big list
-                    ObservableCollection<UsableRow> ThreadUsablesRows = new ObservableCollection<UsableRow>();
-
-                    // Inject items by cutting them in parent lists that contain some children lists
-                    int maxIterations = UsablesList.Count;
-                    for (int i = 0; i < listsNumber; i++)
-                    {
-                        // Creates every rows
-                        UsableRow usableRow = new UsableRow() { Usables = new ObservableCollection<Usable>() };
-                        ThreadUsablesRows.Add(usableRow);
-                        for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
-                        {
-                            // And every sub items
-                            usableRow.Usables.Add(UsablesList[maxIterations - 1]);
-                            maxIterations--;
-                        }
-                    }
-
-                    Application.Current.Dispatcher.Invoke(() => UsablesRows = ThreadUsablesRows);
-                }
-            });
         }
 
         public void OnPropertyChanged(string name)

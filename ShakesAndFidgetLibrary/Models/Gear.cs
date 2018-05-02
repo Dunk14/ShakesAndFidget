@@ -20,26 +20,6 @@ namespace ShakesAndFidgetLibrary.Models
         {
         }
 
-        public void EquipGear()
-        {
-            OnEquiping(new EventArgs());
-        }
-
-        public ICommand Equip
-        {
-            get { return new DelegateCommand(EquipGear); }
-        }
-
-        public event EventHandler Equiping;
-        protected virtual void OnEquiping(EventArgs e)
-        {
-            EventHandler handler = Equiping;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
         public Boolean IsCompatible(ICharacter character)
         {
             // Compatibilité des classes

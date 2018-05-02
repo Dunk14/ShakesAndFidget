@@ -22,26 +22,47 @@ namespace ShakesAndFidget.UserControls
     /// </summary>
     public partial class CharacterStatsUserControl : UserControl
     {
+        public Stats Stats { get; set; }
+
         public CharacterStatsUserControl()
         {
             InitializeComponent();
+            Stats = new Stats();
         }
 
-        public void RenderCharacterStats(Stats stats)
+        public void Events()
         {
-            this.Life.Content = stats.Life;
-            this.Mana.Content = stats.Mana;
-            this.Energy.Content = stats.Energy;
-            this.Strength.Content = stats.Strength;
-            this.Agility.Content = stats.Agility;
-            this.Spirit.Content = stats.Spirit;
-            this.Luck.Content = stats.Luck;
-            this.CriticalDamage.Content = stats.CriticalDamage;
-            this.MagicDamage.Content = stats.MagicDamage;
-            this.PhysicalDamage.Content = stats.PhysicalDamage;
-            this.CriticalProba.Content = stats.CriticalProba;
-            this.PhysicalArmor.Content = stats.PhysicalArmor;
-            this.MagicalArmor.Content = stats.MagicalArmor;
+            Loaded += CharacterStatsUserControl_Loaded;
+        }
+
+        private void CurrentCharacter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            RenderCharacterStats();
+        }
+
+        private void CharacterStatsUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.CurrentCharacter.PropertyChanged += CurrentCharacter_PropertyChanged;
+        }
+
+        public void RenderCharacterStats()
+        {
+            if (MainWindow.Instance.CurrentCharacter != null)
+                Stats = MainWindow.Instance.CurrentCharacter.ComputeStats();
+
+            Life.Content = Stats.Life;
+            Mana.Content = Stats.Mana;
+            Energy.Content = Stats.Energy;
+            Strength.Content = Stats.Strength;
+            Agility.Content = Stats.Agility;
+            Spirit.Content = Stats.Spirit;
+            Luck.Content = Stats.Luck;
+            CriticalDamage.Content = Stats.CriticalDamage;
+            MagicDamage.Content = Stats.MagicDamage;
+            PhysicalDamage.Content = Stats.PhysicalDamage;
+            CriticalProba.Content = Stats.CriticalProba;
+            PhysicalArmor.Content = Stats.PhysicalArmor;
+            MagicalArmor.Content = Stats.MagicalArmor;
         }
     }
 }

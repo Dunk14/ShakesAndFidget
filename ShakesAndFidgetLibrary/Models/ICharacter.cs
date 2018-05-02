@@ -2,6 +2,7 @@
 using ShakesAndFidgetLibrary.Routes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace ShakesAndFidgetLibrary.Models
         private Gear ring2;
         private Gear attack;
         private Gear special;
+        private Usable usable;
         #endregion
 
         #region Properties
@@ -162,9 +164,21 @@ namespace ShakesAndFidgetLibrary.Models
         }
         public int? AttackId { get; set; }
 
-        private List<Gear> inventoryGears;
+        [JsonIgnore]
+        public Usable Usable
+        {
+            get { return usable; }
+            set
+            {
+                usable = value;
+                OnPropertyChanged("Usable");
+            }
+        }
+        public int? UsableId { get; set; }
 
-        public List<Gear> InventoryGears
+        private ObservableCollection<Gear> inventoryGears;
+
+        public ObservableCollection<Gear> InventoryGears
         {
             get { return inventoryGears; }
             set {
@@ -173,9 +187,9 @@ namespace ShakesAndFidgetLibrary.Models
             }
         }
 
-        private List<Usable> inventoryUsables;
+        private ObservableCollection<Usable> inventoryUsables;
 
-        public List<Usable> InventoryUsables
+        public ObservableCollection<Usable> InventoryUsables
         {
             get { return inventoryUsables; }
             set {
@@ -221,7 +235,7 @@ namespace ShakesAndFidgetLibrary.Models
             }
             else if (gear.GearType == "Ring")
             {
-                if (Ring1Id == null)
+                if (Ring1 == null)
                 {
                     Ring1 = gear;
                     Ring1Id = Ring1.Id;
@@ -241,13 +255,116 @@ namespace ShakesAndFidgetLibrary.Models
                 Special = gear;
                 SpecialId = Special.Id;
             }
-            else
+            else if (gear.GearType == "Attack")
             {
                 if (Attack != null)
                     InventoryGears.Add(Attack);
                 Attack = gear;
                 AttackId = Attack.Id;
             }
+        }
+
+        public void Unequip(Gear gear)
+        {
+            if (gear == Head)
+            {
+                InventoryGears.Add(gear);
+                Head = null;
+                HeadId = null;
+            }
+            else if (gear == Armor)
+            {
+                InventoryGears.Add(gear);
+                Armor = null;
+                ArmorId = null;
+            }
+            else if (gear == Legs)
+            {
+                InventoryGears.Add(gear);
+                Legs = null;
+                LegsId = null;
+            }
+            else if (gear == Ring1)
+            {
+                InventoryGears.Add(gear);
+                Ring1 = null;
+                Ring1Id = null;
+            }
+            else if (gear == Ring2)
+            {
+                InventoryGears.Add(gear);
+                Ring2 = null;
+                Ring2Id = null;
+            }
+            else if (gear == Special)
+            {
+                InventoryGears.Add(gear);
+                Special = null;
+                SpecialId = null;
+            }
+            else if (gear == Attack)
+            {
+                InventoryGears.Add(gear);
+                Attack = null;
+                AttackId = null;
+            }
+        }
+
+        public void Equip(Usable usable)
+        {
+            if (Usable != null)
+                InventoryUsables.Add(Usable);
+            Usable = usable;
+            UsableId = Usable.Id;
+        }
+
+        public void Unequip(Usable usable)
+        {
+            if (usable == Usable)
+            {
+                InventoryUsables.Add(usable);
+                Usable = null;
+                UsableId = null;
+            }
+        }
+
+        public Stats ComputeStats()
+        {
+            Stats stats = new Stats
+            {
+                Life = Life,
+                Mana = Mana,
+                Energy = Energy,
+                Strength = Strength,
+                Agility = Agility,
+                Spirit = Spirit,
+                Luck = Luck,
+                CriticalDamage = CriticalDamage,
+                MagicDamage = MagicDamage,
+                PhysicalDamage = PhysicalDamage,
+                CriticalProba = CriticalProba,
+                PhysicalArmor = PhysicalArmor,
+                MagicalArmor = MagicalArmor
+            };
+
+            if (Head != null)
+                stats.AddStats(Head);
+            if (Armor != null)
+                stats.AddStats(Armor);
+            if (Legs != null)
+                stats.AddStats(Legs);
+            if (Ring1 != null)
+                stats.AddStats(Ring1);
+            if (Ring2 != null)
+                stats.AddStats(Ring2);
+            if (Special != null)
+                stats.AddStats(Special);
+            if (Attack != null)
+                stats.AddStats(Attack);
+            if (Usable != null)
+                stats.AddStats(Usable);
+
+            return stats;
         }
 
         public string LoadCharacterImage()

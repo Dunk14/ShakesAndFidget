@@ -21,25 +21,29 @@ namespace ShakesAndFidget.UserControls
     /// </summary>
     public partial class EquipmentUserControl : UserControl
     {
-        public ICharacter Character { get; set; }
+        private ICharacter character;
+        public ICharacter Character
+        {
+            get { return character; }
+            set
+            {
+                character = value;
+                Character.PropertyChanged += Character_PropertyChanged;
+            }
+        }
 
         public EquipmentUserControl()
         {
             InitializeComponent();
+            DataContext = Character;
             Events();
         }
 
         private void Events()
         {
-            Loaded += EquipmentUserControl_Loaded;
         }
 
-        private void EquipmentUserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Instance.CurrentCharacter.PropertyChanged += CurrentCharacter_PropertyChanged;
-        }
-
-        private void CurrentCharacter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Character_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             RenderItems();
         }
