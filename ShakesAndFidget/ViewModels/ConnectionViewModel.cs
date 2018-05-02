@@ -67,12 +67,7 @@ namespace ShakesAndFidget.ViewModels
 
         private void Subscribe_Click(object sender, RoutedEventArgs e)
         {
-            if (page1.ConnectionUC.isFormValidForSubscription())
-                Subscribe(
-                    page1.ConnectionUC.Name.Text,
-                    page1.ConnectionUC.Mail.Text,
-                    page1.ConnectionUC.RealPassword.Password
-                );
+            MainWindow.Instance.CurrentPage = new SubscribePage();
         }
 
         private void Login(string name, string password)
