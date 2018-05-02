@@ -5,8 +5,122 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ShakesAndFidget.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="300" d:DesignWidth="300">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<ListView 
+            ItemsSource="{Binding GearsRows}"
+            Name="GearsListViewParent"
+            Margin="0" 
+            Grid.Column="0"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Visible">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Background="Transparent" Orientation="Vertical">
+						<!--List<Gears>-->
+						<ListView 
+                            ItemsSource="{Binding Gears}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled">
+							<ListView.ItemsPanel>
+								<ItemsPanelTemplate>
+									<StackPanel Orientation="Horizontal" />
+								</ItemsPanelTemplate>
+							</ListView.ItemsPanel>
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal">
+										<!--Place one element per element-->
+										<Image
+                                            Height="64"
+                                            Width="64"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            Source="{Binding ImageSource}">
+											<Image.ToolTip>
+												<ToolTip 
+                                                    Content="{Binding Name}" 
+                                                    FontSize="14"
+                                                    />
+											</Image.ToolTip>
+											<Image.ContextMenu>
+												<ContextMenu>
+													<MenuItem Header="Equip" Command="{Binding Equip}"/>
+												</ContextMenu>
+											</Image.ContextMenu>
+										</Image>
+									</StackPanel>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</StackPanel>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<!--List<List <Usable>>-->
+		<ListView 
+            ItemsSource="{Binding UsablesRows}"
+            Name="UsableListViewParent" 
+            Grid.Column="1"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Visible">
+			<ListView.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Vertical"></StackPanel>
+				</ItemsPanelTemplate>
+			</ListView.ItemsPanel>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<!--List<Usable>-->
+					<ListView 
+                        ItemsSource="{Binding Usables}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+						<ListView.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal"></StackPanel>
+							</ItemsPanelTemplate>
+						</ListView.ItemsPanel>
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<!--Place one element per element-->
+									<Image
+                                        Height="64"
+                                        Width="64"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Source="{Binding ImageSource}">
+										<Image.ToolTip>
+											<ToolTip 
+                                                Content="{Binding Name}" 
+                                                FontSize="14"
+                                                />
+										</Image.ToolTip>
+										<Image.ContextMenu>
+											<ContextMenu>
+												<MenuItem
+                                                    Header="Equip"
+                                                    Command="{Binding Equip}"
+                                                    />
+											</ContextMenu>
+										</Image.ContextMenu>
+									</Image>
+								</StackPanel>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</Grid>
 </UserControl>
