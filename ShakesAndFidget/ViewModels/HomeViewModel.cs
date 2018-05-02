@@ -46,7 +46,6 @@ namespace ShakesAndFidget.ViewModels
         {
             HomePage.EquipmentUC.Loaded += EquipmentUC_Loaded;
             HomePage.InventoryUC.Loaded += InventoryUC_Loaded;
-            
         }
 
         // Bind every gears to the equip event
@@ -54,7 +53,6 @@ namespace ShakesAndFidget.ViewModels
         {
             foreach (var gear in MainWindow.Instance.CurrentCharacter.InventoryGears)
             {
-                gear.Equiping -= Gear_Equiping;
                 gear.Equiping += Gear_Equiping;
             }
         }
@@ -212,6 +210,7 @@ namespace ShakesAndFidget.ViewModels
                 true
             );
             BinderGear();
+            BinderEquipment();
         }
 
         private void InventoryUsables_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -221,33 +220,35 @@ namespace ShakesAndFidget.ViewModels
                true
             );
             //HomePage.InventoryUC.BinderUsable();
+            BinderEquipment();
         }
 
         private void EquipmentUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
-            HomePage.EquipmentUC.RenderItems();
-
+            BinderEquipment();
         }
 
         private void BinderEquipment()
         {
-            MainWindow.Instance.CurrentCharacter.Ring1.Unequiping -= Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Ring1.Unequiping += Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Ring2.Unequiping -= Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Ring2.Unequiping += Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Head.Unequiping -= Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Head.Unequiping += Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Armor.Unequiping -= Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Armor.Unequiping += Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Special.Unequiping -= Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Special.Unequiping += Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Attack.Unequiping -= Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Attack.Unequiping += Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Legs.Unequiping -= Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Legs.Unequiping += Gear_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Usable.Unequiping -= Usable_Unequiping;
-            MainWindow.Instance.CurrentCharacter.Usable.Unequiping += Usable_Unequiping;
+            ICharacter character = HomePage.EquipmentUC.Character;
+
+            if (character.Ring1 != null)
+                character.Ring1.Unequiping += Gear_Unequiping;
+            if (character.Ring2 != null)
+                character.Ring2.Unequiping += Gear_Unequiping;
+            if (character.Head != null)
+                character.Head.Unequiping += Gear_Unequiping;
+            if (character.Armor != null)
+                character.Armor.Unequiping += Gear_Unequiping;
+            if (character.Special != null)
+                character.Special.Unequiping += Gear_Unequiping;
+            if (character.Attack != null)
+                character.Attack.Unequiping += Gear_Unequiping;
+            if (character.Legs != null)
+                character.Legs.Unequiping += Gear_Unequiping;
+            if (character.Usable != null)
+                character.Usable.Unequiping += Usable_Unequiping;
         }
 
         private void Gear_Unequiping(object sender, EventArgs e)
@@ -255,10 +256,12 @@ namespace ShakesAndFidget.ViewModels
             Gear gear = (sender as Gear);
             MainWindow.Instance.CurrentCharacter.Unequip(gear);
             // Give the updated list
+            HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
             HomePage.InventoryUC.RenderGears(
                 MainWindow.Instance.CurrentCharacter.InventoryGears,
                 true
             );
+            BinderEquipment();
         }
 
         private void Usable_Unequiping(object sender, EventArgs e)
@@ -266,10 +269,12 @@ namespace ShakesAndFidget.ViewModels
             Usable usable = (sender as Usable);
             MainWindow.Instance.CurrentCharacter.Unequip(usable);
             // Give the updated list
+            HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
             HomePage.InventoryUC.RenderUsables(
                 MainWindow.Instance.CurrentCharacter.InventoryUsables,
                 true
             );
+            BinderEquipment();
         }
         #endregion
 

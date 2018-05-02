@@ -15,21 +15,22 @@ namespace ShakesAndFidgetLibrary.Models
 
         public Stats ToStats()
         {
-            Stats stats = new Stats();
-
-            stats.Life = Life;
-            stats.Mana = Mana;
-            stats.Energy = Energy;
-            stats.Strength = Strength;
-            stats.Agility = Agility;
-            stats.Spirit = Spirit;
-            stats.Luck = Luck;
-            stats.CriticalDamage = CriticalDamage;
-            stats.MagicDamage = MagicDamage;
-            stats.PhysicalDamage = PhysicalDamage;
-            stats.CriticalProba = CriticalProba;
-            stats.PhysicalArmor = PhysicalArmor;
-            stats.MagicalArmor = MagicalArmor;
+            Stats stats = new Stats
+            {
+                Life = Life,
+                Mana = Mana,
+                Energy = Energy,
+                Strength = Strength,
+                Agility = Agility,
+                Spirit = Spirit,
+                Luck = Luck,
+                CriticalDamage = CriticalDamage,
+                MagicDamage = MagicDamage,
+                PhysicalDamage = PhysicalDamage,
+                CriticalProba = CriticalProba,
+                PhysicalArmor = PhysicalArmor,
+                MagicalArmor = MagicalArmor
+            };
 
             return stats;
         }
@@ -49,7 +50,8 @@ namespace ShakesAndFidgetLibrary.Models
         {
             add
             {
-                equiping += value;
+                if (equiping != value)
+                    equiping += value;
             }
             remove
             {
@@ -67,7 +69,8 @@ namespace ShakesAndFidgetLibrary.Models
         {
             add
             {
-                unequiping += value;
+                if (unequiping != value)
+                    unequiping += value;
             }
             remove
             {
