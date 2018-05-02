@@ -192,6 +192,24 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Functions
+        public Stats AddStats(Stats stats)
+        {
+            stats.Life += Life;
+            stats.Mana += Mana;
+            stats.Energy += Energy;
+            stats.Strength += Strength;
+            stats.Agility += Agility;
+            stats.Spirit += Spirit;
+            stats.Luck += Luck;
+            stats.CriticalDamage += CriticalDamage;
+            stats.MagicDamage += MagicDamage;
+            stats.PhysicalDamage += PhysicalDamage;
+            stats.CriticalProba += CriticalProba;
+            stats.PhysicalArmor += PhysicalArmor;
+            stats.MagicalArmor += MagicalArmor;
+
+            return stats;
+        }
         #endregion
 
         #region Events

@@ -82,8 +82,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserControls\CharacterStats.xaml.cs">
-      <DependentUpon>CharacterStats.xaml</DependentUpon>
+    <Compile Include="UserControls\CharacterStatsUserControl.xaml.cs">
+      <DependentUpon>CharacterStatsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ConnectionUserControl.xaml.cs">
       <DependentUpon>ConnectionUserControl.xaml</DependentUpon>
@@ -94,8 +94,8 @@
     <Compile Include="UserControls\FirstConnectionUserControl.xaml.cs">
       <DependentUpon>FirstConnectionUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Inventory.xaml.cs">
-      <DependentUpon>Inventory.xaml</DependentUpon>
+    <Compile Include="UserControls\InventoryUserControl.xaml.cs">
+      <DependentUpon>InventoryUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
@@ -131,7 +131,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\CharacterStats.xaml">
+    <Page Include="UserControls\CharacterStatsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Inventory.xaml">
+    <Page Include="UserControls\InventoryUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

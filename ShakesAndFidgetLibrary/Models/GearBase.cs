@@ -10,7 +10,8 @@ namespace ShakesAndFidgetLibrary.Models
     {
         public String Name { get; set; }
         public String ImageSource { get; set; }
-        public String Type { get; set; }
+        public String CharacterType { get; set; }
+        public String GearType { get; set; }
         public int LevelMin { get; set; }
         public int Life { get; set; }
         public int Mana { get; set; }
@@ -32,7 +33,8 @@ namespace ShakesAndFidgetLibrary.Models
             {
                 Name = Name,
                 ImageSource = ImageSource,
-                Type = Type,
+                CharacterType = CharacterType,
+                GearType = GearType,
                 LevelMin = LevelMin
             };
             return gear;
