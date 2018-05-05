@@ -306,7 +306,7 @@ namespace ShakesAndFidgetLibrary.Models
             {
                 InventoryGears.Add(gear);
                 Attack = null;
-                AttackId = (int?) null;
+                AttackId = null;
             }
         }
 
@@ -320,49 +320,31 @@ namespace ShakesAndFidgetLibrary.Models
 
         public void Unequip(Usable usable)
         {
-            if (usable == Usable)
-            {
-                InventoryUsables.Add(usable);
-                Usable = null;
-                UsableId = null;
-            }
+            InventoryUsables.Add(usable);
+            Usable = null;
+            UsableId = null;
         }
 
         public Stats ComputeStats()
         {
-            Stats stats = new Stats
-            {
-                Life = Life,
-                Mana = Mana,
-                Energy = Energy,
-                Strength = Strength,
-                Agility = Agility,
-                Spirit = Spirit,
-                Luck = Luck,
-                CriticalDamage = CriticalDamage,
-                MagicDamage = MagicDamage,
-                PhysicalDamage = PhysicalDamage,
-                CriticalProba = CriticalProba,
-                PhysicalArmor = PhysicalArmor,
-                MagicalArmor = MagicalArmor
-            };
+            Stats stats = new Stats(this);
 
             if (Head != null)
-                stats.AddStats(Head);
+                stats = stats.AddStats(Head);
             if (Armor != null)
-                stats.AddStats(Armor);
+                stats = stats.AddStats(Armor);
             if (Legs != null)
-                stats.AddStats(Legs);
+                stats = stats.AddStats(Legs);
             if (Ring1 != null)
-                stats.AddStats(Ring1);
+                stats = stats.AddStats(Ring1);
             if (Ring2 != null)
-                stats.AddStats(Ring2);
+                stats = stats.AddStats(Ring2);
             if (Special != null)
-                stats.AddStats(Special);
+                stats = stats.AddStats(Special);
             if (Attack != null)
-                stats.AddStats(Attack);
+                stats = stats.AddStats(Attack);
             if (Usable != null)
-                stats.AddStats(Usable);
+                stats = stats.AddStats(Usable);
 
             return stats;
         }

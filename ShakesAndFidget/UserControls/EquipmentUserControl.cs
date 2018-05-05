@@ -22,8 +22,6 @@ namespace ShakesAndFidget.UserControls
     /// </summary>
     public partial class EquipmentUserControl : UserControl, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private ICharacter character;
         public ICharacter Character
         {
@@ -63,6 +61,8 @@ namespace ShakesAndFidget.UserControls
             Special.Source = new BitmapImage(new Uri(await Character.LoadSpecialImage()));
             Usable.Source = new BitmapImage(new Uri(await Character.LoadUsableImage()));
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
         {

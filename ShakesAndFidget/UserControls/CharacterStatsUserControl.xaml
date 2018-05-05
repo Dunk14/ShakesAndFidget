@@ -33,7 +33,7 @@
             Content="Life"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -42,8 +42,9 @@
             Name="Life"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.Life}"
             />
         <!--Mana-->
         <Label
@@ -52,7 +53,7 @@
             Content="Mana"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -61,8 +62,9 @@
             Name="Mana"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.Mana}"
             />
         <!--Energy-->
         <Label
@@ -71,7 +73,7 @@
             Content="Energy"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -80,8 +82,9 @@
             Name="Energy"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.Energy}"
             />
         <!--Strength-->
         <Label
@@ -90,7 +93,7 @@
             Content="Strength"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -99,8 +102,9 @@
             Name="Strength"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.Strength}"
             />
         <!--Agility-->
         <Label
@@ -109,7 +113,7 @@
             Content="Agility"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -118,8 +122,9 @@
             Name="Agility"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.Agility}"
             />
         <!--Spirit-->
         <Label
@@ -128,7 +133,7 @@
             Content="Spirit"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -137,8 +142,9 @@
             Name="Spirit"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.Spirit}"
             />
         <!--Luck-->
         <Label
@@ -147,7 +153,7 @@
             Content="Luck"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -156,8 +162,9 @@
             Name="Luck"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.Luck}"
             />
         <!--CriticalDamage-->
         <Label
@@ -166,7 +173,7 @@
             Content="CriticalDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -175,8 +182,9 @@
             Name="CriticalDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.CriticalDamage}"
             />
         <!--CriticalProbability-->
         <Label
@@ -185,7 +193,7 @@
             Content="CriticalProba"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -194,8 +202,9 @@
             Name="CriticalProba"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.CriticalProba}"
             />
         <!--PhysicalDamage-->
         <Label
@@ -204,7 +213,7 @@
             Content="PhysicalDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -213,8 +222,9 @@
             Name="PhysicalDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.PhysicalDamage}"
             />
         <!--MagicDamage-->
         <Label
@@ -223,7 +233,7 @@
             Content="MagicDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -232,8 +242,9 @@
             Name="MagicDamage"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.MagicDamage}"
             />
         <!--PhysicalArmor-->
         <Label
@@ -242,7 +253,7 @@
             Content="PhysicalArmor"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -251,8 +262,9 @@
             Name="PhysicalArmor"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.PhysicalArmor}"
             />
         <!--MagicalArmor-->
         <Label
@@ -261,7 +273,7 @@
             Content="MagicalArmor"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Right"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
             />
         <Label
@@ -270,8 +282,9 @@
             Name="MagicalArmor"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
-            FontSize="14"
+            FontSize="12"
             FontWeight="Bold"
+            Content="{Binding Stats.MagicalArmor}"
             />
     </Grid>
 </UserControl>

@@ -101,39 +101,6 @@ namespace ShakesAndFidget.ViewModels
                 MainWindow.Instance.CurrentPage = new HomePage();
             }
         }
-
-        private void Subscribe(string name, string mail, string password)
-        {
-            Task.Factory.StartNew(async () =>
-            {
-                Console.WriteLine(userManager.GetByName(name));
-                if (userManager.GetByName(name) == null && userManager.GetByMail(mail) == null)
-                {
-                    bool insertion = await userManager.InsertUser(mail, name, UserManager.CalculateMD5Hash(this.page1.ConnectionUC.RealPassword.Password));
-                    if (insertion)
-                    {
-                        Application.Current.Dispatcher.Invoke(() => Subscribe_Callback(insertion));
-                        return;
-                    }
-                }
-                else
-                {
-                    MainWindow.Logger.Warning("Name or mail is already used");
-                }
-            });
-        }
-
-        private void Subscribe_Callback(bool success)
-        {
-            if (success)
-            {
-                MainWindow.Logger.Success("You successfully subscribed !");
-            }
-            else
-            {
-                MainWindow.Logger.Error("Subscription didn't end properly");
-            }
-        }
         #endregion
 
         #region Events

@@ -46,64 +46,15 @@ namespace ShakesAndFidget.ViewModels
         {
             HomePage.EquipmentUC.Loaded += EquipmentUC_Loaded;
             HomePage.InventoryUC.Loaded += InventoryUC_Loaded;
+            HomePage.CharacterStatsUC.Loaded += CharacterStatsUC_Loaded;
         }
 
-        // Bind every gears to the equip event
-        public void BinderGears()
+        private async void EquipmentUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            foreach (var gear in MainWindow.Instance.CurrentCharacter.InventoryGears)
-            {
-                gear.Equiping += Gear_Equiping;
-            }
-        }
-
-        // Bind every usables to the equip event
-        public void BinderUsables()
-        {
-            foreach (var usable in MainWindow.Instance.CurrentCharacter.InventoryUsables)
-            {
-                usable.Equiping += Usable_Equiping;
-            }
-        }
-
-        private void RenderCharacter(Boolean forUsables = false)
-        {
-            // Give the updated character
             HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
             HomePage.EquipmentUC.RenderItems();
-            // Give the updated list
-            if (!forUsables)
-                HomePage.InventoryUC.RenderGears(
-                    MainWindow.Instance.CurrentCharacter.InventoryGears,
-                    true
-                );
-            else
-                HomePage.InventoryUC.RenderUsables(
-                    MainWindow.Instance.CurrentCharacter.InventoryUsables,
-                    true
-                );
-        }
-
-        private void Gear_Equiping(object sender, EventArgs e)
-        {
-            Gear gear = (sender as Gear);
-            // Compatibility of character with this gear
-            if (gear.IsCompatible(MainWindow.Instance.CurrentCharacter))
-            {
-                MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
-                MainWindow.Instance.CurrentCharacter.Equip(gear);
-                RenderCharacter();
-            }
-            else
-                MainWindow.Logger.Warning("You can't equip that gear (class or level)");
-        }
-
-        private void Usable_Equiping(object sender, EventArgs e)
-        {
-            Usable usable = (sender as Usable);
-            MainWindow.Instance.CurrentCharacter.InventoryUsables.Remove(usable);
-            MainWindow.Instance.CurrentCharacter.Equip(usable);
-            RenderCharacter(true);
+            BinderEquipment();
+            MainWindow.Instance.CurrentCharacter.PropertyChanged += CurrentCharacter_PropertyChanged;
         }
 
         private void InventoryUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -123,28 +74,36 @@ namespace ShakesAndFidget.ViewModels
                     Name = "Dragon Bow",
                     ImageSource = "pack://application:,,,/Resources/Dragon Bow.png",
                     GearType = "Attack",
-                    LevelMin = 1
+                    LevelMin = 1,
+                    Agility = 5,
+                    CriticalDamage = 5,
+                    PhysicalDamage = 10,
+                    Strength = 5
                 },
                 new Gear()
                 {
                     Name = "Big Shield",
                     ImageSource = "pack://application:,,,/Resources/Big Shield.png",
                     GearType = "Special",
-                    LevelMin = 1
+                    LevelMin = 1,
+                    PhysicalArmor = 15
                 },
                 new Gear()
                 {
                     Name = "Electric Armor",
                     ImageSource = "pack://application:,,,/Resources/Electric Armor.png",
                     GearType = "Armor",
-                    LevelMin = 1
+                    LevelMin = 1,
+                    MagicalArmor = 20,
+                    PhysicalArmor = 10
                 },
                 new Gear()
                 {
                     Name = "Scythe",
                     ImageSource = "pack://application:,,,/Resources/Scythe.png",
                     GearType = "Attack",
-                    LevelMin = 1
+                    LevelMin = 1,
+                    CriticalProba = 8
                 },
                 new Gear()
                 {
@@ -165,14 +124,16 @@ namespace ShakesAndFidget.ViewModels
                     Name = "Crooked Sword",
                     ImageSource = "pack://application:,,,/Resources/Crooked Sword.png",
                     GearType = "Attack",
-                    LevelMin = 1
+                    LevelMin = 1,
+                    CriticalDamage = 5
                 },
                 new Gear()
                 {
                     Name = "Saber",
                     ImageSource = "pack://application:,,,/Resources/Saber.png",
                     GearType = "Attack",
-                    LevelMin = 1
+                    LevelMin = 1,
+                    PhysicalDamage = 10
                 },
                 new Gear()
                 {
@@ -225,6 +186,74 @@ namespace ShakesAndFidget.ViewModels
             HomePage.InventoryUC.SizeChanged += InventoryUC_SizeChanged;
         }
 
+        private void CharacterStatsUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            HomePage.CharacterStatsUC.RenderCharacterStats(
+                MainWindow.Instance.CurrentCharacter
+            );
+        }
+
+        // Bind every gears to the equip event
+        public void BinderGears()
+        {
+            foreach (var gear in MainWindow.Instance.CurrentCharacter.InventoryGears)
+            {
+                gear.Equiping += Gear_Equiping;
+            }
+        }
+
+        // Bind every usables to the equip event
+        public void BinderUsables()
+        {
+            foreach (var usable in MainWindow.Instance.CurrentCharacter.InventoryUsables)
+            {
+                usable.Equiping += Usable_Equiping;
+            }
+        }
+
+        private void RenderCharacter(Boolean forUsables = false)
+        {
+            // Give the updated character
+            HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
+            HomePage.EquipmentUC.RenderItems();
+            HomePage.CharacterStatsUC.RenderCharacterStats(
+                MainWindow.Instance.CurrentCharacter
+            );
+            // Give the updated list
+            if (!forUsables)
+                HomePage.InventoryUC.RenderGears(
+                    MainWindow.Instance.CurrentCharacter.InventoryGears,
+                    true
+                );
+            else
+                HomePage.InventoryUC.RenderUsables(
+                    MainWindow.Instance.CurrentCharacter.InventoryUsables,
+                    true
+                );
+        }
+
+        private void Gear_Equiping(object sender, EventArgs e)
+        {
+            Gear gear = (sender as Gear);
+            // Compatibility of character with this gear
+            if (gear.IsCompatible(MainWindow.Instance.CurrentCharacter))
+            {
+                MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
+                MainWindow.Instance.CurrentCharacter.Equip(gear);
+                RenderCharacter();
+            }
+            else
+                MainWindow.Logger.Warning("You can't equip that gear (class or level)");
+        }
+
+        private void Usable_Equiping(object sender, EventArgs e)
+        {
+            Usable usable = (sender as Usable);
+            MainWindow.Instance.CurrentCharacter.InventoryUsables.Remove(usable);
+            MainWindow.Instance.CurrentCharacter.Equip(usable);
+            RenderCharacter(true);
+        }
+
         private void InventoryUC_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
         {
             HomePage.InventoryUC.RenderGears(
@@ -253,14 +282,6 @@ namespace ShakesAndFidget.ViewModels
             );
             BinderUsables();
             BinderEquipment();
-        }
-
-        private void EquipmentUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
-            HomePage.EquipmentUC.RenderItems();
-            BinderEquipment();
-            MainWindow.Instance.CurrentCharacter.PropertyChanged += CurrentCharacter_PropertyChanged;
         }
 
         private void CurrentCharacter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
