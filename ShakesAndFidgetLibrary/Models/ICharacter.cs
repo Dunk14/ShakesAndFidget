@@ -266,47 +266,47 @@ namespace ShakesAndFidgetLibrary.Models
 
         public void Unequip(Gear gear)
         {
-            if (gear == Head)
+            if (gear.GearType == "Head")
             {
                 InventoryGears.Add(gear);
                 Head = null;
                 HeadId = null;
             }
-            else if (gear == Armor)
+            else if (gear.GearType == "Armor")
             {
                 InventoryGears.Add(gear);
                 Armor = null;
                 ArmorId = null;
             }
-            else if (gear == Legs)
+            else if (gear.GearType == "Legs")
             {
                 InventoryGears.Add(gear);
                 Legs = null;
                 LegsId = null;
             }
-            else if (gear == Ring1)
+            else if (gear.GearType == "Ring1")
             {
                 InventoryGears.Add(gear);
                 Ring1 = null;
                 Ring1Id = null;
             }
-            else if (gear == Ring2)
+            else if (gear.GearType == "Ring2")
             {
                 InventoryGears.Add(gear);
                 Ring2 = null;
                 Ring2Id = null;
             }
-            else if (gear == Special)
+            else if (gear.GearType == "Special")
             {
                 InventoryGears.Add(gear);
                 Special = null;
                 SpecialId = null;
             }
-            else if (gear == Attack)
+            else if (gear.GearType == "Attack")
             {
                 InventoryGears.Add(gear);
                 Attack = null;
-                AttackId = null;
+                AttackId = (int?) null;
             }
         }
 
@@ -438,7 +438,7 @@ namespace ShakesAndFidgetLibrary.Models
         public async Task<string> LoadSpecialImage()
         {
             if (Special != null)
-                return Attack.ImageSource;
+                return Special.ImageSource;
             else if (SpecialId.HasValue)
             {
                 Special = await AGearRoutes.GetOne(SpecialId.Value);
@@ -457,6 +457,18 @@ namespace ShakesAndFidgetLibrary.Models
                 return Attack.ImageSource;
             }
             return ImageSourceAttack;
+        }
+
+        public async Task<string> LoadUsableImage()
+        {
+            if (Usable != null)
+                return Usable.ImageSource;
+            else if (UsableId.HasValue)
+            {
+                Usable = await AUsableRoutes.GetOne(UsableId.Value);
+                return Usable.ImageSource;
+            }
+            return IMAGE_SOURCE_USABLE;
         }
         #endregion
 

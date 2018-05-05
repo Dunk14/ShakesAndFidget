@@ -24,13 +24,13 @@ namespace ShakesAndFidgetLibrary.Models
         {
             // Compatibilité des classes
             if (character is Warrior && !String.IsNullOrWhiteSpace(this.CharacterType)
-                && this.CharacterType != "W")
+                && !this.CharacterType.Contains("W"))
                 return false;
             else if (character is Hunter && !String.IsNullOrWhiteSpace(this.CharacterType)
-                && this.CharacterType != "H")
+                && !this.CharacterType.Contains("H"))
                 return false;
-            else if (character is Magus && !String.IsNullOrEmpty(this.CharacterType)
-                && this.CharacterType != "M")
+            else if (character is Magus && !String.IsNullOrWhiteSpace(this.CharacterType)
+                && !this.CharacterType.Contains("M"))
                 return false;
             // Compatibilité du niveau
             else if (this.LevelMin > character.Level)

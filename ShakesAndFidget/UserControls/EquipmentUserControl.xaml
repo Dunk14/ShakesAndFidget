@@ -36,13 +36,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Ring1.Name}" 
+                    Content="{Binding Character.Ring1.Name}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Ring1.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Ring1.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
@@ -58,13 +58,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Head.Name}" 
+                    Content="{Binding Character.Head.Name}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Head.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Head.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
@@ -80,13 +80,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Ring2.Name}" 
+                    Content="{Binding Character.Ring2.Name}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Ring2.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Ring2.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
@@ -101,13 +101,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Special.Name}" 
+                    Content="{Binding Character.Special.Name}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Special.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Special.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
@@ -122,13 +122,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Attack.Name}" 
+                    Content="{Binding Character.Attack.Name, Mode=TwoWay}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Attack.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Attack.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
@@ -144,13 +144,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Armor.Name}" 
+                    Content="{Binding Character.Armor.Name}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Armor.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Armor.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
@@ -166,13 +166,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Legs.Name}" 
+                    Content="{Binding Character.Legs.Name}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Legs.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Legs.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
@@ -188,13 +188,13 @@
             >
             <Image.ToolTip>
                 <ToolTip 
-                    Content="{Binding Usable.Name}" 
+                    Content="{Binding Character.Usable.Name}" 
                     FontSize="14"
                 />
             </Image.ToolTip>
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Unequip" Command="{Binding Usable.Unequip}"/>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Usable.Unequip}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
