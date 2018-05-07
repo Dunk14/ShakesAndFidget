@@ -236,8 +236,8 @@ namespace ShakesAndFidget.ViewModels
         {
             HomePage.DealerUC.FillItems(
                  await AGearBaseRoutes.GetAllGearBases(),
-                 MainWindow.Instance.CurrentCharacter
-             );
+                 MainWindow.Instance.CurrentCharacter);
+            HomePage.DealerUC.RenderGears();
         }  //control K + control C / control K + control U
 
 

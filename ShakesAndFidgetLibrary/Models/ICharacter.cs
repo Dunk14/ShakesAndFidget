@@ -16,7 +16,7 @@ namespace ShakesAndFidgetLibrary.Models
         #region StaticVariables
         #endregion
 
-        #region Constants
+          #region Constants
         public const string IMAGE_SOURCE_ITEM = "pack://application:,,,/Resources/Inventory Item.png";
         public const string IMAGE_SOURCE_HEAD = "pack://application:,,,/Resources/Inventory Helmet.png";
         public const string IMAGE_SOURCE_ARMOR = "pack://application:,,,/Resources/Inventory Armor.png";
@@ -32,6 +32,7 @@ namespace ShakesAndFidgetLibrary.Models
         private string type;
         private string sexe;
         private int level;
+        private int money;
         private Gear head;
         private Gear armor;
         private Gear legs;

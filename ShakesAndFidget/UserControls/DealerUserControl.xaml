@@ -38,6 +38,7 @@
 							<ListView.ItemTemplate>
 								<DataTemplate>
 									<StackPanel Orientation="Horizontal">
+										
 										<!--Place one element per element-->
 										<Image
                                             Height="64"
@@ -46,10 +47,7 @@
                                             HorizontalAlignment="Stretch"
                                             Source="{Binding ImageSource}">
 											<Image.ToolTip>
-												<ToolTip 
-                                                    Content="{Binding Name}" 
-                                                    FontSize="14"
-                                                    />
+												<Label Content="{Binding Name}" />
 											</Image.ToolTip>
 											<Image.ContextMenu>
 												<ContextMenu>

@@ -26,6 +26,8 @@ namespace ShakesAndFidget.UserControls
             public event PropertyChangedEventHandler PropertyChanged;
 
             public int HorizontalMaxItems { get; set; }
+            public List<Gear> ListGear { get; set; }
+            public List<Usable> ListUsable { get; set; }
 
             private ObservableCollection<GearsRow> gearsRows;
             public ObservableCollection<GearsRow> GearsRows
@@ -62,6 +64,7 @@ namespace ShakesAndFidget.UserControls
                 UsablesRows = new ObservableCollection<UsableRow>();
                 this.DataContext = this;
                 HorizontalMaxItems = 0;
+                ListGear = new List<Gear>();
                 Events();
             }
 
@@ -69,7 +72,7 @@ namespace ShakesAndFidget.UserControls
             {
             }
 
-            public void RenderGears(ICollection<Gear> gearsList, Boolean force = false)
+            public void RenderGears(Boolean force = false)
             {
                 // Maximum of items for horizontal ViewList
                 double widthMinusItemSize = (GearsListViewParent.ActualWidth - 64) / 64.0;
@@ -83,7 +86,7 @@ namespace ShakesAndFidget.UserControls
                     HorizontalMaxItems = horizontalMaxItems;
 
                     // Number of lists needed to create enough space for all items
-                    double notCeiledListsNumber = (gearsList.Count + .0) / (horizontalMaxItems + .0);
+                    double notCeiledListsNumber = (ListGear.Count + .0) / (horizontalMaxItems + .0);
                     int listsNumber = Convert.ToInt32(Math.Ceiling(notCeiledListsNumber));
                     if (listsNumber < 1)
                         listsNumber = 1;
@@ -92,7 +95,7 @@ namespace ShakesAndFidget.UserControls
                     GearsRows = new ObservableCollection<GearsRow>();
 
                     // Inject items by cutting them in parent lists that contain some children lists
-                    int maxIterations = gearsList.Count;
+                    int maxIterations = ListGear.Count;
                     for (int i = 0; i < listsNumber; i++)
                     {
                         // Creates every rows
@@ -101,7 +104,7 @@ namespace ShakesAndFidget.UserControls
                         for (int y = 0; y < horizontalMaxItems && maxIterations != 0; y++)
                         {
                             // And every sub items
-                            gearsRow.Gears.Add(gearsList.ToArray<Gear>()[maxIterations - 1]);
+                            gearsRow.Gears.Add(ListGear.ToArray<Gear>()[maxIterations - 1]);
                             maxIterations--;
                         }
                     }
@@ -154,7 +157,6 @@ namespace ShakesAndFidget.UserControls
 
         public void FillItems(List<GearBase> gearsBase, ICharacter character)
         {
-            List<Gear> items = new List<Gear>();
             Random randNum = new Random();
             int randNumber = randNum.Next(15, 35);
             for (int i = 0; i < randNumber; i++)
@@ -177,7 +179,7 @@ namespace ShakesAndFidget.UserControls
                 gear.PhysicalArmor = Convert.ToInt32(Math.Round(gear.PhysicalArmor * character.Level * randNumber3 * 0.4));
                 gear.MagicalArmor = Convert.ToInt32(Math.Round(gear.MagicalArmor * character.Level * randNumber3 * 0.4));
 
-                items.Add(gear);
+                ListGear.Add(gear);
             }
         }
 
