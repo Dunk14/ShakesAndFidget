@@ -1,5 +1,6 @@
 ﻿using ShakesAndFidget.Views;
 using ShakesAndFidgetLibrary.Models;
+using ShakesAndFidgetLibrary.Routes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,7 +47,8 @@ namespace ShakesAndFidget.ViewModels
         {
             HomePage.EquipmentUC.Loaded += EquipmentUC_Loaded;
             HomePage.InventoryUC.Loaded += InventoryUC_Loaded;
-            
+            HomePage.DealerUC.Loaded += DealerUC_Loaded;
+
         }
 
         // Bind every gears to the equip event
@@ -229,6 +231,15 @@ namespace ShakesAndFidget.ViewModels
             HomePage.EquipmentUC.RenderItems();
 
         }
+
+        public async void DealerUC_Loaded(object sender, EventArgs e)
+        {
+            HomePage.DealerUC.FillItems(
+                 await AGearBaseRoutes.GetAllGearBases(),
+                 MainWindow.Instance.CurrentCharacter
+             );
+        }  //control K + control C / control K + control U
+
 
         private void BinderEquipment()
         {

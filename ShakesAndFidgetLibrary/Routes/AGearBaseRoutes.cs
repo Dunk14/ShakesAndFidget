@@ -19,5 +19,6 @@ namespace ShakesAndFidgetLibrary.Routes
             gearBases = await webservice.HttpClientCaller<List<GearBase>>(GEAR_BASE_URL + methodRoute, gearBases);
             return gearBases;
         }
+
     }
 }

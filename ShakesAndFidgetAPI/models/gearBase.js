@@ -14,7 +14,7 @@ module.exports = function (sequelize) {
       type: Sequelize.STRING
     },
     CharacterType: {
-      type: Sequelize.STRING(1)
+      type: Sequelize.STRING(4)
     },
     GearType: {
       type: Sequelize.STRING(7)

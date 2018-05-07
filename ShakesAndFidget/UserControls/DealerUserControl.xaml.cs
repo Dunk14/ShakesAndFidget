@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Shapes; 
 
 namespace ShakesAndFidget.UserControls
 {
@@ -152,8 +152,36 @@ namespace ShakesAndFidget.UserControls
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
 
+        public void FillItems(List<GearBase> gearsBase, ICharacter character)
+        {
+            List<Gear> items = new List<Gear>();
+            Random randNum = new Random();
+            int randNumber = randNum.Next(15, 35);
+            for (int i = 0; i < randNumber; i++)
+            {
+                int randNumber2 = randNum.Next(0, 54);
+                Gear gear = gearsBase[randNumber2].ToGear(); // choisit un item aléatoire (ou faut-il rand sur l'id ?)
+                double randNumber3 = randNum.Next(1, 5); // NextDouble() est entre 0 et 1, donc avec + 0,5 pour avoir de 0,5 à 1,5
 
+                gear.Life = Convert.ToInt32(Math.Round(gear.Life * character.Level * randNumber3 * 0.4));
+                gear.Mana = Convert.ToInt32(Math.Round(gear.Mana * character.Level * randNumber3 * 0.4));
+                gear.Strength = Convert.ToInt32(Math.Round(gear.Strength * character.Level * randNumber3 * 0.4));
+                gear.Agility = Convert.ToInt32(Math.Round(gear.Agility * character.Level * randNumber3 * 0.4));
+                gear.Spirit = Convert.ToInt32(Math.Round(gear.Spirit * character.Level * randNumber3 * 0.4));
+                gear.Energy = Convert.ToInt32(Math.Round(gear.Energy * character.Level * randNumber3 * 0.4));
+                gear.Luck = Convert.ToInt32(Math.Round(gear.Luck * character.Level * randNumber3 * 0.4));
+                gear.CriticalDamage = Convert.ToInt32(Math.Round(gear.CriticalDamage * character.Level * randNumber3 * 0.4));
+                gear.MagicDamage = Convert.ToInt32(Math.Round(gear.MagicDamage * character.Level * randNumber3 * 0.4)); // 0.4 * randNumber3 est le coefficient d'aléatoirité des objets vendus
+                gear.PhysicalDamage = Convert.ToInt32(Math.Round(gear.PhysicalDamage * character.Level * randNumber3 * 0.4));
+                gear.CriticalProba = Convert.ToInt32(Math.Round(gear.CriticalProba * character.Level * randNumber3 * 0.4));
+                gear.PhysicalArmor = Convert.ToInt32(Math.Round(gear.PhysicalArmor * character.Level * randNumber3 * 0.4));
+                gear.MagicalArmor = Convert.ToInt32(Math.Round(gear.MagicalArmor * character.Level * randNumber3 * 0.4));
+
+                items.Add(gear);
+            }
         }
+
+    }
 
         public class DealerGearsRow
         {

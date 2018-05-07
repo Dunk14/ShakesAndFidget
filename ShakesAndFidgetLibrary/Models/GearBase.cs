@@ -35,7 +35,20 @@ namespace ShakesAndFidgetLibrary.Models
                 ImageSource = ImageSource,
                 CharacterType = CharacterType,
                 GearType = GearType,
-                LevelMin = LevelMin
+                LevelMin = LevelMin,
+                Life = Life,
+                Mana = Mana,
+                Energy = Energy,
+                Strength = Strength,
+                Agility = Agility,
+                Spirit = Spirit,
+                Luck = Luck,
+                CriticalDamage = CriticalDamage,
+                MagicDamage = MagicDamage,
+                PhysicalDamage = PhysicalDamage,
+                CriticalProba = CriticalProba,
+                PhysicalArmor = PhysicalArmor,
+                MagicalArmor = MagicalArmor
             };
             return gear;
         }
