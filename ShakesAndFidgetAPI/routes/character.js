@@ -34,8 +34,42 @@ router.get('/byUserId/:userId', function(req, res) {
     .then((character) => {
       if (!character)
         res.sendStatus(404);
-      else
-        res.send(character);
+      else {
+        models.Stats.findById(character.get('StatId'))
+          .then((stat) => {
+            res.send({
+              Id: character.get('Id'),
+              Type: character.get('Type'),
+              Name: character.get('Name'),
+              Sexe: character.get('Sexe'),
+              Level: character.get('Level'),
+              UserId: character.get('UserId'),
+              StatId: character.get('StatId'),
+              HeadId: character.get('HeadId'),
+              Ring1Id: character.get('Ring1Id'),
+              Ring2Id: character.get('Ring2Id'),
+              Usable1Id: character.get('Usable1Id'),
+              Usable2Id: character.get('Usable2Id'),
+              ArmorId: character.get('ArmorId'),
+              LegsId: character.get('LegsId'),
+              AttackId: character.get('AttackId'),
+              SpecialId: character.get('SpecialId'),
+              Life: stat.get('Life'),
+              Mana: stat.get('Mana'),
+              Energy: stat.get('Energy'),
+              Strength: stat.get('Strength'),
+              Agility: stat.get('Agility'),
+              Spirit: stat.get('Spirit'),
+              Luck: stat.get('Luck'),
+              CriticalDamage: stat.get('CriticalDamage'),
+              MagicDamage: stat.get('MagicDamage'),
+              PhysicalDamage: stat.get('PhysicalDamage'),
+              CriticalProba: stat.get('CriticalProba'),
+              PhysicalArmor: stat.get('PhysicalArmor'),
+              MagicalArmor: stat.get('MagicalArmor'),
+            });
+          })
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -83,7 +117,6 @@ router.post('/:userId', function(req, res) {
       Level: req.body.Level,
       UserId: req.params.userId,
       StatId: stat.get('Id'),
-      HeadId: req.body.HeadId || null,
       AttackId: req.body.AttackId || null
     })
     .then((character) => {

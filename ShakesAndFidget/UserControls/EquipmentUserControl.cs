@@ -1,6 +1,7 @@
 ﻿using ShakesAndFidgetLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace ShakesAndFidget.UserControls
     /// <summary>
     /// Logique d'interaction pour HomeUserControl.xaml
     /// </summary>
-    public partial class EquipmentUserControl : UserControl
+    public partial class EquipmentUserControl : UserControl, INotifyPropertyChanged
     {
         private ICharacter character;
         public ICharacter Character
@@ -28,14 +29,14 @@ namespace ShakesAndFidget.UserControls
             set
             {
                 character = value;
-                Character.PropertyChanged += Character_PropertyChanged;
+                OnPropertyChanged("Character");
             }
         }
 
         public EquipmentUserControl()
         {
             InitializeComponent();
-            DataContext = Character;
+            DataContext = this;
             Events();
         }
 
@@ -58,6 +59,14 @@ namespace ShakesAndFidget.UserControls
             Armor.Source = new BitmapImage(new Uri(await Character.LoadArmorImage()));
             Legs.Source = new BitmapImage(new Uri(await Character.LoadLegsImage()));
             Special.Source = new BitmapImage(new Uri(await Character.LoadSpecialImage()));
+            Usable.Source = new BitmapImage(new Uri(await Character.LoadUsableImage()));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

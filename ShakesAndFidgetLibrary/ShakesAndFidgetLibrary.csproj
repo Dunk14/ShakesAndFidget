@@ -85,6 +85,7 @@
     <Compile Include="Routes\ACharacterRoutes.cs" />
     <Compile Include="Routes\AGearBaseRoutes.cs" />
     <Compile Include="Routes\AGearRoutes.cs" />
+    <Compile Include="Routes\AUsableRoutes.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -125,13 +125,11 @@ namespace ShakesAndFidget.ViewModels
         {
             if (IsFemale)
             {
-                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.Stats = CharactersListF[CurrentIndex];
-                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats();
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListF[CurrentIndex]);
             }
             else
             {
-                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.Stats = CharactersListM[CurrentIndex];
-                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats();
+                FirstConnectionPage.FirstConnectionUC.CharacterStatsUC.RenderCharacterStats(CharactersListM[CurrentIndex]);
             }
         }
 

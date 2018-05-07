@@ -23,8 +23,6 @@ namespace ShakesAndFidget.UserControls
     /// </summary>
     public partial class InventoryUserControl : UserControl, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public int HorizontalMaxItems { get; set; }
 
         private ObservableCollection<GearsRow> gearsRows;
@@ -147,12 +145,12 @@ namespace ShakesAndFidget.UserControls
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-
     }
 
     public class GearsRow

@@ -25,6 +25,8 @@ router.get('/:gearId', function(req, res) {
       .then((stat) => {
         res.send({
           Id: gear.get('Id'),
+          CharacterType: gearBase.get('CharacterType'),
+          GearType: gearBase.get('GearType'),
           Name: gearBase.get('Name'),
           ImageSource: gearBase.get('ImageSource'),
           Type: gearBase.get('Type'),

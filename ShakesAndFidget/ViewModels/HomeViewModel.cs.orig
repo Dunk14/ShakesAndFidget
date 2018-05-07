@@ -52,6 +52,16 @@ namespace ShakesAndFidget.ViewModels
 
         }
 
+        // Bind every gears to the equip event
+        public void BinderGear()
+        {
+            foreach (var gear in MainWindow.Instance.CurrentCharacter.InventoryGears)
+            {
+                gear.Equiping -= Gear_Equiping;
+                gear.Equiping += Gear_Equiping;
+            }
+        }
+
         private async void EquipmentUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
