@@ -47,8 +47,25 @@
                                             HorizontalAlignment="Stretch"
                                             Source="{Binding ImageSource}">
 											<Image.ToolTip>
-												<Label Content="{Binding Name}" />
+												<VirtualizingStackPanel>
+													<TextBlock Text="{Binding Name, StringFormat=' {0}'}" />
+													<TextBlock Text="{Binding Life, StringFormat='Life: {0}'}" />
+													<TextBlock Text="{Binding Mana, StringFormat='Mana: {0}'}" />
+													<TextBlock Text="{Binding Energy, StringFormat='Energy: {0}'}" />
+													<TextBlock Text="{Binding Strength, StringFormat='Strength: {0}'}" />
+													<TextBlock Text="{Binding Agility, StringFormat='Agility: {0}'}" />
+													<TextBlock Text="{Binding Spirit, StringFormat='Spirit: {0}'}" />
+													<TextBlock Text="{Binding Luck, StringFormat='Luck: {0}'}" />
+													<TextBlock Text="{Binding CriticalDamage, StringFormat='CriticalDamage: {0}'}" />
+													<TextBlock Text="{Binding MagicDamage, StringFormat='MagicDamage: {0}'}" />
+													<TextBlock Text="{Binding PhysicalDamage, StringFormat='PhysicalDamage: {0}'}" />
+													<TextBlock Text="{Binding CriticalProba, StringFormat='CriticalProba: {0}'}" />
+													<TextBlock Text="{Binding PhysicalArmor, StringFormat='PhysicalArmor: {0}'}" />
+													<TextBlock Text="{Binding MagicalArmor, StringFormat='MagicalArmor: {0}'}" />
+													<TextBlock Text="{Binding Price, StringFormat='Price: {0}'}" />
+												</VirtualizingStackPanel>
 											</Image.ToolTip>
+												
 											<Image.ContextMenu>
 												<ContextMenu>
 													<MenuItem Header="Equip" Command="{Binding Equip}"/>
@@ -107,8 +124,8 @@
 										<Image.ContextMenu>
 											<ContextMenu>
 												<MenuItem
-                                                    Header="Equip"
-                                                    Command="{Binding Equip}"
+                                                    Header="Buy"
+                                                    Command="{Binding Buy}"
                                                     />
 											</ContextMenu>
 										</Image.ContextMenu>

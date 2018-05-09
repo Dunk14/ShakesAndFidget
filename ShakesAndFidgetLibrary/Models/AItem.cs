@@ -12,6 +12,7 @@ namespace ShakesAndFidgetLibrary.Models
     {
         public String Name { get; set; }
         public String ImageSource { get; set; }
+        public int Price { get; set; }
 
         public Stats ToStats()
         {
@@ -40,6 +41,16 @@ namespace ShakesAndFidgetLibrary.Models
             get { return new DelegateCommand(() => OnEquiping(new EventArgs())); }
         }
 
+        public ICommand Buy
+        {
+            get { return new DelegateCommand(() => OnBuying(new EventArgs())); }
+        }
+
+        public ICommand Sell
+        {
+            get { return new DelegateCommand(() => OnSelling(new EventArgs())); }
+        }
+
         public ICommand Unequip
         {
             get { return new DelegateCommand(() => OnUnequiping(new EventArgs())); }
@@ -62,6 +73,44 @@ namespace ShakesAndFidgetLibrary.Models
         protected virtual void OnEquiping(EventArgs e)
         {
             equiping?.Invoke(this, e);
+        }
+
+        private EventHandler selling;
+        public event EventHandler Selling
+        {
+            add
+            {
+                if (selling != value)
+                    selling += value;
+            }
+            remove
+            {
+                selling -= value;
+            }
+        }
+
+        protected virtual void OnSelling(EventArgs e)
+        {
+            selling?.Invoke(this, e);
+        }
+
+        private EventHandler buying;
+        public event EventHandler Buying
+        {
+            add
+            {
+                if (buying != value)
+                    buying += value;
+            }
+            remove
+            {
+                buying -= value;
+            }
+        }
+
+        protected virtual void OnBuying(EventArgs e)
+        {
+            buying?.Invoke(this, e);
         }
 
         private EventHandler unequiping;

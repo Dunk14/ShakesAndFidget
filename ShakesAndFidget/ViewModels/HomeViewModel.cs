@@ -202,6 +202,15 @@ namespace ShakesAndFidget.ViewModels
             foreach (var gear in MainWindow.Instance.CurrentCharacter.InventoryGears)
             {
                 gear.Equiping += Gear_Equiping;
+                gear.Selling += Gear_Selling;
+            }
+        }
+
+        public void BinderBuyGears()
+        {
+            foreach (var gear in HomePage.DealerUC.ListGear)
+            {
+                gear.Buying += Gear_Buying;
             }
         }
 
@@ -247,6 +256,21 @@ namespace ShakesAndFidget.ViewModels
             }
             else
                 MainWindow.Logger.Warning("You can't equip that gear (class or level)");
+        }
+
+        private void Gear_Buying(object sender, EventArgs e)
+        {
+            //Gear gear = (sender as Gear);
+            //if (MainWindow.Instance.CurrentCharacter.Money >= gear.Price)
+            //{
+            //    HomePage.DealerUC.ListGear.Remove(gear.Name);
+            //    MainWindow.Instance.CurrentCharacter.InventoryGears.Add(gear);
+            //}
+        }
+
+        private void Gear_Selling(object sender, EventArgs e)
+        {
+
         }
 
         private void Usable_Equiping(object sender, EventArgs e)

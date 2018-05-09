@@ -108,7 +108,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 7,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 80
     });
     GearBase.create({
       Id: 2,
@@ -129,7 +130,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 40
     });
     GearBase.create({
       Id: 3,
@@ -150,7 +152,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 4,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 50
     });
     GearBase.create({
       Id: 4,
@@ -171,7 +174,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 2,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 20
     });
     GearBase.create({
       Id: 5,
@@ -192,7 +196,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 4,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 60
     });
     GearBase.create({
       Id: 6,
@@ -213,7 +218,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 5,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 75
     });    
     GearBase.create({
       Id: 7,
@@ -234,7 +240,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 6,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 90
     });
     GearBase.create({
       Id: 8,
@@ -255,7 +262,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 6,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 85
     });
     GearBase.create({
       Id: 9,
@@ -276,7 +284,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 6,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 130
     });
     GearBase.create({
       Id: 10,
@@ -297,7 +306,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 8,
       CriticalProba: 1,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 160
     });
     GearBase.create({
       Id: 11,
@@ -318,7 +328,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 6,
       CriticalProba: 2,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 140
     });
     GearBase.create({
       Id: 12,
@@ -339,7 +350,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 6,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 90
     });
     GearBase.create({
       Id: 13,
@@ -360,7 +372,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 7,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 160
     });
     GearBase.create({
       Id: 14,
@@ -381,7 +394,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 9,
       CriticalProba: 1,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 180
     });
     GearBase.create({
       Id: 15,
@@ -402,7 +416,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 80
     });    
     GearBase.create({
       Id: 16,
@@ -423,7 +438,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 80
     });  
     GearBase.create({
       Id: 17,
@@ -444,7 +460,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 80
     });  
     GearBase.create({
       Id: 18,
@@ -465,29 +482,9 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
-    });      
-    GearBase.create({
-      Id: 19,
-      Name: 'Electric Staff',
-      ImageSource: 'pack://application:,,,/Resources/Electric Staff.png',
-      CharacterType: 'M',
-      GearType: 'Attack',
-      LevelMin: 8,
-      Life: 0,
-      Mana: 1,
-      Energy: 0,
-      Strength: 0,
-      Agility: 0,
-      Spirit: 4,
-      Luck: 0,
-      CriticalDamage: 4,
-      MagicDamage: 8,
-      PhysicalDamage: 0,
-      CriticalProba: 0,
-      PhysicalArmor: 0,
-      MagicalArmor: 0
-    });      
+      MagicalArmor: 0,
+      Price : 80
+    });           
     GearBase.create({
       Id: 20,
       Name: 'Cap',
@@ -507,7 +504,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 1,
-      MagicalArmor: 1
+      MagicalArmor: 1,
+      Price : 10
     });  
     GearBase.create({
       Id: 21,
@@ -528,7 +526,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 3,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 25
     });  
     GearBase.create({
       Id: 22,
@@ -549,7 +548,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 5,
-      MagicalArmor: 1
+      MagicalArmor: 1,
+      Price : 35
     });  
     GearBase.create({
       Id: 23,
@@ -570,7 +570,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 7,
-      MagicalArmor: 3
+      MagicalArmor: 3,
+      Price : 50
     });  
     GearBase.create({
       Id: 24,
@@ -591,7 +592,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 10,
-      MagicalArmor: 6
+      MagicalArmor: 6,
+      Price : 110
     });  
     GearBase.create({
       Id: 25,
@@ -612,7 +614,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 3,
-      MagicalArmor: 8
+      MagicalArmor: 8,
+      Price : 60
     });  
     GearBase.create({
       Id: 26,
@@ -633,7 +636,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 5,
-      MagicalArmor: 2
+      MagicalArmor: 2,
+      Price : 20
     });  
     GearBase.create({
       Id: 27,
@@ -654,7 +658,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 8,
-      MagicalArmor: 5
+      MagicalArmor: 5,
+      Price : 45
     });  
     GearBase.create({
       Id: 28,
@@ -675,7 +680,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 10,
-      MagicalArmor: 7
+      MagicalArmor: 7,
+      Price : 70
     });  
     GearBase.create({
       Id: 29,
@@ -696,7 +702,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 10,
-      MagicalArmor: 7
+      MagicalArmor: 7,
+      Price : 70
     });  
     GearBase.create({
       Id: 30,
@@ -717,7 +724,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 10,
-      MagicalArmor: 7
+      MagicalArmor: 7,
+      Price : 70
     });  
     GearBase.create({
       Id: 31,
@@ -738,7 +746,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 10,
-      MagicalArmor: 7
+      MagicalArmor: 7,
+      Price : 70
     });  
     GearBase.create({
       Id: 32,
@@ -759,7 +768,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 15,
-      MagicalArmor: 12
+      MagicalArmor: 12,
+      Price : 170
     });  
     GearBase.create({
       Id: 33,
@@ -780,7 +790,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 2,
-      MagicalArmor: 5
+      MagicalArmor: 5,
+      Price : 50
     });  
     GearBase.create({
       Id: 34,
@@ -801,7 +812,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 5,
-      MagicalArmor: 15 
+      MagicalArmor: 15 ,
+      Price : 140
     });  
     Stats.create({
       PhysicalDamage: 5,
@@ -826,7 +838,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 3,
-      MagicalArmor: 1
+      MagicalArmor: 1,
+      Price : 25
     });  
     GearBase.create({
       Id: 36,
@@ -847,7 +860,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 7,
-      MagicalArmor: 3
+      MagicalArmor: 3,
+      Price : 50
     });  
     GearBase.create({
       Id: 37,
@@ -868,7 +882,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 12,
-      MagicalArmor: 10
+      MagicalArmor: 10,
+      Price : 100
     });  
     GearBase.create({
       Id: 38,
@@ -889,7 +904,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 3,
-      MagicalArmor: 1
+      MagicalArmor: 1,
+      Price : 15
     });
     GearBase.create({
       Id: 39,
@@ -910,7 +926,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 6,
-      MagicalArmor: 3
+      MagicalArmor: 3,
+      Price : 30
     });  
     GearBase.create({
       Id: 40,
@@ -931,7 +948,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 9,
-      MagicalArmor: 5
+      MagicalArmor: 5,
+      Price : 45
     });  
     GearBase.create({
       Id: 41,
@@ -952,7 +970,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 15,
-      MagicalArmor: 12
+      MagicalArmor: 12,
+      Price : 120
     });  
     GearBase.create({
       Id: 42,
@@ -973,7 +992,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 15
     });  
     GearBase.create({
       Id: 43,
@@ -994,7 +1014,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 35
     });  
     GearBase.create({
       Id: 44,
@@ -1015,7 +1036,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 80
     });  
     GearBase.create({
       Id: 45,
@@ -1036,7 +1058,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 150
     });  
     GearBase.create({
       Id: 46,
@@ -1057,7 +1080,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 5
     });  
     GearBase.create({
       Id: 47,
@@ -1078,7 +1102,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 10
     });  
     GearBase.create({
       Id: 48,
@@ -1099,7 +1124,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 5
     });  
     GearBase.create({
       Id: 49,
@@ -1120,7 +1146,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 0,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 10
     });  
     GearBase.create({
       Id: 50,
@@ -1141,7 +1168,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 25,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 10
     });  
     GearBase.create({
       Id: 51,
@@ -1162,7 +1190,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 5,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 5
     });      
     GearBase.create({
       Id: 52,
@@ -1183,7 +1212,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 5,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 5
     });  
     GearBase.create({
       Id: 53,
@@ -1204,7 +1234,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 5,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 5
     });  
     GearBase.create({
       Id: 54,
@@ -1225,7 +1256,8 @@ sequelize.sync({force: true})
       PhysicalDamage: 5,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 5
     });  
     GearBase.create({
       Id: 55,
@@ -1246,9 +1278,9 @@ sequelize.sync({force: true})
       PhysicalDamage: 10,
       CriticalProba: 0,
       PhysicalArmor: 0,
-      MagicalArmor: 0
+      MagicalArmor: 0,
+      Price : 166
     });  
-
   });
 
 // view engine setup
