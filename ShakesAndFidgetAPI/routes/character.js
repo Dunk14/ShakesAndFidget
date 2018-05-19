@@ -43,6 +43,7 @@ router.get('/byUserId/:userId', function(req, res) {
               Name: character.get('Name'),
               Sexe: character.get('Sexe'),
               Level: character.get('Level'),
+              Money: character.get('Money'),
               UserId: character.get('UserId'),
               StatId: character.get('StatId'),
               HeadId: character.get('HeadId'),
@@ -115,6 +116,7 @@ router.post('/:userId', function(req, res) {
       Name: req.body.Name,
       Sexe: req.body.Sexe,
       Level: req.body.Level,
+      Money: req.body.Money,
       UserId: req.params.userId,
       StatId: stat.get('Id'),
       AttackId: req.body.AttackId || null

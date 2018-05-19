@@ -16,7 +16,7 @@ namespace ShakesAndFidgetLibrary.Models
         #region StaticVariables
         #endregion
 
-          #region Constants
+        #region Constants
         public const string IMAGE_SOURCE_ITEM = "pack://application:,,,/Resources/Inventory Item.png";
         public const string IMAGE_SOURCE_HEAD = "pack://application:,,,/Resources/Inventory Helmet.png";
         public const string IMAGE_SOURCE_ARMOR = "pack://application:,,,/Resources/Inventory Armor.png";
@@ -82,6 +82,16 @@ namespace ShakesAndFidgetLibrary.Models
             set {
                 level = value;
                 OnPropertyChanged("Level");
+            }
+        }
+
+        public int Money
+        {
+            get { return money; }
+            set
+            {
+                money = value;
+                OnPropertyChanged("Money");
             }
         }
 

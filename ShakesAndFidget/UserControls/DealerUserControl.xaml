@@ -48,7 +48,7 @@
                                             Source="{Binding ImageSource}">
 											<Image.ToolTip>
 												<VirtualizingStackPanel>
-													<TextBlock Text="{Binding Name, StringFormat=' {0}'}" />
+													<TextBlock Text="{Binding Name, StringFormat=' {0}'}" FontWeight="Bold"/>
 													<TextBlock Text="{Binding Life, StringFormat='Life: {0}'}" />
 													<TextBlock Text="{Binding Mana, StringFormat='Mana: {0}'}" />
 													<TextBlock Text="{Binding Energy, StringFormat='Energy: {0}'}" />
@@ -68,7 +68,7 @@
 												
 											<Image.ContextMenu>
 												<ContextMenu>
-													<MenuItem Header="Equip" Command="{Binding Equip}"/>
+													<MenuItem Header="Buy" Command="{Binding Buy}"/>
 												</ContextMenu>
 											</Image.ContextMenu>
 										</Image>

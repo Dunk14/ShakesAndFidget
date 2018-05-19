@@ -6,6 +6,9 @@ module.exports = function (sequelize) {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
+    },
+    Price: {
+      type: Sequelize.INTEGER
     }
   });
 

@@ -1,4 +1,5 @@
 ﻿using ShakesAndFidgetLibrary.Models;
+using ShakesAndFidgetLibrary.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -60,11 +61,6 @@ namespace ShakesAndFidget.UserControls
             UsablesRows = new ObservableCollection<UsableRow>();
             this.DataContext = this;
             HorizontalMaxItems = 0;
-            Events();
-        }
-
-        public void Events()
-        {
         }
 
         public void RenderGears(ICollection<Gear> gearsList, Boolean force = false)
@@ -151,20 +147,5 @@ namespace ShakesAndFidget.UserControls
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-    }
-
-    public class GearsRow
-    {
-        public ObservableCollection<Gear> Gears { get; set; }
-        public Gear SelectedGear { get; set; }
-
-        public GearsRow()
-        {
-        }
-    }
-
-    public class UsableRow
-    {
-        public ObservableCollection<Usable> Usables { get; set; }
     }
 }

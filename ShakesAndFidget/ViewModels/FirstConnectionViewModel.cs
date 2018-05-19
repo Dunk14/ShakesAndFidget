@@ -55,12 +55,12 @@ namespace ShakesAndFidget.ViewModels
 
             GearBases = await AGearBaseRoutes.GetAllGearBases();
             Gears = new Gear[3];
-            Gears[0] = GearBases.Find(x => x.Name == "Big Sword").ToGear();
+            Gears[0] = GearBases.Find(x => x.Name == "Knife").ToGear();
             Gears[1] = GearBases.Find(x => x.Name == "Bow").ToGear();
             Gears[2] = GearBases.Find(x => x.Name == "Staff").ToGear();
 
             Stats = new Stats[3];
-            Stats[0] = GearBases.Find(x => x.Name == "Big Sword").ToStats();
+            Stats[0] = GearBases.Find(x => x.Name == "Knife").ToStats();
             Stats[1] = GearBases.Find(x => x.Name == "Bow").ToStats();
             Stats[2] = GearBases.Find(x => x.Name == "Staff").ToStats();
 

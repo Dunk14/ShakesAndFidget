@@ -60,6 +60,9 @@ module.exports = function (sequelize) {
     },
     MagicalArmor: {
       type: Sequelize.INTEGER
+    },
+    Price: {
+      type: Sequelize.INTEGER
     }
   });
 

@@ -87,6 +87,7 @@
     <Compile Include="Routes\AGearRoutes.cs" />
     <Compile Include="Routes\AUsableRoutes.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
+    <Compile Include="Utils\ListViewRows.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

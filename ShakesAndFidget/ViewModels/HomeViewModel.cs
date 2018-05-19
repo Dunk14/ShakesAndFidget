@@ -52,7 +52,7 @@ namespace ShakesAndFidget.ViewModels
 
         }
 
-        private async void EquipmentUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void EquipmentUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
             HomePage.EquipmentUC.RenderItems();
@@ -260,12 +260,17 @@ namespace ShakesAndFidget.ViewModels
 
         private void Gear_Buying(object sender, EventArgs e)
         {
-            //Gear gear = (sender as Gear);
-            //if (MainWindow.Instance.CurrentCharacter.Money >= gear.Price)
-            //{
-            //    HomePage.DealerUC.ListGear.Remove(gear.Name);
-            //    MainWindow.Instance.CurrentCharacter.InventoryGears.Add(gear);
-            //}
+            Gear gear = (sender as Gear);
+            MainWindow.Logger.Log("Money: "+MainWindow.Instance.CurrentCharacter.Money.ToString());
+            MainWindow.Logger.Log("Price: "+gear.Price.ToString());
+            if (MainWindow.Instance.CurrentCharacter.Money >= gear.Price)
+            {
+                HomePage.DealerUC.ListGear.Remove(gear);
+                MainWindow.Instance.CurrentCharacter.InventoryGears.Add(gear);
+                MainWindow.Instance.CurrentCharacter.Money -= gear.Price;
+                RenderCharacter();
+                HomePage.DealerUC.RenderGears(true);
+            }
         }
 
         private void Gear_Selling(object sender, EventArgs e)
@@ -322,6 +327,7 @@ namespace ShakesAndFidget.ViewModels
                  await AGearBaseRoutes.GetAllGearBases(),
                  MainWindow.Instance.CurrentCharacter);
             HomePage.DealerUC.RenderGears();
+            BinderBuyGears();
         }  //control K + control C / control K + control U
 
 
