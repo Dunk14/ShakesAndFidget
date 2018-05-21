@@ -7,6 +7,8 @@ var logger = require('morgan');
 var userModel = require('./models/user');
 var characterModel = require('./models/character');
 var statsModel = require('./models/stats');
+var usableModel = require('./models/usable');
+var usableBaseModel = require('./models/usableBase');
 var gearModel = require('./models/gear');
 var gearBaseModel = require('./models/gearBase');
 
@@ -58,26 +60,122 @@ sequelize
 const User = userModel(sequelize);
 const Character = characterModel(sequelize);
 const Stats = statsModel(sequelize);
+const Usable = usableModel(sequelize);
+const UsableBase = usableBaseModel(sequelize);
 const Gear = gearModel(sequelize);
 const GearBase = gearBaseModel(sequelize);
-var models = {User, Character, Stats, Gear, GearBase};
+var models = {User, Character, Stats, Usable, UsableBase, Gear, GearBase};
 app.set('models', models);
 
-User.hasMany(Character, {as: 'Characters', hooks: true, onDelete: 'CASCADE', foreignKey: 'UserId', inverse: true});
-Character.belongsTo(User, {as: 'User'});
-GearBase.hasMany(Gear, {as: 'Gears', hooks: true, onDelete: 'CASCADE', foreignKey: 'GearBaseId', inverse: true});
-Gear.belongsTo(GearBase, {as: 'GearBase'});
-Stats.hasOne(Character, {as: 'StatCharacter', foreignKey: 'StatId'});
-Gear.hasOne(Character, {as: 'Head', foreignKey: 'HeadId'});
-Gear.hasOne(Character, {as: 'Ring1', foreignKey: 'Ring1Id'});
-Gear.hasOne(Character, {as: 'Ring2', foreignKey: 'Ring2Id'});
-Gear.hasOne(Character, {as: 'Usable1', foreignKey: 'Usable1Id'});
-Gear.hasOne(Character, {as: 'Usable2', foreignKey: 'Usable2Id'});
-Gear.hasOne(Character, {as: 'Armor', foreignKey: 'ArmorId'});
-Gear.hasOne(Character, {as: 'Legs', foreignKey: 'LegsId'});
-Gear.hasOne(Character, {as: 'Attack', foreignKey: 'AttackId'});
-Gear.hasOne(Character, {as: 'Special', foreignKey: 'SpecialId'});
-Stats.hasOne(Gear, {as: 'StatGear', foreignKey: 'StatId'});
+// A user can have many characters
+User.hasMany(Character, {
+  as: 'Characters',
+  constraints: false,
+  hooks: true,
+  onDelete: 'CASCADE',
+  foreignKey: 'UserId',
+  inverse: true
+});
+Character.belongsTo(User, {
+  as: 'User'
+});
+// Character inventory of gears
+Character.hasMany(Gear, {
+  as: 'Gears',
+  constraints: false,
+  hooks: true,
+  onDelete: 'CASCADE',
+  foreignKey: 'CharacterInventoryId',
+  inverse: true
+});
+GearBase.hasMany(Gear, {
+  as: 'Gears',
+  constraints: false,
+  hooks: true,
+  onDelete: 'CASCADE',
+  foreignKey: 'GearBaseId',
+  inverse: true
+});
+Gear.belongsTo(GearBase, {
+  as: 'GearBase'
+});
+// Character inventory of usables
+Character.hasMany(Usable, {
+  as: 'Usables',
+  constraints: false,
+  hooks: true,
+  onDelete: 'CASCADE',
+  foreignKey: 'CharacterInventoryId',
+  inverse: true
+});
+UsableBase.hasMany(Usable, {
+  as: 'Usables',
+  constraints: false,
+  hooks: true,
+  onDelete: 'CASCADE',
+  foreignKey: 'UsableBaseId',
+  inverse: true
+});
+Usable.belongsTo(UsableBase, {
+  as: 'UsableBase'
+});
+// Stat id
+Stats.hasOne(Character, {
+  as: 'StatCharacter',
+  foreignKey: 'StatId'
+});
+// Head id
+Gear.hasOne(Character, {
+  as: 'Head',
+  foreignKey: 'HeadId',
+  constraints: false
+});
+// Ring1 id
+Gear.hasOne(Character, {
+  as: 'Ring1',
+  foreignKey: 'Ring1Id',
+  constraints: false
+});
+// Ring2 id
+Gear.hasOne(Character, {
+  as: 'Ring2',
+  foreignKey: 'Ring2Id',
+  constraints: false
+});
+// Usable Id
+Gear.hasOne(Character, {
+  as: 'Usable',
+  foreignKey: 'UsableId',
+  constraints: false
+});
+// Armor id
+Gear.hasOne(Character, {
+  as: 'Armor',
+  foreignKey: 'ArmorId',
+  constraints: false
+});
+// Legs id
+Gear.hasOne(Character, {
+  as: 'Legs',
+  foreignKey: 'LegsId',
+  constraints: false
+});
+// Attack id
+Gear.hasOne(Character, {
+  as: 'Attack',
+  foreignKey: 'AttackId',
+  constraints: false
+});
+// Special id
+Gear.hasOne(Character, {
+  as: 'Special',
+  foreignKey: 'SpecialId',
+  constraints: false
+});
+Stats.hasOne(Gear, {
+  as: 'StatGear',
+  foreignKey: 'StatId'
+});
 
 sequelize.sync({force: true})
   .then(() => {
@@ -95,21 +193,21 @@ sequelize.sync({force: true})
       ImageSource: 'pack://application:,,,/Resources/Big Sword.png',
       CharacterType: 'W',
       GearType: 'Attack',
-      LevelMin: 5,
+      LevelMin: 1,
       Life: 0,
       Mana: 0,
       Energy: 0,
-      Strength: 2,
+      Strength: 0,
       Agility: 0,
       Spirit: 0,
       Luck: 0,
       CriticalDamage: 5,
       MagicDamage: 0,
-      PhysicalDamage: 7,
+      PhysicalDamage: 2,
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 80
+      Price: 80
     });
     GearBase.create({
       Id: 2,
@@ -131,7 +229,7 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 40
+      Price: 40
     });
     GearBase.create({
       Id: 3,
@@ -153,7 +251,7 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 50
+      Price: 50
     });
     GearBase.create({
       Id: 4,
@@ -220,7 +318,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 75
-    });    
+    });
     GearBase.create({
       Id: 7,
       Name: 'Scythe',
@@ -418,7 +516,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 80
-    });    
+    });
     GearBase.create({
       Id: 16,
       Name: 'Fire Staff',
@@ -440,7 +538,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 80
-    });  
+    });
     GearBase.create({
       Id: 17,
       Name: 'Ice Staff',
@@ -462,7 +560,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 80
-    });  
+    });
     GearBase.create({
       Id: 18,
       Name: 'Wind Staff',
@@ -484,7 +582,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 80
-    });           
+    });
     GearBase.create({
       Id: 20,
       Name: 'Cap',
@@ -506,7 +604,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 1,
       MagicalArmor: 1,
       Price : 10
-    });  
+    });
     GearBase.create({
       Id: 21,
       Name: 'Wood Helmet',
@@ -528,7 +626,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 3,
       MagicalArmor: 0,
       Price : 25
-    });  
+    });
     GearBase.create({
       Id: 22,
       Name: 'Helmet',
@@ -550,7 +648,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 5,
       MagicalArmor: 1,
       Price : 35
-    });  
+    });
     GearBase.create({
       Id: 23,
       Name: 'Big Helmet',
@@ -572,7 +670,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 7,
       MagicalArmor: 3,
       Price : 50
-    });  
+    });
     GearBase.create({
       Id: 24,
       Name: 'Dragon Helmet',
@@ -594,7 +692,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 10,
       MagicalArmor: 6,
       Price : 110
-    });  
+    });
     GearBase.create({
       Id: 25,
       Name: 'Wizard Hat',
@@ -616,7 +714,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 3,
       MagicalArmor: 8,
       Price : 60
-    });  
+    });
     GearBase.create({
       Id: 26,
       Name: 'Studded Jacket',
@@ -638,7 +736,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 5,
       MagicalArmor: 2,
       Price : 20
-    });  
+    });
     GearBase.create({
       Id: 27,
       Name: 'Medium Armor',
@@ -660,7 +758,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 8,
       MagicalArmor: 5,
       Price : 45
-    });  
+    });
     GearBase.create({
       Id: 28,
       Name: 'Electric Armor',
@@ -682,7 +780,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 10,
       MagicalArmor: 7,
       Price : 70
-    });  
+    });
     GearBase.create({
       Id: 29,
       Name: 'Fire Armor',
@@ -704,7 +802,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 10,
       MagicalArmor: 7,
       Price : 70
-    });  
+    });
     GearBase.create({
       Id: 30,
       Name: 'Ice Armor',
@@ -726,7 +824,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 10,
       MagicalArmor: 7,
       Price : 70
-    });  
+    });
     GearBase.create({
       Id: 31,
       Name: 'Wind Armor',
@@ -748,7 +846,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 10,
       MagicalArmor: 7,
       Price : 70
-    });  
+    });
     GearBase.create({
       Id: 32,
       Name: 'Power Armor',
@@ -770,7 +868,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 15,
       MagicalArmor: 12,
       Price : 170
-    });  
+    });
     GearBase.create({
       Id: 33,
       Name: 'Dress',
@@ -792,7 +890,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 2,
       MagicalArmor: 5,
       Price : 50
-    });  
+    });
     GearBase.create({
       Id: 34,
       Name: 'Dark Dress',
@@ -814,11 +912,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 5,
       MagicalArmor: 15 ,
       Price : 140
-    });  
-    Stats.create({
-      PhysicalDamage: 5,
-      CriticalDamage: 3
-    })
+    });
     GearBase.create({
       Id: 35,
       Name: 'Little Shield',
@@ -840,7 +934,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 3,
       MagicalArmor: 1,
       Price : 25
-    });  
+    });
     GearBase.create({
       Id: 36,
       Name: 'Big Shield',
@@ -862,7 +956,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 7,
       MagicalArmor: 3,
       Price : 50
-    });  
+    });
     GearBase.create({
       Id: 37,
       Name: 'Sacred Shield',
@@ -884,7 +978,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 12,
       MagicalArmor: 10,
       Price : 100
-    });  
+    });
     GearBase.create({
       Id: 38,
       Name: 'Simple Trousers',
@@ -928,7 +1022,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 6,
       MagicalArmor: 3,
       Price : 30
-    });  
+    });
     GearBase.create({
       Id: 40,
       Name: 'Heavy Trousers',
@@ -950,7 +1044,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 9,
       MagicalArmor: 5,
       Price : 45
-    });  
+    });
     GearBase.create({
       Id: 41,
       Name: 'Wallace\'s Automatic Trousers',
@@ -972,7 +1066,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 15,
       MagicalArmor: 12,
       Price : 120
-    });  
+    });
     GearBase.create({
       Id: 42,
       Name: 'Little Power Ring',
@@ -994,7 +1088,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 15
-    });  
+    });
     GearBase.create({
       Id: 43,
       Name: 'Nice Power Ring',
@@ -1016,7 +1110,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 35
-    });  
+    });
     GearBase.create({
       Id: 44,
       Name: 'Powerful Power Ring',
@@ -1038,7 +1132,7 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 80
-    });  
+    });
     GearBase.create({
       Id: 45,
       Name: 'Luck Earrings',
@@ -1060,8 +1154,9 @@ sequelize.sync({force: true})
       PhysicalArmor: 0,
       MagicalArmor: 0,
       Price : 150
-    });  
-    GearBase.create({
+    });
+    // Some usables
+    UsableBase.create({
       Id: 46,
       Name: 'Heal Potion',
       ImageSource: 'pack://application:,,,/Resources/Heal Potion.png',
@@ -1081,9 +1176,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 5
-    });  
-    GearBase.create({
+      Price : 20
+    });
+    UsableBase.create({
       Id: 47,
       Name: 'Big Heal Potion',
       ImageSource: 'pack://application:,,,/Resources/Big Heal Potion.png',
@@ -1103,9 +1198,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 10
-    });  
-    GearBase.create({
+      Price : 40
+    });
+    UsableBase.create({
       Id: 48,
       Name: 'Mana Potion',
       ImageSource: 'pack://application:,,,/Resources/Mana Potion.png',
@@ -1125,9 +1220,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 5
-    });  
-    GearBase.create({
+      Price : 20
+    });
+    UsableBase.create({
       Id: 49,
       Name: 'Big Mana Potion',
       ImageSource: 'pack://application:,,,/Resources/Big Mana Potion.png',
@@ -1147,9 +1242,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 10
-    });  
-    GearBase.create({
+      Price : 40
+    });
+    UsableBase.create({
       Id: 50,
       Name: 'Throwing Weapon',
       ImageSource: 'pack://application:,,,/Resources/Throwing Weapon.png',
@@ -1169,9 +1264,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 10
-    });  
-    GearBase.create({
+      Price : 15
+    });
+    UsableBase.create({
       Id: 51,
       Name: 'Electric Arrow',
       ImageSource: 'pack://application:,,,/Resources/Electric Arrow.png',
@@ -1191,9 +1286,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 5
-    });      
-    GearBase.create({
+      Price : 30
+    });
+    UsableBase.create({
       Id: 52,
       Name: 'Fire Arrow',
       ImageSource: 'pack://application:,,,/Resources/Fire Arrow.png',
@@ -1213,9 +1308,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 5
-    });  
-    GearBase.create({
+      Price : 30
+    });
+    UsableBase.create({
       Id: 53,
       Name: 'Ice Arrow',
       ImageSource: 'pack://application:,,,/Resources/Ice Arrow.png',
@@ -1235,9 +1330,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 5
-    });  
-    GearBase.create({
+      Price : 30
+    });
+    UsableBase.create({
       Id: 54,
       Name: 'Wind Arrow',
       ImageSource: 'pack://application:,,,/Resources/Wind Arrow.png',
@@ -1257,8 +1352,9 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 5
-    });  
+      Price : 30
+    });
+    // Some gears
     GearBase.create({
       Id: 55,
       Name: 'Bloody Sword',
@@ -1279,8 +1375,8 @@ sequelize.sync({force: true})
       CriticalProba: 0,
       PhysicalArmor: 0,
       MagicalArmor: 0,
-      Price : 166
-    });  
+      Price : 100
+    });
   });
 
 // view engine setup

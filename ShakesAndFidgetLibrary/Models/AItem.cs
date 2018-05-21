@@ -13,6 +13,8 @@ namespace ShakesAndFidgetLibrary.Models
         public String Name { get; set; }
         public String ImageSource { get; set; }
         public int Price { get; set; }
+        public int ItemBaseId { get; set; }
+        public int? CharacterInventoryId { get; set; }
 
         public Stats ToStats()
         {

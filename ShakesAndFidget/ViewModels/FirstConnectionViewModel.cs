@@ -59,11 +59,6 @@ namespace ShakesAndFidget.ViewModels
             Gears[1] = GearBases.Find(x => x.Name == "Bow").ToGear();
             Gears[2] = GearBases.Find(x => x.Name == "Staff").ToGear();
 
-            Stats = new Stats[3];
-            Stats[0] = GearBases.Find(x => x.Name == "Knife").ToStats();
-            Stats[1] = GearBases.Find(x => x.Name == "Bow").ToStats();
-            Stats[2] = GearBases.Find(x => x.Name == "Staff").ToStats();
-
             CharactersListM = new ICharacter[3];
             CharactersListM[0] = new Warrior("M", true);
             CharactersListM[1] = new Hunter("M", true);
@@ -176,7 +171,7 @@ namespace ShakesAndFidget.ViewModels
         private async void Validate_Yes_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             // First step is to create Gear with Stats relation
-            int resultGear = await AGearRoutes.CreateGear(Stats[CurrentIndex], GearBases[CurrentIndex].Id);
+            int resultGear = await AGearRoutes.CreateGear(Gears[CurrentIndex], Gears[CurrentIndex].ItemBaseId);
             if (resultGear >= 0)
             {
                 // Link generated Id on Gear

@@ -50,7 +50,8 @@ namespace ShakesAndFidgetLibrary.Models
                 CriticalProba = CriticalProba,
                 PhysicalArmor = PhysicalArmor,
                 MagicalArmor = MagicalArmor,
-                Price = Price
+                Price = Price,
+                ItemBaseId = Id
             };
             return gear;
         }

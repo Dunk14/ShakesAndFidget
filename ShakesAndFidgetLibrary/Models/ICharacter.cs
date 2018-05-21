@@ -213,7 +213,8 @@ namespace ShakesAndFidgetLibrary.Models
         #region Constructors
         public ICharacter() : base()
         {
-
+            InventoryGears = new ObservableCollection<Gear>();
+            InventoryUsables = new ObservableCollection<Usable>();
         }
         #endregion
 

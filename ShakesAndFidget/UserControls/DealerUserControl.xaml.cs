@@ -162,7 +162,7 @@ namespace ShakesAndFidget.UserControls
             int randNumber = randNum.Next(15, 35);
             for (int i = 0; i < randNumber; i++)
             {
-                int randNumber2 = randNum.Next(0, 54);
+                int randNumber2 = randNum.Next(0, gearsBase.Count-1);
                 Gear gear = gearsBase[randNumber2].ToGear(); // choisit un item aléatoire (ou faut-il rand sur l'id ?)
                 double randNumber3 = randNum.Next(1, 5); // NextDouble() est entre 0 et 1, donc avec + 0,5 pour avoir de 0,5 à 1,5
 

@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET gear listing. */
+/* GET usable listing. */
 router.get('/', function(req, res) {
   var models = req.app.get('models');
-  models.Gear.findAll()
-  .then((gears) => {
-    res.send(gears);
+  models.Usable.findAll()
+  .then((usables) => {
+    res.send(usables);
   })
   .catch((error) => {
     console.error(error);
@@ -14,26 +14,20 @@ router.get('/', function(req, res) {
   })
 });
 
-/* GET gear */
-router.get('/:gearId', function(req, res) {
+/* GET usable */
+router.get('/:usableId', function(req, res) {
   let models = req.app.get('models');
-  models.Gear.findById(req.params.gearId)
-  .then((gear) => {
-    models.GearBase.findById(gear.get('GearBaseId'))
-    .then((gearBase) => {
+  models.Usable.findById(req.params.usableId)
+  .then((usable) => {
+    models.UsableBase.findById(gear.get('UsableBaseId'))
+    .then((usableBase) => {
       models.Stats.findById(gear.get('StatId'))
       .then((stat) => {
         res.send({
           Id: gear.get('Id'),
-          Price: gear.get('Price'),
-          CharacterInventoryId: gear.get('CharacterInventorId'),
-          ItemBaseId: gear.get('GearBaseId'),
-          CharacterType: gearBase.get('CharacterType'),
-          GearType: gearBase.get('GearType'),
           Name: gearBase.get('Name'),
           ImageSource: gearBase.get('ImageSource'),
-          Type: gearBase.get('Type'),
-          LevelMin: gearBase.get('LevelMin'),
+          Price: gearBase.get('Price'),
           Life: stat.get('Life'),
           Mana: stat.get('Mana'),
           Energy: stat.get('Energy'),
@@ -46,7 +40,7 @@ router.get('/:gearId', function(req, res) {
           PhysicalDamage: stat.get('PhysicalDamage'),
           CriticalProba: stat.get('CriticalProba'),
           PhysicalArmor: stat.get('PhysicalArmor'),
-          MagicalArmor: stat.get('MagicalArmor')
+          MagicalArmor: stat.get('MagicalArmor'),
         });
       })
     })
@@ -57,90 +51,89 @@ router.get('/:gearId', function(req, res) {
   })
 });
 
-/* POST gear */
-router.post('/:gearBaseId', function(req, res) {
+/* POST usable */
+router.post('/:usableBaseId', function(req, res) {
   let models = req.app.get('models');
   models.Stats.create(req.body)
     .then((stat) => {
-      models.Gear.create({
-        Price: req.body.Price,
+      models.Usable.create({
         CharacterInventoryId: req.body.CharacterId,
-        GearBaseId: req.params.gearBaseId,
+        UsableBaseId: req.params.usableBaseId,
         StatId: stat.get('Id')
       })
-        .then((gear) => {
+        .then((usable) => {
           res.send({
-            gearId: gear.get('Id')
+            usableId: usable.get('Id')
           });
         })
         .catch((error) => {
-          let msg = 'Stat created but Gear has not';
+          let msg = 'Stat created but Usable has not';
           console.error(error, msg);
           res.send({error: -2});
         })
     })
     .catch((error) => {
-      let msg = 'Stat and Gear not created';
+      let msg = 'Stat and Usable not created';
       console.error(error, msg);
       res.send({error: -1});
     })
 });
 
-/* PUT gear in characters inventory */
-router.put('/:gearId/character/:characterId', function(req, res) {
+/* PUT usable in characters inventory */
+router.put('/:usableId/character/:characterId', function(req, res) {
   let models = req.app.get('models');
-  models.Gear.update({
+  models.Usable.update({
     CharacterInventoryId: req.params.characterId
   }, {
     returning: true,
     where: {
-      id: req.params.gearId
+      id: req.params.usableId
     }
   })
-  .then(([rowsUpdated, [updatedGear]]) => {
-    res.send(updatedGear);
+  .then(([rowsUpdated, [updatedUsable]]) => {
+    res.send(updatedUsable);
   })
   .catch((error) => {
-    let msg = 'Gear not updated';
+    let msg = 'Usable not updated';
     console.error(error, msg);
     res.send(req.body);
   });
 });
 
-// DELETE gear from characters inventory
-router.delete('/inventory/:gearId', function(req, res) {
+// DELETE usable from characters inventory
+router.delete('/inventory/:usableId', function(req, res) {
   let models = req.app.get('models');
-  models.Gear.update({
+  models.Usable.update({
     CharacterInventoryId: null
   }, {
     returning: true,
     where: {
-      id: req.params.gearId
+      id: req.params.usableId
     }
   })
-  .then(([rowsUpdated], [updatedGear]) => {
-    res.send(updatedGear);
+  .then(([rowsUpdated], [updatedUsable]) => {
+    res.send(updatedUsable);
   })
   .catch((error) => {
-    let msg = 'Gear not updated';
+    let msg = 'Usable not updated';
     console.error(error, msg);
     res.send(req.body);
   })
 });
 
-// DELETE gear
-router.delete(':gearId', function(req, res) {
+// DELETE usable
+router.delete(':usableId', function(req, res) {
   let models = req.app.get('models');
-  models.Gear.destroy({
+  models.Usable.destroy({
     where: {
-      id: req.params.gearId
+      id: req.params.usableId
     }
   })
   .then((success) => {
     res.send({status: 1});
   })
   .catch((error) => {
-    let msg = 'Gear not deleted';
+    let msg = 'Usable not deleted';
     console.error(error, msg);
     res.send({status: -1});
   });

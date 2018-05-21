@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace ShakesAndFidget.ViewModels
@@ -62,118 +63,6 @@ namespace ShakesAndFidget.ViewModels
 
         private void InventoryUC_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            // Filled lists for tests
-            MainWindow.Instance.CurrentCharacter.InventoryGears = new ObservableCollection<Gear>()
-            {
-                new Gear()
-                {
-                    Name = "Big Helmet",
-                    ImageSource = "pack://application:,,,/Resources/Big Helmet.png",
-                    GearType = "Head",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Dragon Bow",
-                    ImageSource = "pack://application:,,,/Resources/Dragon Bow.png",
-                    GearType = "Attack",
-                    LevelMin = 1,
-                    Agility = 5,
-                    CriticalDamage = 5,
-                    PhysicalDamage = 10,
-                    Strength = 5
-                },
-                new Gear()
-                {
-                    Name = "Big Shield",
-                    ImageSource = "pack://application:,,,/Resources/Big Shield.png",
-                    GearType = "Special",
-                    LevelMin = 1,
-                    PhysicalArmor = 15
-                },
-                new Gear()
-                {
-                    Name = "Electric Armor",
-                    ImageSource = "pack://application:,,,/Resources/Electric Armor.png",
-                    GearType = "Armor",
-                    LevelMin = 1,
-                    MagicalArmor = 20,
-                    PhysicalArmor = 10
-                },
-                new Gear()
-                {
-                    Name = "Scythe",
-                    ImageSource = "pack://application:,,,/Resources/Scythe.png",
-                    GearType = "Attack",
-                    LevelMin = 1,
-                    CriticalProba = 8
-                },
-                new Gear()
-                {
-                    Name = "Wizard Hat",
-                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
-                    GearType = "Head",
-                    LevelMin = 1
-                },
-                new Gear()
-                {
-                    Name = "Dark Katana",
-                    ImageSource = "pack://application:,,,/Resources/Dark Katana.png",
-                    GearType = "Attack",
-                    LevelMin = 5
-                },
-                new Gear()
-                {
-                    Name = "Crooked Sword",
-                    ImageSource = "pack://application:,,,/Resources/Crooked Sword.png",
-                    GearType = "Attack",
-                    LevelMin = 1,
-                    CriticalDamage = 5
-                },
-                new Gear()
-                {
-                    Name = "Saber",
-                    ImageSource = "pack://application:,,,/Resources/Saber.png",
-                    GearType = "Attack",
-                    LevelMin = 1,
-                    PhysicalDamage = 10
-                },
-                new Gear()
-                {
-                    Name = "Wizard Hat",
-                    ImageSource = "pack://application:,,,/Resources/Wizard Hat.png",
-                    GearType = "Head",
-                    LevelMin = 1
-                }
-            };
-            MainWindow.Instance.CurrentCharacter.InventoryUsables = new ObservableCollection<Usable>()
-            {
-                new Usable()
-                {
-                    Name = "Antidote",
-                    ImageSource = "pack://application:,,,/Resources/Antidote.png"
-                },
-                new Usable()
-                {
-                    Name = "Electric Arrow",
-                    ImageSource = "pack://application:,,,/Resources/Electric Arrow.png"
-                },
-                new Usable()
-                {
-                    Name = "Mana Potion",
-                    ImageSource = "pack://application:,,,/Resources/Mana Potion.png"
-                },
-                new Usable()
-                {
-                    Name = "Throwing Weapon",
-                    ImageSource = "pack://application:,,,/Resources/Throwing Weapon.png"
-                },
-                new Usable()
-                {
-                    Name = "Wind Arrow",
-                    ImageSource = "pack://application:,,,/Resources/Wind Arrow.png"
-                }
-            };
             MainWindow.Instance.CurrentCharacter.InventoryGears.CollectionChanged += InventoryGears_CollectionChanged;
             MainWindow.Instance.CurrentCharacter.InventoryUsables.CollectionChanged += InventoryUsables_CollectionChanged;
             HomePage.InventoryUC.RenderGears(
@@ -250,32 +139,69 @@ namespace ShakesAndFidget.ViewModels
             // Compatibility of character with this gear
             if (gear.IsCompatible(MainWindow.Instance.CurrentCharacter))
             {
-                MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
-                MainWindow.Instance.CurrentCharacter.Equip(gear);
-                RenderCharacter();
+                Task.Factory.StartNew(async () =>
+                {
+                    // Delete id in inventory attribute
+                    Gear updatedGear = await AGearRoutes.DeleteFromInventory(gear.Id);
+                    // Save new state of character
+                    ICharacter character = await ACharacterRoutes.PutCharacter(MainWindow.Instance.CurrentCharacter);
+                    if (!updatedGear.CharacterInventoryId.HasValue)
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            gear = updatedGear;
+                            MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
+                            MainWindow.Instance.CurrentCharacter.Equip(gear);
+                            RenderCharacter();
+                            MainWindow.Logger.Log(gear.Name + " has been equipped.");
+                        });
+                    }
+                    else
+                    {
+                        MainWindow.Logger.Warning(gear.Name + " couldn't been equipped.");
+                    }
+                });
             }
             else
                 MainWindow.Logger.Warning("You can't equip that gear (class or level)");
         }
 
+        private void Gear_Selling(object sender, EventArgs e)
+        {
+            Gear gear = (sender as Gear);
+            // Delete it from character inventory
+            MainWindow.Instance.CurrentCharacter.Money += gear.Price;
+            MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
+            RenderCharacter();
+            // Add it to dealer UC
+            HomePage.DealerUC.ListGear.Add(gear);
+            HomePage.DealerUC.RenderGears(true);
+        }
+
         private void Gear_Buying(object sender, EventArgs e)
         {
             Gear gear = (sender as Gear);
-            MainWindow.Logger.Log("Money: "+MainWindow.Instance.CurrentCharacter.Money.ToString());
-            MainWindow.Logger.Log("Price: "+gear.Price.ToString());
+            // Character has to have enough money
             if (MainWindow.Instance.CurrentCharacter.Money >= gear.Price)
             {
-                HomePage.DealerUC.ListGear.Remove(gear);
-                MainWindow.Instance.CurrentCharacter.InventoryGears.Add(gear);
-                MainWindow.Instance.CurrentCharacter.Money -= gear.Price;
-                RenderCharacter();
-                HomePage.DealerUC.RenderGears(true);
+                Task.Factory.StartNew(async () =>
+                {
+                    int price = gear.Price;
+                    // Divide price
+                    gear.Price = Convert.ToInt32(Math.Ceiling(gear.Price / 1.5));
+                    int result = await AGearRoutes.CreateGear(gear, gear.ItemBaseId);
+
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        HomePage.DealerUC.ListGear.Remove(gear);
+                        MainWindow.Instance.CurrentCharacter.InventoryGears.Add(gear);
+                        MainWindow.Instance.CurrentCharacter.Money -= price;
+                        RenderCharacter();
+                        HomePage.DealerUC.RenderGears(true);
+                        MainWindow.Logger.Log(gear.Name + " has been bought !");
+                    });
+                });
             }
-        }
-
-        private void Gear_Selling(object sender, EventArgs e)
-        {
-
         }
 
         private void Usable_Equiping(object sender, EventArgs e)
@@ -356,6 +282,29 @@ namespace ShakesAndFidget.ViewModels
         private void Gear_Unequiping(object sender, EventArgs e)
         {
             Gear gear = (sender as Gear);
+
+            Task.Factory.StartNew(async () =>
+            {
+                // Bind id in inventory attribute
+                Gear updatedGear = await AGearRoutes.PutInInventory(gear.Id, MainWindow.Instance.CurrentCharacter.Id);
+                // Save new state of character
+                ICharacter character = await ACharacterRoutes.PutCharacter(MainWindow.Instance.CurrentCharacter);
+                if (updatedGear.CharacterInventoryId.HasValue)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        gear = updatedGear;
+                        MainWindow.Instance.CurrentCharacter.InventoryGears.Add(gear);
+                        MainWindow.Instance.CurrentCharacter.Unequip(gear);
+                        RenderCharacter();
+                        MainWindow.Logger.Log(gear.Name + " has been unequipped.");
+                    });
+                }
+                else
+                {
+                    MainWindow.Logger.Warning(gear.Name + " couldn't been equipped.");
+                }
+            });
             MainWindow.Instance.CurrentCharacter.Unequip(gear);
             RenderCharacter();
         }

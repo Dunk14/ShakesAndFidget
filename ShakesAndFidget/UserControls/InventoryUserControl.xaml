@@ -67,6 +67,7 @@
                                             <Image.ContextMenu>
                                                 <ContextMenu>
                                                     <MenuItem Header="Equip" Command="{Binding Equip}"/>
+                                                    <MenuItem Header="Sell" Command="{Binding Sell}"/>
                                                 </ContextMenu>
                                             </Image.ContextMenu>
                                         </Image>
