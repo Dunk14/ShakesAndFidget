@@ -39,10 +39,14 @@ router.get('/byUserId/:userId', function(req, res) {
         .then((stat) => {
           models.Gear.findAll({
             InventoryCharacterId: character.get('Id')
+          }, {
+            include: [{model: models.GearBase, as: 'Gears'}]
           })
           .then((gears) => {
             models.Usable.findAll({
               InventoryCharacterId: character.get('Id')
+            }, {
+              include: [{model: models.UsableBase, as: 'Usables'}]
             })
             .then((usables) => {
               res.send({
@@ -183,33 +187,39 @@ router.put('/:characterId', function(req, res) {
       id: req.params.characterId
     }
   })
-  .then(([rowsUpdated, [updatedCharacter]]) => {
-    models.Stats.update({
-      Life: req.body.Life,
-      Mana: req.body.Mana,
-      Energy: req.body.Energy,
-      Strength: req.body.Strength,
-      Agility: req.body.Agility,
-      Spirit: req.body.Spirit,
-      Luck: req.body.Luck,
-      CriticalDamage: req.body.CriticalDamage,
-      MagicDamage: req.body.MagicDamage,
-      PhysicalDamage: req.body.PhysicalDamage,
-      CriticalProba: req.body.CriticalProba,
-      PhysicalArmor: req.body.PhysicalArmor,
-      MagicalArmor: req.body.MagicalArmor
-    },{
-      where: {
-        id: updatedCharacter.get('Id')
-      }
-    })
-    .then((rowsUpdated) => {
-      res.send(updatedCharacter);
-    })
-    .catch((error) => {
-      let msg = 'Character table updated but Stats has not';
-      console.error(error, msg);
-      res.send(req.body);
+  .then((result1) => {
+    models.Character.findById(req.params.characterId)
+    .then((character) => {
+      models.Stats.update({
+        Life: req.body.Life,
+        Mana: req.body.Mana,
+        Energy: req.body.Energy,
+        Strength: req.body.Strength,
+        Agility: req.body.Agility,
+        Spirit: req.body.Spirit,
+        Luck: req.body.Luck,
+        CriticalDamage: req.body.CriticalDamage,
+        MagicDamage: req.body.MagicDamage,
+        PhysicalDamage: req.body.PhysicalDamage,
+        CriticalProba: req.body.CriticalProba,
+        PhysicalArmor: req.body.PhysicalArmor,
+        MagicalArmor: req.body.MagicalArmor
+      },{
+        where: {
+          id: character.get('StatId')
+        }
+      })
+      .then((result2) => {
+        models.Character.findById(req.params.characterId, {include: [models.Stats]})
+        .then((character) => {
+          res.send(character);
+        });
+      })
+      .catch((error) => {
+        let msg = 'Character table updated but Stats has not';
+        console.error(error, msg);
+        res.send(req.body);
+      });
     });
   })
   .catch((error) => {

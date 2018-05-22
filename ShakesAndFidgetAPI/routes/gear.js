@@ -97,8 +97,11 @@ router.put('/:gearId/character/:characterId', function(req, res) {
       id: req.params.gearId
     }
   })
-  .then(([rowsUpdated, [updatedGear]]) => {
-    res.send(updatedGear);
+  .then((result) => {
+    models.Gear.findById(req.params.gearId, {include: [{model: models.GearBase, as: 'GearBase'}]})
+    .then((gear) => {
+      res.send(gear);
+    });
   })
   .catch((error) => {
     let msg = 'Gear not updated';

@@ -69,6 +69,7 @@ namespace ShakesAndFidget.ViewModels
                 MainWindow.Instance.CurrentCharacter.InventoryGears,
                 true
             );
+            ICharacter character = MainWindow.Instance.CurrentCharacter;
             BinderGears();
             HomePage.InventoryUC.RenderUsables(
                 MainWindow.Instance.CurrentCharacter.InventoryUsables,
@@ -207,9 +208,47 @@ namespace ShakesAndFidget.ViewModels
         private void Usable_Equiping(object sender, EventArgs e)
         {
             Usable usable = (sender as Usable);
+            ICharacter character = MainWindow.Instance.CurrentCharacter;
             MainWindow.Instance.CurrentCharacter.InventoryUsables.Remove(usable);
             MainWindow.Instance.CurrentCharacter.Equip(usable);
             RenderCharacter(true);
+        }
+
+        private void Gear_Unequiping(object sender, EventArgs e)
+        {
+            Gear gear = (sender as Gear);
+            MainWindow.Instance.CurrentCharacter.Unequip(gear);
+
+            Task.Factory.StartNew(async () =>
+            {
+                // Bind id in inventory attribute
+                Gear updatedGear = await AGearRoutes.PutInInventory(gear.Id, MainWindow.Instance.CurrentCharacter.Id);
+                // Save new state of character
+                ICharacter updatedCharacter = await ACharacterRoutes.PutCharacter(MainWindow.Instance.CurrentCharacter);
+                if (updatedGear.CharacterInventoryId.HasValue)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        gear = updatedGear;
+                        MainWindow.Instance.CurrentCharacter = updatedCharacter;
+                        RenderCharacter();
+                        MainWindow.Logger.Log(gear.Name + " has been unequipped.");
+                    });
+                }
+                else
+                {
+                    MainWindow.Instance.CurrentCharacter.InventoryGears.Remove(gear);
+                    MainWindow.Instance.CurrentCharacter.Equip(gear);
+                    MainWindow.Logger.Warning(gear.Name + " couldn't been equipped.");
+                }
+            });
+        }
+
+        private void Usable_Unequiping(object sender, EventArgs e)
+        {
+            Usable usable = (sender as Usable);
+            MainWindow.Instance.CurrentCharacter.Unequip(usable);
+            RenderCharacter();
         }
 
         private void InventoryUC_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
@@ -277,43 +316,6 @@ namespace ShakesAndFidget.ViewModels
                 character.Legs.Unequiping += Gear_Unequiping;
             if (character.Usable != null)
                 character.Usable.Unequiping += Usable_Unequiping;
-        }
-
-        private void Gear_Unequiping(object sender, EventArgs e)
-        {
-            Gear gear = (sender as Gear);
-
-            Task.Factory.StartNew(async () =>
-            {
-                // Bind id in inventory attribute
-                Gear updatedGear = await AGearRoutes.PutInInventory(gear.Id, MainWindow.Instance.CurrentCharacter.Id);
-                // Save new state of character
-                ICharacter character = await ACharacterRoutes.PutCharacter(MainWindow.Instance.CurrentCharacter);
-                if (updatedGear.CharacterInventoryId.HasValue)
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        gear = updatedGear;
-                        MainWindow.Instance.CurrentCharacter.InventoryGears.Add(gear);
-                        MainWindow.Instance.CurrentCharacter.Unequip(gear);
-                        RenderCharacter();
-                        MainWindow.Logger.Log(gear.Name + " has been unequipped.");
-                    });
-                }
-                else
-                {
-                    MainWindow.Logger.Warning(gear.Name + " couldn't been equipped.");
-                }
-            });
-            MainWindow.Instance.CurrentCharacter.Unequip(gear);
-            RenderCharacter();
-        }
-
-        private void Usable_Unequiping(object sender, EventArgs e)
-        {
-            Usable usable = (sender as Usable);
-            MainWindow.Instance.CurrentCharacter.Unequip(usable);
-            RenderCharacter();
         }
         #endregion
 

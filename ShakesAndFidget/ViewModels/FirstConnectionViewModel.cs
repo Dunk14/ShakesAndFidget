@@ -185,6 +185,7 @@ namespace ShakesAndFidget.ViewModels
                     CharactersListF[CurrentIndex].Attack = Gears[CurrentIndex];
                     CharactersListF[CurrentIndex].AttackId = resultGear;
                     resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListF[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                    CharactersListF[CurrentIndex].Id = resultCharacter;
                 }
                 else
                 {
@@ -192,6 +193,7 @@ namespace ShakesAndFidget.ViewModels
                     CharactersListM[CurrentIndex].Attack = Gears[CurrentIndex];
                     CharactersListM[CurrentIndex].AttackId = resultGear;
                     resultCharacter = await ACharacterRoutes.CreateCharacter(CharactersListM[CurrentIndex], MainWindow.Instance.CurrentUser.Id);
+                    CharactersListM[CurrentIndex].Id = resultCharacter;
                 }
 
                 if (resultCharacter >= 0)
