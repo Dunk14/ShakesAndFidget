@@ -103,6 +103,7 @@
     <Compile Include="UserControls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\FightViewModel.cs" />
     <Compile Include="UserControls\SubscribeUserControl.xaml.cs">
       <DependentUpon>SubscribeUserControl.xaml</DependentUpon>
     </Compile>

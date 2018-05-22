@@ -19,6 +19,13 @@ namespace ShakesAndFidgetLibrary.Routes
             gearBases = await webservice.HttpClientCaller<List<GearBase>>(GEAR_BASE_URL + methodRoute, gearBases);
             return gearBases;
         }
-
+        public static async Task<List<GearBase>> GetAllGearBasesByCharacterType(string Type)
+        {
+            Webservice webservice = new Webservice(BASE_URL);
+            String methodRoute = "/getgearbycharactertype/"+Type;
+            List<GearBase> gearBases = new List<GearBase>();
+            gearBases = await webservice.HttpClientCaller<List<GearBase>>(GEAR_BASE_URL + methodRoute, gearBases);
+            return gearBases;
+        }
     }
 }

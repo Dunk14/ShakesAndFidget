@@ -12,9 +12,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="350*"/>
+            <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="350*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -28,7 +30,7 @@
         <uc:EquipmentUserControl x:Name="EquipmentUC" Grid.Column="1"/>
         <Image 
             Name="ImageFight"
-            Grid.Column="2"
+            Grid.Column="3"
             Grid.Row="0" 
             Width="Auto"
             Height="Auto"
@@ -40,7 +42,7 @@
             Visibility="Hidden"
             Width="Auto"
             Height="Auto"
-            Grid.Column="2"
+            Grid.Column="3"
             Grid.Row="0"
             FontSize="80"
             Name="FightText"
@@ -49,14 +51,39 @@
         <Button
             Width="Auto"
             Height="Auto"
-            Grid.Column="2"
+            Grid.Column="3"
             Grid.Row="0"
             FontSize="60"
             Content="Start"
             Name="StartButton"
             />
-        <uc:EquipmentUserControl x:Name="EquipmentEnnemyUC" Grid.Column="3"/>
+        <uc:EquipmentUserControl x:Name="EquipmentEnnemyUC" Grid.Column="5"/>
         <uc:CharacterStatsUserControl x:Name="CharacterStatsUC" Grid.Column="1" Grid.Row="1"/>
-        <uc:CharacterStatsUserControl x:Name="EnnemyStatsUC" Grid.Column="3" Grid.Row="1"/>
+        <uc:CharacterStatsUserControl x:Name="EnnemyStatsUC" Grid.Column="5" Grid.Row="1"/>
+        <ProgressBar
+            Grid.Column="2"
+            Grid.Row="0"
+            HorizontalAlignment="Stretch"
+            Height="Auto"
+            VerticalAlignment="Stretch"
+            Width="50"
+            Orientation="Vertical"
+            Name="CharacterLife"
+            Background="#FFA60909"
+            Foreground="#FF09B10B"
+            />
+
+        <ProgressBar
+            Grid.Column="4"
+            Grid.Row="0"
+            HorizontalAlignment="Stretch"
+            Height="Auto"
+            VerticalAlignment="Stretch"
+            Width="50"
+            Orientation="Vertical"
+            Name="EnnemyLife"
+            Background="#FFA60909"
+            Foreground="#FF09B10B"
+            />
     </Grid>
 </Page>
