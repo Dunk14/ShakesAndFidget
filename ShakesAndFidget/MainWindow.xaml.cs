@@ -100,6 +100,14 @@ namespace ShakesAndFidget
             get { return currentCharacter; }
             set { currentCharacter = value; }
         }
+
+        private ICharacter currentEnnemy;
+
+        public ICharacter CurrentEnnemy
+        {
+            get { return currentEnnemy; }
+            set { currentEnnemy = value; }
+        }
         #endregion
 
         #region Properties

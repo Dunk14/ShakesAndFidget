@@ -103,6 +103,7 @@
     <Compile Include="UserControls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\FightViewModel.cs" />
     <Compile Include="UserControls\SubscribeUserControl.xaml.cs">
       <DependentUpon>SubscribeUserControl.xaml</DependentUpon>
     </Compile>
@@ -112,6 +113,9 @@
     <Compile Include="ViewModels\SubscribeViewModel.cs" />
     <Compile Include="Views\ConnectionPage.xaml.cs">
       <DependentUpon>ConnectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FightPage.xaml.cs">
+      <DependentUpon>FightPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstConnectionPage.xaml.cs">
       <DependentUpon>FirstConnectionPage.xaml</DependentUpon>
@@ -170,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FightPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\FirstConnectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,6 +229,10 @@
       <Project>{09d05a1c-417c-4ad8-890e-a0752713d0ac}</Project>
       <Name>EntityUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EnumUtils\EnumUtils.csproj">
+      <Project>{1958b81c-126c-4b95-9412-acfdd4bbd018}</Project>
+      <Name>EnumUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LoggerUtil\LoggerUtil.csproj">
       <Project>{3E6AA084-8562-40A3-8BEF-A357F380C28B}</Project>
       <Name>LoggerUtil</Name>
@@ -228,6 +240,10 @@
     <ProjectReference Include="..\ShakesAndFidgetLibrary\ShakesAndFidgetLibrary.csproj">
       <Project>{4ec2ba8a-a160-4360-b66d-3779f5c00075}</Project>
       <Name>ShakesAndFidgetLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebserviceProject\WebserviceProject.csproj">
+      <Project>{4db0f2a2-fcfc-4c77-8f4c-94a64701ddee}</Project>
+      <Name>WebserviceProject</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
