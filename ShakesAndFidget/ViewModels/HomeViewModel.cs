@@ -49,6 +49,7 @@ namespace ShakesAndFidget.ViewModels
         {
             HomePage.EquipmentUC.Character = MainWindow.Instance.CurrentCharacter;
             HomePage.EquipmentUC.RenderItems();
+            HomePage.CharacterStatsUC.RenderCharacterStats(HomePage.EquipmentUC.Character);
         }
 
         #endregion

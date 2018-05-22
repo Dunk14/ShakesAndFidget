@@ -30,6 +30,12 @@ namespace ShakesAndFidget.UserControls
         private void Events()
         {
             this.Disconnect.Click += Disconnect_Click;
+            this.Fight.Click += Fight_Click;
+        }
+
+        private void Fight_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.CurrentPage = new FightPage();
         }
 
         private void Disconnect_Click(object sender, System.Windows.RoutedEventArgs e)
