@@ -18,6 +18,9 @@ module.exports = function (sequelize) {
     },
     Level: {
       type: Sequelize.INTEGER
+    },
+    Money: {
+      type: Sequelize.INTEGER
     }
   });
 

@@ -66,5 +66,23 @@ namespace ShakesAndFidgetLibrary.Routes
                 return magus;
             }
         }
+
+        public static async Task<ICharacter> PutCharacter(ICharacter character)
+        {
+            Webservice webservice = new Webservice(BASE_URL);
+            String methodRoute = "/";
+            character = await webservice.HttpClientModifier<ICharacter>(CHARACTER_URL + methodRoute + character.Id, character);
+            return character;
+        }
+
+        public static async Task<int> DeleteCharacter(int characterId)
+        {
+            Webservice webservice = new Webservice(BASE_URL);
+            String methodRoute = "/";
+            JObject jObject = new JObject();
+            jObject = await webservice.HttpClientSuppressorJObject(CHARACTER_URL + methodRoute + characterId);
+            JToken value = jObject.First;
+            return value.ToObject<int>();
+        }
     }
 }

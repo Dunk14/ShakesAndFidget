@@ -49,12 +49,12 @@ namespace ShakesAndFidget.UserControls
         {
             Name.GotFocus += Name_GotFocus;
             Name.LostFocus += Name_LostFocus;
-            Mail.GotFocus += Mail_GetFocus;
-            Mail.LostFocus += Mail_LostFocus;
+            //Mail.GotFocus += Mail_GetFocus;
+            //Mail.LostFocus += Mail_LostFocus;
             RealPassword.LostFocus += RealPassword_LostFocus;
             FakePassword.GotFocus += FakePassword_GetFocus;
             Name.TextChanged += Name_TextChanged;
-            Mail.TextChanged += Mail_TextChanged;
+            //Mail.TextChanged += Mail_TextChanged;
             RealPassword.PasswordChanged += RealPassword_PasswordChanged;
         }
 

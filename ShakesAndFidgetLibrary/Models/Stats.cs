@@ -183,8 +183,38 @@ namespace ShakesAndFidgetLibrary.Models
             this.magicalArmor = magicalArmor;
         }
 
+        public Stats(ICharacter character) : base()
+        {
+            this.life = character.Life;
+            this.mana = character.Mana;
+            this.energy = character.Energy;
+            this.strength = character.Strength;
+            this.Agility = character.Agility;
+            this.spirit = character.Spirit;
+            this.luck = character.Luck;
+            this.criticalDamage = character.CriticalDamage;
+            this.magicDamage = character.MagicDamage;
+            this.physicalDamage = character.PhysicalDamage;
+            this.criticalProba = character.CriticalProba;
+            this.physicalArmor = character.PhysicalArmor;
+            this.magicalArmor = character.MagicalArmor;
+        }
+
         public Stats() : base()
         {
+            this.life = 0;
+            this.mana = 0;
+            this.energy = 0;
+            this.strength = 0;
+            this.Agility = 0;
+            this.spirit = 0;
+            this.luck = 0;
+            this.criticalDamage = 0;
+            this.magicDamage = 0;
+            this.physicalDamage = 0;
+            this.criticalProba = 0;
+            this.physicalArmor = 0;
+            this.magicalArmor = 0;
         }
         #endregion
 
@@ -192,6 +222,27 @@ namespace ShakesAndFidgetLibrary.Models
         #endregion
 
         #region Functions
+        public Stats AddStats(Stats stats)
+        {
+            Stats newStats = new Stats
+            {
+                Life = Life + stats.Life,
+                Mana = Mana + stats.Mana,
+                Energy = Energy + stats.Energy,
+                Strength = Strength + stats.Strength,
+                Agility = Agility + stats.Agility,
+                Spirit = Spirit + stats.Spirit,
+                Luck = Luck + stats.Luck,
+                CriticalDamage = CriticalDamage + stats.CriticalDamage,
+                MagicDamage = MagicDamage + stats.MagicDamage,
+                PhysicalDamage = PhysicalDamage + stats.PhysicalDamage,
+                CriticalProba = CriticalProba + stats.CriticalProba,
+                PhysicalArmor = PhysicalArmor + stats.PhysicalArmor,
+                MagicalArmor = MagicalArmor + stats.MagicalArmor
+            };
+            
+            return newStats;
+        }
         #endregion
 
         #region Events

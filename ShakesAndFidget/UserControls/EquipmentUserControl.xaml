@@ -11,6 +11,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,8 +22,8 @@
             Name="ImageCharacter"
             Grid.Column="1" 
             Grid.Row="1" 
-            Width="Auto"
-            Height="Auto"
+            Width="64"
+            Height="64"
             />
         <Image
             Source="pack://application:,,,/Resources/Inventory Item.png"
@@ -31,7 +32,21 @@
             Grid.Row="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            />
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Ring1.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Ring1.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
         <Image
             Source="pack://application:,,,/Resources/Inventory Helmet.png"
             Name="Head"
@@ -39,7 +54,21 @@
             Grid.Row="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
-            />
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Head.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Head.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
         <Image
             Source="pack://application:,,,/Resources/Inventory Item.png"
             Name="Ring2"
@@ -47,21 +76,63 @@
             Grid.Row="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
-            />
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Ring2.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Ring2.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
         <Image
             Name="Special"
             Grid.Column="0"
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
-            />
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Special.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Special.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
         <Image
             Name="Attack"
             Grid.Column="2"
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
-            />
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Attack.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Attack.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
         <Image
             Source="pack://application:,,,/Resources/Inventory Armor.png"
             Name="Armor"
@@ -69,7 +140,21 @@
             Grid.Row="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
-            />
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Armor.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Armor.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
         <Image
 			Source="pack://application:,,,/Resources/Inventory Legs.png"
             Name="Legs"
@@ -77,7 +162,21 @@
             Grid.Row="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
-            />
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Legs.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Legs.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
         <Image
 			Source="pack://application:,,,/Resources/Inventory Usable.png"
             Name="Usable"
@@ -85,6 +184,28 @@
             Grid.Row="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
+            Width="64"
+            Height="64"
+            >
+            <Image.ToolTip>
+                <ToolTip 
+                    Content="{Binding Character.Usable.Name}" 
+                    FontSize="14"
+                />
+            </Image.ToolTip>
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Unequip" Command="{Binding Character.Usable.Unequip}"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
+
+        <TextBlock 
+            Grid.ColumnSpan="3"
+            Grid.Row="4"
+            Text="{Binding Character.Money, StringFormat='Money: {0}'}" 
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
             />
     </Grid>
 </UserControl>

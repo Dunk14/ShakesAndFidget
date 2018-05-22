@@ -6,22 +6,22 @@
              xmlns:local="clr-namespace:ShakesAndFidget.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="490*"/>
-            <ColumnDefinition Width="300*"/>
-            <ColumnDefinition Width="490*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock 
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80*"/>
+			<RowDefinition Height="80*"/>
+			<RowDefinition Height="80*"/>
+			<RowDefinition Height="80*"/>
+			<RowDefinition Height="80*"/>
+			<RowDefinition Height="80*"/>
+			<RowDefinition Height="80*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="490*"/>
+			<ColumnDefinition Width="300*"/>
+			<ColumnDefinition Width="490*"/>
+		</Grid.ColumnDefinitions>
+		<TextBlock 
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Grid.Row="0"
@@ -31,7 +31,7 @@
             VerticalAlignment="Center"
             FontSize="50"
             FontWeight="Bold"/>
-        <TextBox
+		<TextBox
             Name="Name"
             Grid.Column="1"
             Grid.Row="1"
@@ -41,57 +41,47 @@
             VerticalAlignment="Center"
             VerticalContentAlignment="Center"
             Text="Enter a name or a pseudonym..."/>
-        <Label
+		<Label
             Name="NameMessage"
             Grid.Column="2"
             Grid.Row="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Margin="10,0,0,0"/>
-        <TextBox
-            Name="Mail"
-            Grid.Column="1"
-            Grid.Row="2"
-            HorizontalAlignment="Stretch"
-            Height="50"
-            TextWrapping="WrapWithOverflow"
-            VerticalAlignment="Center"
-            VerticalContentAlignment="Center"
-            Text="Enter a mail address..."/>
-        <Label
+		<Label
             Name="MailMessage"
             Grid.Column="2"
             Grid.Row="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Margin="10,0,0,0"/>
-        <PasswordBox
+		<PasswordBox
             Name="RealPassword"
             Grid.Column="1"
-            Grid.Row="3"
+            Grid.Row="2"
             HorizontalAlignment="Stretch"
             Height="50"
             VerticalAlignment="Center"
             VerticalContentAlignment="Center"
             Visibility="Collapsed"/>
-        <TextBox
+		<TextBox
             Name="FakePassword"
             Grid.Column="1"
-            Grid.Row="3"
+            Grid.Row="2"
             HorizontalAlignment="Stretch"
             Height="50"
             TextWrapping="WrapWithOverflow"
             VerticalAlignment="Center"
             VerticalContentAlignment="Center"
             Text="Enter a password..."/>
-        <Label
+		<Label
             Name="PasswordMessage"
             Grid.Column="2"
             Grid.Row="3"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Margin="10,0,0,0"/>
-        <Label
+		<Label
             Name="Message"
             Grid.Column="0"
             Grid.Row="4"
@@ -100,25 +90,26 @@
             VerticalContentAlignment="Center"
             FontSize="20"
             Foreground="DarkRed"/>
-        <Button
+		<Button
             Name="LogIn"
             Grid.Column="1"
-            Grid.Row="5"
+            Grid.Row="4
+			"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
             Width="300"
             Height="50"
             Content="LOG IN"
             FontSize="20"/>
-        <Button
+		<Button
             Name="Subscribe"
             Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="5"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" 
             Width="300"
             Height="50"
             Content="SUBSCRIBE"
             FontSize="20"/>
-    </Grid>
+	</Grid>
 </UserControl>

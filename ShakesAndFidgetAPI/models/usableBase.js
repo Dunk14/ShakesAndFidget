@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
-  const GearBase = sequelize.define('gearBase', {
+  const UsableBase = sequelize.define('usableBase', {
     Id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -12,15 +12,6 @@ module.exports = function (sequelize) {
     },
     ImageSource: {
       type: Sequelize.STRING
-    },
-    CharacterType: {
-      type: Sequelize.STRING(4)
-    },
-    GearType: {
-      type: Sequelize.STRING(7)
-    },
-    LevelMin: {
-      type: Sequelize.INTEGER
     },
     Life: {
       type: Sequelize.INTEGER
@@ -66,5 +57,5 @@ module.exports = function (sequelize) {
     }
   });
 
-  return GearBase;
+  return UsableBase;
 };

@@ -20,37 +20,17 @@ namespace ShakesAndFidgetLibrary.Models
         {
         }
 
-        public void EquipGear()
-        {
-            OnEquiping(new EventArgs());
-        }
-
-        public ICommand Equip
-        {
-            get { return new DelegateCommand(EquipGear); }
-        }
-
-        public event EventHandler Equiping;
-        protected virtual void OnEquiping(EventArgs e)
-        {
-            EventHandler handler = Equiping;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
         public Boolean IsCompatible(ICharacter character)
         {
             // Compatibilité des classes
             if (character is Warrior && !String.IsNullOrWhiteSpace(this.CharacterType)
-                && this.CharacterType != "W")
+                && !this.CharacterType.Contains("W"))
                 return false;
             else if (character is Hunter && !String.IsNullOrWhiteSpace(this.CharacterType)
-                && this.CharacterType != "H")
+                && !this.CharacterType.Contains("H"))
                 return false;
-            else if (character is Magus && !String.IsNullOrEmpty(this.CharacterType)
-                && this.CharacterType != "M")
+            else if (character is Magus && !String.IsNullOrWhiteSpace(this.CharacterType)
+                && !this.CharacterType.Contains("M"))
                 return false;
             // Compatibilité du niveau
             else if (this.LevelMin > character.Level)

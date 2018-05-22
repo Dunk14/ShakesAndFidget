@@ -1,6 +1,7 @@
 ﻿using ShakesAndFidgetLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,27 +20,31 @@ namespace ShakesAndFidget.UserControls
     /// <summary>
     /// Logique d'interaction pour HomeUserControl.xaml
     /// </summary>
-    public partial class EquipmentUserControl : UserControl
+    public partial class EquipmentUserControl : UserControl, INotifyPropertyChanged
     {
-        public ICharacter Character { get; set; }
+        private ICharacter character;
+        public ICharacter Character
+        {
+            get { return character; }
+            set
+            {
+                character = value;
+                OnPropertyChanged("Character");
+            }
+        }
 
         public EquipmentUserControl()
         {
             InitializeComponent();
+            DataContext = this;
             Events();
         }
 
         private void Events()
         {
-            Loaded += EquipmentUserControl_Loaded;
         }
 
-        private void EquipmentUserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Instance.CurrentCharacter.PropertyChanged += CurrentCharacter_PropertyChanged;
-        }
-
-        private void CurrentCharacter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Character_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             RenderItems();
         }
@@ -54,6 +59,14 @@ namespace ShakesAndFidget.UserControls
             Armor.Source = new BitmapImage(new Uri(await Character.LoadArmorImage()));
             Legs.Source = new BitmapImage(new Uri(await Character.LoadLegsImage()));
             Special.Source = new BitmapImage(new Uri(await Character.LoadSpecialImage()));
+            Usable.Source = new BitmapImage(new Uri(await Character.LoadUsableImage()));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

@@ -32,21 +32,22 @@ namespace ShakesAndFidgetLibrary.Models.Characters
 
         private void InitStats()
         {
-            this.Level = 1;
-            this.Type = "M";
-            this.Life = 80;
-            this.Mana = 50;
-            this.Energy = 5;
-            this.Strength = 5;
-            this.Agility = 20;
-            this.Spirit = 25;
-            this.Luck = 1;
-            this.CriticalDamage = 20;
-            this.MagicDamage = 10;
-            this.PhysicalDamage = 5;
-            this.CriticalProba = 5;
-            this.PhysicalArmor = 5;
-            this.MagicalArmor = 15;
+            Level = 1;
+            Type = "M";
+            Life = 80;
+            Mana = 50;
+            Energy = 5;
+            Strength = 5;
+            Agility = 20;
+            Spirit = 25;
+            Luck = 1;
+            CriticalDamage = 20;
+            MagicDamage = 10;
+            PhysicalDamage = 5;
+            CriticalProba = 5;
+            PhysicalArmor = 5;
+            MagicalArmor = 15;
+            Money = 150;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace ShakesAndFidgetLibrary.Models
         public int CriticalProba { get; set; }
         public int PhysicalArmor { get; set; }
         public int MagicalArmor { get; set; }
+        public int Price { get; set; }
 
         public Gear ToGear()
         {
@@ -35,7 +36,22 @@ namespace ShakesAndFidgetLibrary.Models
                 ImageSource = ImageSource,
                 CharacterType = CharacterType,
                 GearType = GearType,
-                LevelMin = LevelMin
+                LevelMin = LevelMin,
+                Life = Life,
+                Mana = Mana,
+                Energy = Energy,
+                Strength = Strength,
+                Agility = Agility,
+                Spirit = Spirit,
+                Luck = Luck,
+                CriticalDamage = CriticalDamage,
+                MagicDamage = MagicDamage,
+                PhysicalDamage = PhysicalDamage,
+                CriticalProba = CriticalProba,
+                PhysicalArmor = PhysicalArmor,
+                MagicalArmor = MagicalArmor,
+                Price = Price,
+                ItemBaseId = Id
             };
             return gear;
         }

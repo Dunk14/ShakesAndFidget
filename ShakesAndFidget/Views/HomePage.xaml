@@ -26,6 +26,8 @@
             Grid.Row="0"/>
         <uc:EquipmentUserControl x:Name="EquipmentUC" Grid.Column="1"/>
         <uc:CharacterStatsUserControl x:Name="CharacterStatsUC" Grid.Column="1" Grid.Row="1"/>
-        <uc:InventoryUserControl x:Name="InventoryUC" Grid.Column="2" Grid.Row="0" Loaded="InventoryUC_Loaded" />
-    </Grid>
+		<uc:InventoryUserControl x:Name="InventoryUC" Grid.Column="2" Grid.Row="0" Loaded="InventoryUC_Loaded" />
+		<uc:DealerUserControl x:Name="DealerUC" Grid.Column="2" Grid.Row="1"/>
+
+	</Grid>
 </Page>
